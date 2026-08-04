@@ -1,0 +1,30 @@
+# Ever fork: upstream ships no .dockerignore, so a `COPY backend/ ./backend/` or
+# `COPY frontend/ ./frontend/` drops the HOST's node_modules on top of the ones the
+# image just installed. With pnpm's symlink store that fails outright
+# ("cannot copy to non-directory: .../node_modules/@eslint/eslintrc"), and when it
+# does not fail it silently ships host-built native modules into a linux image.
+**/node_modules
+
+# Build output — regenerated inside the image.
+**/.next
+frontend/out
+**/dist
+sitemap*.xml
+robots.txt
+frontend/helpers/blog.json
+
+# Never needed in a build context, and .git makes it needlessly large.
+.git
+.github
+plans
+
+# Local pipeline state / secrets — must never enter an image layer.
+gh/*.db
+gh/*.db-shm
+gh/*.db-wal
+gh/archive-data
+gh/gcp-service-account.json
+gh/github-token.env
+token.env
+*.pem
+.env*.local

@@ -47,9 +47,17 @@ next-env.d.ts
 # server
 token.env
 
+# npm/pnpm scratch created by running the backend locally
+backend/.cache/
+
 # generated files
 frontend/helpers/blog.json
-gh/data/
+# Ever fork: upstream ignores all of gh/data/ because it is BigQuery pipeline output.
+# We generate it instead from ever/seed-gh-data.mjs over our own allowlisted repos and
+# COMMIT the four JSON files, so the image builds without needing the pipeline.
+# Everything else in gh/data/ (sqlite, archives, intermediates) stays ignored.
+gh/data/*
+!gh/data/*.json
 
 # gh event pipeline
 gh/event.db

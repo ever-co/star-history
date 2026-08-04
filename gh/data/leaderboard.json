@@ -1,0 +1,85 @@
+{
+  "updated_at": "2026-08-04",
+  "repos": [
+    {
+      "name": "ever-co/ever-gauzy",
+      "stars_total": 4125
+    },
+    {
+      "name": "ever-co/ever-traduora",
+      "stars_total": 2122
+    },
+    {
+      "name": "ever-co/ever-demand",
+      "stars_total": 1845
+    },
+    {
+      "name": "ever-co/ever-teams",
+      "stars_total": 541
+    },
+    {
+      "name": "ever-works/awesome-time-tracking",
+      "stars_total": 212
+    },
+    {
+      "name": "ever-works/awesome-mcp-servers",
+      "stars_total": 95
+    },
+    {
+      "name": "ever-co/ever-rec",
+      "stars_total": 30
+    },
+    {
+      "name": "ever-works/awesome-vector-databases",
+      "stars_total": 26
+    },
+    {
+      "name": "ever-works/awesome-startup-books",
+      "stars_total": 18
+    },
+    {
+      "name": "ever-works/ever-works",
+      "stars_total": 16
+    },
+    {
+      "name": "ever-works/directory-web-template",
+      "stars_total": 16
+    },
+    {
+      "name": "ever-works/awesome-rust-ai-libraries",
+      "stars_total": 12
+    },
+    {
+      "name": "ever-works/awesome-starters",
+      "stars_total": 6
+    },
+    {
+      "name": "ever-works/awesome-compliance-automation",
+      "stars_total": 4
+    },
+    {
+      "name": "ever-works/awesome-open-source-llms",
+      "stars_total": 3
+    },
+    {
+      "name": "ever-works/awesome-remote-team-tools",
+      "stars_total": 3
+    },
+    {
+      "name": "ever-works/directory-web-minimal-template",
+      "stars_total": 2
+    },
+    {
+      "name": "ever-works/awesome-chairs",
+      "stars_total": 2
+    },
+    {
+      "name": "ever-works/awesome-memes",
+      "stars_total": 2
+    },
+    {
+      "name": "ever-works/awesome-memos",
+      "stars_total": 2
+    }
+  ]
+}

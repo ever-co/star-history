@@ -1,0 +1,50 @@
+{
+  "_readme": [
+    "CANONICAL repo allowlist for the Ever self-hosted star-history instance.",
+    "This ONE file drives three things, so edit it here and nowhere else:",
+    "  1. backend/allowlist.ts  - which repos /svg will answer for, per Host header",
+    "  2. ever/seed-gh-data.mjs - the leaderboard + autocomplete data baked into the UI",
+    "  3. the README badges in each product repo",
+    "",
+    "Matching is case-insensitive. 'owner/*' wildcards are supported.",
+    "A Host not listed under 'hosts' falls back to 'default'. 'default' is empty,",
+    "so the service FAILS CLOSED: an unknown Host answers nothing.",
+    "",
+    "Changing this file requires an image rebuild (the UI data is baked at build time).",
+    "For an emergency runtime-only override, set ALLOWLIST_FILE to a mounted ConfigMap."
+  ],
+
+  "default": [],
+
+  "hosts": {
+    "stats-github.ever.co": [
+      "ever-co/ever-gauzy",
+      "ever-co/ever-teams",
+      "ever-co/ever-rec",
+      "ever-co/ever-demand",
+      "ever-co/ever-traduora"
+    ],
+
+    "stats-github.ever.works": [
+      "ever-works/ever-works",
+      "ever-works/directory-web-template",
+      "ever-works/directory-web-minimal-template",
+      "ever-works/awesome-chairs",
+      "ever-works/awesome-compliance-automation",
+      "ever-works/awesome-mcp-servers",
+      "ever-works/awesome-memes",
+      "ever-works/awesome-memos",
+      "ever-works/awesome-open-source-llms",
+      "ever-works/awesome-remote-team-tools",
+      "ever-works/awesome-rust-ai-libraries",
+      "ever-works/awesome-starters",
+      "ever-works/awesome-startup-books",
+      "ever-works/awesome-time-tracking",
+      "ever-works/awesome-vector-databases"
+    ],
+
+    "stats-github.cloc.com": [
+      "cloc-co/zero"
+    ]
+  }
+}

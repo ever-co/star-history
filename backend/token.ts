@@ -29,7 +29,13 @@ export const initTokenFromEnv = async () => {
     process.exit(-1);
   }
 
-  const tokenList = envTokenString.split(/\r?\n/);
+  // Ever fork: tolerate a trailing newline, blank lines, CRLF and "# comment" lines.
+  // Without this a trailing "\n" produced an empty token that always failed validation
+  // and logged a spurious "Token ... is unusable" on every boot.
+  const tokenList = envTokenString
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0 && !line.startsWith("#"));
   // Call GitHub API to check token usability
   for (const token of tokenList) {
     try {

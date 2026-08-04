@@ -8,24 +8,30 @@ import XYChart from "../shared/packages/xy-chart.js";
 import { convertDataToChartData, getRepoData } from "../shared/common/chart.js";
 import { ChartMode } from "../shared/types/chart.js";
 import logger from "./logger.js";
-import cache, { ogCardCache, svgCache, recordCacheHit, recordCacheMiss, getAllCacheStats } from "./cache.js";
+import cache, { ogCardCache, svgCache, recordCacheHit, recordCacheMiss, getAllCacheStats, CACHE_TTL_SECONDS } from "./cache.js";
 import {
   getChartWidthWithSize,
   fixJsdomSvgCasing,
   getBase64Image,
 } from "./utils.js";
 import { getNextToken, markTokenExhausted, initTokenFromEnv } from "./token.js";
+import { initAllowlist, rejectedRepos, allowedFor, isAllowlistEnabled } from "./allowlist.js";
 import { CHART_SIZES, MAX_REQUEST_AMOUNT, MAX_REPOS_PER_REQUEST } from "./const.js";
 import { initOgAssets, renderOgCard } from "./og-card.js";
 import { loadRepos } from "../shared/common/repo-data.js";
 
+// Derived from CACHE_TTL_SECONDS so the LRU and any CDN in front of us agree.
+// stale-while-revalidate keeps README badges serving instantly while a chart refreshes.
 const SVG_HEADERS = {
   "Content-Type": "image/svg+xml;charset=utf-8",
-  "Cache-Control": "public, s-maxage=86400, max-age=86400",
+  "Cache-Control":
+    `public, s-maxage=${CACHE_TTL_SECONDS}, max-age=${CACHE_TTL_SECONDS}, ` +
+    `stale-while-revalidate=${CACHE_TTL_SECONDS}`,
 } as const;
 
 const startServer = async () => {
   await initTokenFromEnv();
+  initAllowlist();
   initOgAssets();
   const repoStore = loadRepos();
 
@@ -52,6 +58,12 @@ const startServer = async () => {
       status: "OK",
       commit: process.env.GIT_COMMIT || "unknown",
       cache: getAllCacheStats(),
+      allowlist: {
+        enabled: isAllowlistEnabled(),
+        // Scoped to the requesting Host so a probe shows exactly what this vhost serves.
+        host: c.req.header("host") ?? null,
+        allowed: allowedFor(c.req.header("host")),
+      },
     }, 200);
   });
 
@@ -85,6 +97,19 @@ const startServer = async () => {
     const repos = reposParam.split(",").filter(Boolean);
     if (repos.length > MAX_REPOS_PER_REQUEST) {
       return c.text(`Too many repos: max ${MAX_REPOS_PER_REQUEST} per request`, 400);
+    }
+
+    // Allowlist gate — BEFORE any cache lookup, GitHub call or render, so a rejected
+    // repo can never consume one of our PAT's rate-limit units or land in the cache.
+    const host = c.req.header("host");
+    const rejected = rejectedRepos(host, repos);
+    if (rejected.length > 0) {
+      logger.warn(`403 ${host ?? "(no host)"} — not allowlisted: ${rejected.join(", ")}`);
+      return c.text(
+        `Not allowed on this host: ${rejected.join(", ")}\n` +
+          `${host ?? "this host"} serves only: ${allowedFor(host).join(", ") || "(nothing)"}\n`,
+        403
+      );
     }
 
     // Landscape1 card: returns a 1200x630 SVG with radar chart and attributes
@@ -285,10 +310,13 @@ const startServer = async () => {
 .----)   |      |  |     /  _____  \\  |  |\\  \\----.   |  |  |  | |  | .----)   |      |  |     |  \`--'  | |  |\\  \\----.   |  |
 |_______/       |__|    /__/     \\__\\ | _| \`._____|   |__|  |__| |__| |_______/       |__|      \\______/  | _| \`._____|   |__|
 `;
-  serve({ fetch: app.fetch, port: 8080 }, () => {
+  // Ever fork: PORT is configurable (default unchanged at 8080) so the server can run
+  // where 8080 is taken or reserved.
+  const port = Number(process.env.PORT) || 8080;
+  serve({ fetch: app.fetch, port }, () => {
     console.log(banner);
     console.log(`  commit: ${process.env.GIT_COMMIT || "unknown"}\n`);
-    logger.info("server running on port 8080");
+    logger.info(`server running on port ${port}`);
   });
 };
 

@@ -1,0 +1,105 @@
+{
+  "updated_at": "2026-08-04",
+  "repos": [
+    {
+      "name": "ever-co/ever-gauzy",
+      "new_stars": 25,
+      "stars_total": 4125
+    },
+    {
+      "name": "ever-co/ever-teams",
+      "new_stars": 21,
+      "stars_total": 541
+    },
+    {
+      "name": "ever-works/awesome-time-tracking",
+      "new_stars": 6,
+      "stars_total": 212
+    },
+    {
+      "name": "ever-co/ever-demand",
+      "new_stars": 2,
+      "stars_total": 1845
+    },
+    {
+      "name": "ever-works/ever-works",
+      "new_stars": 2,
+      "stars_total": 16
+    },
+    {
+      "name": "ever-works/awesome-rust-ai-libraries",
+      "new_stars": 2,
+      "stars_total": 12
+    },
+    {
+      "name": "ever-co/ever-rec",
+      "new_stars": 1,
+      "stars_total": 30
+    },
+    {
+      "name": "ever-co/ever-traduora",
+      "new_stars": 0,
+      "stars_total": 2122
+    },
+    {
+      "name": "ever-works/awesome-mcp-servers",
+      "new_stars": 0,
+      "stars_total": 95
+    },
+    {
+      "name": "ever-works/awesome-vector-databases",
+      "new_stars": 0,
+      "stars_total": 26
+    },
+    {
+      "name": "ever-works/awesome-startup-books",
+      "new_stars": 0,
+      "stars_total": 18
+    },
+    {
+      "name": "ever-works/directory-web-template",
+      "new_stars": 0,
+      "stars_total": 16
+    },
+    {
+      "name": "ever-works/awesome-starters",
+      "new_stars": 0,
+      "stars_total": 6
+    },
+    {
+      "name": "ever-works/awesome-compliance-automation",
+      "new_stars": 0,
+      "stars_total": 4
+    },
+    {
+      "name": "ever-works/awesome-open-source-llms",
+      "new_stars": 0,
+      "stars_total": 3
+    },
+    {
+      "name": "ever-works/awesome-remote-team-tools",
+      "new_stars": 0,
+      "stars_total": 3
+    },
+    {
+      "name": "ever-works/directory-web-minimal-template",
+      "new_stars": 0,
+      "stars_total": 2
+    },
+    {
+      "name": "ever-works/awesome-chairs",
+      "new_stars": 0,
+      "stars_total": 2
+    },
+    {
+      "name": "ever-works/awesome-memes",
+      "new_stars": 0,
+      "stars_total": 2
+    },
+    {
+      "name": "ever-works/awesome-memos",
+      "new_stars": 0,
+      "stars_total": 2
+    }
+  ]
+}

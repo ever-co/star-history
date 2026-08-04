@@ -62,7 +62,26 @@ export function getAllCacheStats() {
 
 // --- Caches ---
 
-const TTL_24H = 1000 * 60 * 60 * 24;
+/**
+ * Cache TTL (Ever fork).
+ *
+ * Upstream hardcodes 24h. We keep that as the default but make it configurable via
+ * CACHE_TTL_SECONDS, with a hard 1h floor: this instance backs public README badges,
+ * so every chart must be served from cache for at least an hour rather than spending
+ * our PAT's rate limit on every reader who loads a README.
+ *
+ * The same value drives the Cache-Control we emit, so the in-process LRU and any CDN
+ * in front of us expire together.
+ */
+const MIN_TTL_SECONDS = 60 * 60;
+const DEFAULT_TTL_SECONDS = 60 * 60 * 24;
+
+const parsedTtl = Number(process.env.CACHE_TTL_SECONDS);
+export const CACHE_TTL_SECONDS = Number.isFinite(parsedTtl) && parsedTtl > 0
+  ? Math.max(MIN_TTL_SECONDS, Math.floor(parsedTtl))
+  : DEFAULT_TTL_SECONDS;
+
+const TTL_24H = CACHE_TTL_SECONDS * 1000;
 
 const cache = new LRUCache<string, RepoData>({
   max: 10000,

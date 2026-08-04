@@ -1,0 +1,40 @@
+{
+  "updated_at": "2026-08-04",
+  "tiers": [
+    {
+      "threshold": 0,
+      "label": "all",
+      "count": 20
+    },
+    {
+      "threshold": 10,
+      "label": "10+",
+      "count": 12
+    },
+    {
+      "threshold": 100,
+      "label": "100+",
+      "count": 5
+    },
+    {
+      "threshold": 500,
+      "label": "500+",
+      "count": 4
+    },
+    {
+      "threshold": 1000,
+      "label": "1k+",
+      "count": 3
+    },
+    {
+      "threshold": 2000,
+      "label": "2k+",
+      "count": 2
+    },
+    {
+      "threshold": 4000,
+      "label": "4k+",
+      "count": 1
+    }
+  ]
+}
