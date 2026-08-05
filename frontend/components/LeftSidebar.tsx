@@ -19,7 +19,9 @@ const tabs: { key: Tab; label: string }[] = [
 ]
 
 const LeftSidebar: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<Tab>(weeklyRanking.repos.length > 0 ? "weekly" : "alltime")
+    // Ever fork: default to All-time. Across our repos most weekly deltas are 0, so the
+    // Weekly tab opened on a wall of "+0" and looked broken.
+    const [activeTab, setActiveTab] = useState<Tab>("alltime")
 
     const items = activeTab === "weekly"
         ? weeklyRanking.repos.map((r) => ({ name: r.name, metric: `+${formatNumber(r.new_stars)}`, metricClass: "accent-text" }))

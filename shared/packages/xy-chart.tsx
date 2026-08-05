@@ -44,6 +44,8 @@ export interface XYChartConfig {
     showDots: boolean
     transparent: boolean
     theme?: "light" | "dark"
+    /** Ever fork: credit stamped bottom-right. Defaults to upstream. */
+    watermark?: string
 }
 
 type XTickLabelType = "Date" | "Number"
@@ -94,7 +96,7 @@ const getDarkThemeDefaultOptions = (transparent: boolean): XYChartOptions => {
 
 const XYChart = (
     svg: SVGSVGElement,
-    { title, xLabel, yLabel, data: { datasets }, showDots, theme, transparent }: XYChartConfig,
+    { title, xLabel, yLabel, data: { datasets }, showDots, theme, transparent, watermark }: XYChartConfig,
     initialOptions: Partial<XYChartOptions>
 ) => {
     const options: XYChartOptions = {
@@ -217,7 +219,7 @@ const XYChart = (
 
     const svgChart = chart.append("g").attr("pointer-events", "all")
 
-    drawWatermark(svgChart, chartWidth, chartHeight);
+    drawWatermark(svgChart, chartWidth, chartHeight, watermark);
 
     if (title) {
         if (uniq(datasets.map((d) => d.label.split("/")[0])).length === 1) {

@@ -236,6 +236,7 @@ const startServer = async () => {
           avatarBase64,
           attributes: cardData.attributes,
           rank: cardData.rank,
+          watermark: (host ?? "").replace(/:\d+$/, "") || undefined,
         });
         ogCardCache.set(repo, svg);
         return c.body(svg, 200, SVG_HEADERS);
@@ -279,7 +280,9 @@ const startServer = async () => {
     }
 
     // Check rendered SVG cache before any data fetching or rendering.
-    const svgCacheKey = `${repos.join(",")}|${type}|${size}|${theme}|${transparent}|${legendPosition}|${useLogScale}`;
+    // host is part of the key because the watermark is host-derived (Ever fork) —
+    // without it a chart cached for one brand could be served under another.
+    const svgCacheKey = `${host ?? ""}|${repos.join(",")}|${type}|${size}|${theme}|${transparent}|${legendPosition}|${useLogScale}`;
     const cachedSvg = svgCache.get(svgCacheKey);
     if (cachedSvg) {
       recordCacheHit("svgChart");
@@ -363,6 +366,8 @@ const startServer = async () => {
           showDots: false,
           transparent: transparent.toLowerCase() === "true",
           theme: theme === "dark" ? "dark" : "light",
+          // Ever fork: brand the badge with the host that served it.
+          watermark: (host ?? "").replace(/:\d+$/, "") || undefined,
         },
         {
           xTickLabelType: type === "Date" ? "Date" : "Number",

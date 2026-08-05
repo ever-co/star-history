@@ -74,14 +74,8 @@ interface RepoPageProps {
 
 const Toolbar = ({ onDownload, downloading, tweetUrl }: { onDownload: () => void; downloading: boolean; tweetUrl: string }) => (
     <div className="flex items-center mb-2 w-full max-w-5xl" style={{ fontFamily: '"xkcd", cursive' }}>
-        <div className="flex-1">
-            <Link href="/" className="inline-flex items-center gap-1.5 text-lg text-neutral-400 hover:text-neutral-600 transition-colors">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M10.5 13L5.5 8L10.5 3" />
-                </svg>
-                Back to home
-            </Link>
-        </div>
+        {/* Ever fork: "Back to home" removed — the brand logo in the header does that. */}
+        <div className="flex-1" />
         <div className="flex items-center gap-3">
             {downloading && (
                 <svg className="animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -91,7 +85,7 @@ const Toolbar = ({ onDownload, downloading, tweetUrl }: { onDownload: () => void
             <button
                 onClick={onDownload}
                 disabled={downloading}
-                className="text-neutral-400 hover:text-neutral-600 transition-colors disabled:opacity-40"
+                className="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors disabled:opacity-40"
                 title="Download as PNG"
             >
                 <svg width="24" height="24" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
@@ -143,6 +137,7 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
     }, [repo.attributes])
 
     // Build the shared VDOM layout — same code path as the /svg?style=landscape1 endpoint
+    const cardWatermark = typeof window !== "undefined" ? window.location.hostname : ""
     const cardVNode = useMemo(() => buildLandscape1({
         name: repo.name,
         description: repo.description,
@@ -156,7 +151,9 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
         attributes: hasAttributes ? repo.attributes : null,
         rank: repo.rank,
         logoBase64: "/assets/logo-icon.png",
-    }), [repo, radarSvgBase64])
+        // Ever fork: stamp THIS host, not star-history.com.
+        watermark: cardWatermark,
+    }), [repo, radarSvgBase64, cardWatermark])
 
     // Scale the native 1200×630 card to fit the container
     useEffect(() => {
@@ -349,11 +346,8 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
                     }) }}
                 />
             </Head>
-            <PageShell header={
-                <Link href="/">
-                    <img src="/assets/logo-full.svg" alt="Star History" className="h-8 mb-4" />
-                </Link>
-            }>
+            {/* Ever fork: no header prop — the brand is in <Header /> inside PageShell. */}
+            <PageShell>
                 <Toolbar onDownload={handleDownload} downloading={downloading} tweetUrl={tweetUrl} />
 
                 <div
@@ -449,7 +443,7 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
                     </div>
                     <div className="w-1/3 text-right">
                         {nextRepo && (
-                            <Link href={`/${nextRepo.name.toLowerCase()}`} className="inline-flex items-center gap-1.5 hover:text-neutral-600 transition-colors justify-end">
+                            <Link href={`/${nextRepo.name.toLowerCase()}`} className="inline-flex items-center gap-1.5 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors justify-end">
                                 <span>{nextRepo.name.split("/")[1]} #{nextRepo.rank}</span>
                                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                     <path d="M5.5 3L10.5 8L5.5 13" />
@@ -459,7 +453,7 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
                     </div>
                 </div>
 
-                <p className="text-sm text-neutral-400 mt-1">
+                <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
                     Tracking repos with {formatNumber(minStars)}+ stars
                 </p>
             </PageShell>

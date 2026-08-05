@@ -16,6 +16,8 @@ export interface OgCardInput {
   avatarBase64: string;
   attributes: RepoAttributes | null;
   rank: number | null;
+  /** Ever fork: branding line on the card. Defaults to upstream when unset. */
+  watermark?: string;
 }
 
 // ---------- Assets (loaded once at init) ----------

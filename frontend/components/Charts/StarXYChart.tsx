@@ -47,6 +47,8 @@ const StarXYChart: React.FC<Props> = ({ classname = "", data, chartMode = "Date"
                         },
                         showDots: true,
                         theme: isDark ? "dark" : "light",
+                        // Ever fork: our own domain in the credit, not star-history.com.
+                        watermark: typeof window !== "undefined" ? window.location.hostname : undefined,
                         // Transparent so the page background shows through and the chart
                         // sits on the themed surface instead of a hardcoded white card.
                         transparent: true

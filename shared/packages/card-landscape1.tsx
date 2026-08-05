@@ -51,6 +51,8 @@ export interface Landscape1Data {
   attributes: { stars: number; new_stars: number; pushes: number; contributors: number; issues_closed: number; forks: number } | null;
   rank: number | null;
   logoBase64: string;
+  /** Ever fork: branding line bottom-right. Defaults to upstream. */
+  watermark?: string;
 }
 
 const LANG_COLORS: Record<string, string> = {
@@ -348,7 +350,7 @@ export function buildLandscape1(data: Landscape1Data) {
       "div",
       { style: { position: "absolute", bottom: 20, right: 48, display: "flex", alignItems: "center", gap: 8 } },
       h("img", { src: data.logoBase64, width: 24, height: 24, style: { opacity: 0.6 } }),
-      h("span", { style: { fontSize: 19, color: "#b5b5b5", letterSpacing: "0.02em" } }, "star-history.com"),
+      h("span", { style: { fontSize: 19, color: "#b5b5b5", letterSpacing: "0.02em" } }, data.watermark || "star-history.com"),
     ),
   );
 }

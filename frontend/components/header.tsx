@@ -8,7 +8,6 @@
  * What's here instead: the brand for THIS hostname, an honest "Built with Star
  * History" credit linking to the upstream project, and a theme toggle.
  */
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { FaGithub } from "react-icons/fa"
 import BrandLogo from "./BrandLogo"
@@ -33,13 +32,6 @@ const Header: React.FC = () => {
                 </a>
 
                 <div className="flex items-center gap-2 sm:gap-4">
-                    <Link
-                        href="/"
-                        className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-black sm:inline dark:text-gray-300 dark:hover:text-white"
-                    >
-                        Star History
-                    </Link>
-
                     {/* Credit to the upstream project this is built on. */}
                     <a
                         href={STAR_HISTORY_UPSTREAM}

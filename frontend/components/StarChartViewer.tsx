@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react"
 import StarXYChart from "./Charts/StarXYChart"
 import GenerateEmbedCodeDialog from "./GenerateEmbedCodeDialog"
 import { SketchPuzzleIcon } from "./SketchIcons"
-import EmbedMarkdownSection from "./EmbedMarkdownSection"
 import { useAppStore } from "store"
 import { FaSpinner } from "react-icons/fa"
 import { XYChartData } from "@shared/packages/xy-chart"
@@ -442,8 +441,10 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
                                 </button>
                             </div>
                         </div>
-
-                        <EmbedMarkdownSection />
+                        {/* Ever fork: the embed snippet is behind the "Embed" button now.
+                          * Visitors come here to read OUR star history and maybe grab an
+                          * Image/CSV/Link — the markdown block was a permanent white slab
+                          * of README boilerplate most of them never need. */}
                     </div>
                 </>
             )}
