@@ -351,14 +351,14 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
             <div ref={containerElRef} className="relative w-full h-auto min-h-400px self-center max-w-3xl 2xl:max-w-4xl sm:p-4 pt-0">
                 {store.isFetching && (
                     <div className="absolute w-full h-full flex justify-center items-center z-10 top-0">
-                        <div className="absolute w-full h-full blur-md bg-white bg-opacity-80"></div>
+                        <div className="absolute w-full h-full blur-md bg-white bg-opacity-80 dark:bg-black dark:bg-opacity-70"></div>
                         <FaSpinner className="animate-spin text-4xl z-10" />
                     </div>
                 )}
                 {!compact && state.chartData && (
                     <>
                         <div className="absolute top-0 left-1 p-2 flex flex-row">
-                            <div className="flex flex-row justify-center items-center rounded leading-8 text-sm px-3 z-10 text-dark select-none">
+                            <div className="flex flex-row justify-center items-center rounded leading-8 text-sm px-3 z-10 text-dark dark:text-gray-200 select-none">
                                 <span className="mr-2">Legend</span>
                                 <label className="mr-2 cursor-pointer hover:opacity-80 flex items-center">
                                     <input
@@ -384,14 +384,14 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
                         </div>
                         <div className="absolute top-0 right-1 p-2 flex flex-row">
                             <div
-                                className="flex flex-row justify-center items-center rounded leading-8 text-sm px-3 cursor-pointer z-10 text-dark select-none hover:bg-gray-100"
+                                className="flex flex-row justify-center items-center rounded leading-8 text-sm px-3 cursor-pointer z-10 text-dark dark:text-gray-200 select-none hover:bg-gray-100 dark:hover:bg-white/10"
                                 onClick={handleToggleLogScaleBtnClick}
                             >
                                 <input className="mr-2" type="checkbox" checked={state.useLogScale} />
                                 Log scale
                             </div>
                             <div
-                                className="flex flex-row justify-center items-center rounded leading-8 text-sm px-3 cursor-pointer z-10 text-dark select-none hover:bg-gray-100"
+                                className="flex flex-row justify-center items-center rounded leading-8 text-sm px-3 cursor-pointer z-10 text-dark dark:text-gray-200 select-none hover:bg-gray-100 dark:hover:bg-white/10"
                                 onClick={handleToggleChartBtnClick}
                             >
                                 <input className="mr-2" type="checkbox" checked={state.chartMode === "Timeline"} />
@@ -416,7 +416,7 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
                                     target="_blank"
                                 >
                                     <SketchPuzzleIcon size={20} />
-                                    <span className="text-dark ml-1">Get Chrome Extension</span>
+                                    <span className="text-dark dark:text-gray-200 ml-1">Get Chrome Extension</span>
                                 </a>
                             </div>
                             <div className="flex flex-row flex-wrap justify-end items-center mb-2">

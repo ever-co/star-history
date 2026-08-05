@@ -1,13 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import { head } from "lodash"
-import { GITHUB_REPO_URL_REG, NEWSLETTER_URL } from "../helpers/consts"
+import { GITHUB_REPO_URL_REG } from "../helpers/consts"
 import toast from "../helpers/toast"
 import { useAppStore } from "../store"
 import { SketchExternalLinkIcon } from "./SketchIcons"
-import Link from "next/link"
-import { Blog } from "helpers/types/blog"
-import blogs from "helpers/blog.json"
-import { SketchMailboxIcon } from "./SketchIcons"
 
 interface State {
     repo: string
@@ -15,7 +11,6 @@ interface State {
         name: string
         visible: boolean
     }[]
-    latestBlog?: Blog
 }
 
 interface RepoInputerProps {
@@ -32,13 +27,7 @@ export default function RepoInputer({ setChartVisibility }: RepoInputerProps) {
 
     const inputElRef = useRef<HTMLInputElement | null>(null)
 
-    useEffect(() => {
-        const latest = (blogs as Blog[]).find(blog => blog.featured);
-        if (latest) {
-            setState(prev => ({ ...prev, latestBlog: latest }));
-        }
-    }, []);
-    
+    // Ever fork: the "latest blog" lookup fed the promo banner, which is gone.
 
     useEffect(() => {
         setChartVisibility(true)
@@ -103,13 +92,11 @@ export default function RepoInputer({ setChartVisibility }: RepoInputerProps) {
         if (store.isFetching) {
             return
         }
-        let rawRepos = state.repo
-        if (rawRepos === "" && state.repos.length === 0) {
-            rawRepos = "star-history/star-history"
-        }
-
+        const rawRepos = state.repo
+        // Ever fork: upstream defaulted an empty input to "star-history/star-history",
+        // which is not on any of our allowlists and would come back 403. Ask instead.
         if (rawRepos === "") {
-            toast.warn("Please input the repo name")
+            toast.warn("Enter a repository, e.g. ever-co/ever-gauzy")
             return
         }
 
@@ -232,40 +219,24 @@ export default function RepoInputer({ setChartVisibility }: RepoInputerProps) {
 
     return (
         <div className="w-full px-3 shrink-0 flex flex-col justify-start items-center">
-            <div className={`w-auto mx-auto mt-6 mb-2 flex flex-row justify-center items-center flex-wrap ${state.latestBlog ? "" : "invisible"}`}>
-                <span className="px-2 -mt-px leading-7 rounded mr-2 text-sm accent-badge font-medium">
-                    {state.latestBlog?.publishedDate ? (() => {
-                        const dateStr = state.latestBlog.publishedDate;
-                        return new Date(dateStr).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-                    })() : "What's new"}
-                </span>
-                <div className="flex items-center">
-                    <Link className="text-gray-700 hover:underline" href={`/blog/${state.latestBlog?.slug}`}>
-                        {state.latestBlog?.title}
-                    </Link>
-                </div>
-                <a
-                    href={NEWSLETTER_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-3 text-gray-700 hover:underline flex items-center gap-1"
-                >
-                   <SketchMailboxIcon /> Subscribe
-                </a>
-            </div>
-            <div className="w-auto sm:w-full grow max-w-3xl 2xl:max-w-4xl mt-4 flex flex-row justify-center items-center shadow-inner border border-solid border-black rounded">
+            {/*
+             * Ever fork: removed upstream's "Star History Monthly …" promo, which linked
+             * to their blog, and the Subscribe link, which pointed at Bytebase's
+             * newsletter. Both are their editorial/marketing, not ours.
+             */}
+            <div className="w-auto sm:w-full grow max-w-3xl 2xl:max-w-4xl mt-4 flex flex-row justify-center items-center rounded-full border border-hairline bg-black/[0.04] p-1 dark:border-hairline-dark dark:bg-white/[0.06]">
                 <input
                     ref={inputElRef}
                     value={state.repo}
                     onChange={(e) => setState((prev) => ({ ...prev, repo: e.target.value }))}
-                    className="w-auto h-9 px-2 grow shrink text-dark outline-none rounded rounded-r-none placeholder:text-gray-300 focus:shadow-focus"
+                    className="h-10 w-auto grow shrink bg-transparent px-5 text-sm text-gray-800 outline-none placeholder:text-gray-400 dark:text-gray-100 dark:placeholder:text-gray-500"
                     type="text"
-                    placeholder={state.repos.length > 0 ? "...add next repository" : "star-history or star-history/star-history or https://github.com/star-history/star-history"}
+                    placeholder={state.repos.length > 0 ? "…add another repository" : "owner/repo — e.g. ever-co/ever-gauzy"}
                     onPaste={handleInputerPasted}
                     onKeyDown={handleInputerKeyDown}
                 />
                 <button
-                    className={`h-9 pl-4 pr-4 whitespace-nowrap w-auto text-black border-l border-black hover:bg-zinc-700 hover:text-white ${store.isFetching ? "cursor-wait" : ""}`}
+                    className={`h-10 shrink-0 rounded-full px-5 text-sm font-medium whitespace-nowrap bg-gray-900 text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200 ${store.isFetching ? "cursor-wait" : ""}`}
                     onClick={handleAddRepoBtnClick}
                 >
                     View star history
@@ -274,7 +245,7 @@ export default function RepoInputer({ setChartVisibility }: RepoInputerProps) {
             <div className="w-full mt-4 flex flex-row justify-center items-center">
                 <div className={`w-full max-w-2xl flex flex-row flex-wrap justify-center items-center ${state.repos.length > 0 ? "" : "invisible"}`}>
                     {state.repos.map((item) => (
-                        <div key={item.name} className="leading-8 px-3 pr-2 mb-2 text-dark rounded flex flex-row justify-center items-center border mr-3 last:mr-0">
+                        <div key={item.name} className="leading-8 px-3 pr-2 mb-2 text-dark dark:text-gray-200 rounded flex flex-row justify-center items-center border border-hairline dark:border-hairline-dark mr-3 last:mr-0">
                             <span className="relative w-3 h-3 mr-1 flex flex-row justify-center items-center cursor-pointer hover:opacity-60" onClick={() => handleDeleteRepoBtnClick(item.name)}>
                                 <span className="w-3 rotate-45 h-px bg-[black] absolute top-1/2"></span>
                                 <span className="w-3 -rotate-45 h-px bg-black absolute top-1/2"></span>
@@ -285,12 +256,12 @@ export default function RepoInputer({ setChartVisibility }: RepoInputerProps) {
                             >
                                 {item.name}
                             </span>
-                            <a href={`https://github.com/${item.name}`} target="_blank" className="flex items-center text-gray-400 hover:text-green-600">
+                            <a href={`https://github.com/${item.name}`} target="_blank" className="flex items-center text-gray-400 hover:text-gray-900 dark:hover:text-white">
                                 <SketchExternalLinkIcon />
                             </a>
                         </div>
                     ))}
-                    <button className="leading-8 mb-2 text-black hover:bg-gray-100 px-3 rounded border border-transparent" onClick={handleClearAllRepoBtnClick}>
+                    <button className="leading-8 mb-2 text-black dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10 px-3 rounded border border-transparent" onClick={handleClearAllRepoBtnClick}>
                         Clear all
                     </button>
                 </div>

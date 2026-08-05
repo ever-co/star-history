@@ -16,6 +16,21 @@ const StarXYChart: React.FC<Props> = ({ classname = "", data, chartMode = "Date"
     const chartContainerElRef = useRef<HTMLDivElement | null>(null)
     const svgElRef = useRef<SVGSVGElement | null>(null)
 
+    /*
+     * Ever fork: the chart is drawn by D3 into an SVG, so Tailwind's `dark:` classes
+     * cannot reach it — it needs the theme passed in explicitly. We mirror the `dark`
+     * class on <html> into state and redraw when it flips, otherwise the chart stays
+     * white-on-white after a theme switch.
+     */
+    const [isDark, setIsDark] = React.useState(false)
+    React.useEffect(() => {
+        const read = () => setIsDark(document.documentElement.classList.contains("dark"))
+        read()
+        const observer = new MutationObserver(read)
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
+        return () => observer.disconnect()
+    }, [])
+
     const drawStarChart = React.useCallback(
         (data: XYChartData) => {
             if (svgElRef.current) {
@@ -31,7 +46,10 @@ const StarXYChart: React.FC<Props> = ({ classname = "", data, chartMode = "Date"
                             datasets: data.datasets
                         },
                         showDots: true,
-                        transparent: false
+                        theme: isDark ? "dark" : "light",
+                        // Transparent so the page background shows through and the chart
+                        // sits on the themed surface instead of a hardcoded white card.
+                        transparent: true
                     },
                     {
                         xTickLabelType: chartMode === "Date" ? "Date" : "Number",
@@ -42,7 +60,7 @@ const StarXYChart: React.FC<Props> = ({ classname = "", data, chartMode = "Date"
                 )
             }
         },
-        [chartMode, useLogScale, legendPosition]
+        [chartMode, useLogScale, legendPosition, isDark]
     )
 
     useEffect(() => {

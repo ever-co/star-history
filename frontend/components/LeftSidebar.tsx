@@ -23,7 +23,7 @@ const LeftSidebar: React.FC = () => {
 
     const items = activeTab === "weekly"
         ? weeklyRanking.repos.map((r) => ({ name: r.name, metric: `+${formatNumber(r.new_stars)}`, metricClass: "accent-text" }))
-        : leaderboard.repos.map((r) => ({ name: r.name, metric: formatNumber(r.stars_total), metricClass: "text-gray-400" }))
+        : leaderboard.repos.map((r) => ({ name: r.name, metric: formatNumber(r.stars_total), metricClass: "text-gray-400 dark:text-gray-500" }))
 
     const updatedAt = activeTab === "weekly" ? weeklyRanking.updated_at
         : activeTab === "alltime" ? leaderboard.updated_at
@@ -39,8 +39,8 @@ const LeftSidebar: React.FC = () => {
                             onClick={() => setActiveTab(tab.key)}
                             className={`text-xs font-medium pb-1 border-b-2 transition-colors ${
                                 activeTab === tab.key
-                                    ? "text-gray-900 border-gray-900"
-                                    : "text-gray-400 border-transparent hover:text-gray-600"
+                                    ? "text-gray-900 border-gray-900 dark:text-gray-100 dark:border-gray-100"
+                                    : "text-gray-400 border-transparent hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
                             }`}
                         >
                             {tab.label}
@@ -57,10 +57,10 @@ const LeftSidebar: React.FC = () => {
                             return (
                                 <div key={tier.threshold}>
                                     <div className="flex items-baseline justify-between text-xs mb-0.5">
-                                        <span className="text-gray-700 font-medium">
+                                        <span className="text-gray-700 font-medium dark:text-gray-200">
                                             ★ {tier.label}
                                         </span>
-                                        <span className="text-gray-400">
+                                        <span className="text-gray-400 dark:text-gray-500">
                                             {formatNumber(tier.count)} <span className="text-gray-300">({pctLabel})</span>
                                         </span>
                                     </div>
@@ -85,7 +85,7 @@ const LeftSidebar: React.FC = () => {
                                         href={`/${item.name.toLowerCase()}`}
                                         className="flex items-center gap-2 py-1 text-sm cursor-pointer"
                                     >
-                                        <span className="text-xs text-gray-400 w-4 shrink-0">
+                                        <span className="text-xs text-gray-400 w-4 shrink-0 dark:text-gray-500">
                                             {i + 1}
                                         </span>
                                         <img
@@ -95,7 +95,7 @@ const LeftSidebar: React.FC = () => {
                                             height={16}
                                             className="rounded-full shrink-0"
                                         />
-                                        <span className="truncate text-gray-700 group-hover:text-blue-600">
+                                        <span className="truncate text-gray-700 group-hover:text-blue-600 dark:text-gray-300 dark:group-hover:text-blue-400">
                                             {repoName}
                                         </span>
                                         {EASTER_EGG_REPOS.has(item.name.toLowerCase()) ? (

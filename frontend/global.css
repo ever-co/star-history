@@ -14,13 +14,32 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+/*
+ * Ever fork: dark-mode support.
+ *
+ * Upstream is light-only, so every shared component class below hardcoded light
+ * surfaces (bg-white, bg-gray-100, text-dark). Each now carries a `dark:` variant so
+ * the whole app themes from the single `dark` class on <html>.
+ */
+@layer base {
+    html {
+        color-scheme: light;
+    }
+    html.dark {
+        color-scheme: dark;
+    }
+    body {
+        @apply bg-white text-gray-900 dark:bg-black dark:text-gray-100;
+    }
+}
+
 @layer components {
     /* ── Dialog ── */
     .dialog-panel {
-        @apply max-w-2xl h-auto flex flex-col justify-start items-start bg-white rounded-md overflow-hidden;
+        @apply max-w-2xl h-auto flex flex-col justify-start items-start bg-white rounded-md overflow-hidden dark:bg-surface-dark-raised dark:text-gray-100;
     }
     .dialog-header {
-        @apply w-full flex flex-row justify-between items-center p-4 pr-5 bg-gray-100 rounded-t-lg;
+        @apply w-full flex flex-row justify-between items-center p-4 pr-5 bg-gray-100 rounded-t-lg dark:bg-white/5;
     }
     .dialog-title {
         @apply text-2xl;
@@ -29,21 +48,23 @@ body {
         @apply w-full flex flex-col justify-start items-start p-4 pr-5;
     }
     .dialog-footer {
-        @apply w-full flex flex-row justify-end bg-gray-100 items-center p-4 pr-5 border-t rounded-b-md;
+        @apply w-full flex flex-row justify-end bg-gray-100 items-center p-4 pr-5 border-t rounded-b-md dark:bg-white/5 dark:border-hairline-dark;
     }
     .dialog-close {
         @apply text-xl text-gray-400 cursor-pointer hover:text-gray-500;
     }
 
-    /* ── Accent ── */
+    /* ── Accent ──
+     * Ever fork: was green (upstream's brand). Now a neutral ink accent that reads as
+     * ours on both themes and does not fight the per-domain logo gradients. */
     .accent-bg {
-        @apply bg-green-600 hover:bg-green-700;
+        @apply bg-gray-900 hover:bg-black dark:bg-white dark:text-black dark:hover:bg-gray-200;
     }
     .accent-text {
-        @apply text-green-600;
+        @apply text-gray-900 dark:text-gray-100;
     }
     .accent-badge {
-        @apply bg-green-100 text-green-600;
+        @apply bg-gray-100 text-gray-700 dark:bg-white/10 dark:text-gray-200;
     }
 
     /* ── Buttons ── */
@@ -54,31 +75,31 @@ body {
         @apply btn leading-10 accent-bg shadow-inner text-white;
     }
     .btn-secondary {
-        @apply rounded leading-9 text-sm px-3 cursor-pointer border text-dark bg-gray-100 hover:bg-gray-200;
+        @apply rounded leading-9 text-sm px-3 cursor-pointer border text-dark bg-gray-100 hover:bg-gray-200 dark:border-hairline-dark dark:bg-white/10 dark:text-gray-100 dark:hover:bg-white/20;
     }
 
     /* ── Inputs ── */
     .input {
-        @apply w-full outline-none border mt-2 shadow-inner p-2 rounded-md focus:shadow-focus;
+        @apply w-full outline-none border mt-2 shadow-inner p-2 rounded-md focus:shadow-focus dark:border-hairline-dark dark:bg-white/5 dark:text-gray-100;
     }
 
     /* ── Links ── */
     .link {
-        @apply text-blue-500 hover:opacity-80;
+        @apply text-blue-500 hover:opacity-80 dark:text-blue-400;
     }
     .link-action {
-        @apply text-blue-600 hover:underline;
+        @apply text-blue-600 hover:underline dark:text-blue-400;
     }
     .link-mono {
-        @apply font-mono underline text-blue-500 hover:opacity-80;
+        @apply font-mono underline text-blue-500 hover:opacity-80 dark:text-blue-400;
     }
     .link-footer {
-        @apply text-sm leading-8 underline text-blue-700 hover:opacity-80;
+        @apply text-sm leading-8 underline text-blue-700 hover:opacity-80 dark:text-blue-400;
     }
 
     /* ── Header ── */
     .header-link {
-        @apply h-full flex flex-row justify-center items-center px-2 hover:bg-zinc-800;
+        @apply h-full flex flex-row justify-center items-center px-2 hover:bg-black/5 dark:hover:bg-white/10;
     }
 
     /* ── Sidebar ── */
@@ -123,9 +144,9 @@ body {
 
     /* ── Code block with shadow ── */
     .code-block {
-        @apply relative w-full h-auto border px-4 py-3 rounded-md shadow-inner;
+        @apply relative w-full h-auto border px-4 py-3 rounded-md shadow-inner dark:border-hairline-dark dark:bg-white/5;
     }
     .code-text {
-        @apply font-mono break-all text-gray-600 text-sm;
+        @apply font-mono break-all text-gray-600 text-sm dark:text-gray-300;
     }
 }
