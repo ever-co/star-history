@@ -1,78 +1,62 @@
-import React, { useState } from "react";
-import GitHubStarButton from "./GitHubStarButton";
-import TokenSettingDialog from "./TokenSettingDialog";
-import Link from "next/link";
-import { useAppStore } from "../store";
-import { SketchLightBulbIcon } from "./SketchIcons";
+/**
+ * Header for the Ever self-hosted instances.
+ *
+ * Replaces upstream's header wholesale. Gone: the Blog link, the "Add access token"
+ * link (visitors never need a token now — the backend holds ours), the "How to use
+ * this site" link, and the hamburger menu that only existed to hold those.
+ *
+ * What's here instead: the brand for THIS hostname, an honest "Built with Star
+ * History" credit linking to the upstream project, and a theme toggle.
+ */
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import { FaGithub } from "react-icons/fa"
+import BrandLogo from "./BrandLogo"
+import ThemeToggle from "./ThemeToggle"
+import { BRANDS, currentBrand, STAR_HISTORY_UPSTREAM, type Brand } from "../helpers/brand"
 
 const Header: React.FC = () => {
-  const store = useAppStore()
-  const [showSetTokenDialog, setShowSetTokenDialog] = useState(false);
-  const [showDropMenu, setShowDropMenu] = useState(false);
+    // Resolved on the client: one static build serves all three hostnames.
+    const [brand, setBrand] = useState<Brand>(BRANDS["ever-co"])
+    useEffect(() => setBrand(currentBrand()), [])
 
-  const headerText = store.token ? "Edit access token" : "Add access token";
+    return (
+        <header className="sticky top-0 z-50 w-full border-b border-hairline bg-white/80 backdrop-blur-md dark:border-hairline-dark dark:bg-black/80">
+            <nav className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6">
+                {/* Brand → the marketing site this instance belongs to. */}
+                <a
+                    href={brand.site}
+                    className="flex items-center text-gray-800 transition-colors hover:text-black dark:text-gray-100 dark:hover:text-white"
+                    title={`${brand.name} — ${brand.site.replace("https://", "")}`}
+                >
+                    <BrandLogo brandId={brand.id} />
+                </a>
 
-  return (
-    <>
-      {showSetTokenDialog && (
-        <TokenSettingDialog
-          onClose={() => setShowSetTokenDialog(false)}
-          tokenCache={false}
-        />
-      )}
+                <div className="flex items-center gap-2 sm:gap-4">
+                    <Link
+                        href="/"
+                        className="hidden text-sm font-medium text-gray-600 transition-colors hover:text-black sm:inline dark:text-gray-300 dark:hover:text-white"
+                    >
+                        Star History
+                    </Link>
 
-        <header className="w-full h-14 shrink-0 flex flex-row justify-center items-center bg-dark text-light">
-          <div className="w-full h-full flex flex-row justify-between items-center px-4">
-            <div className="h-full bg-dark flex flex-row justify-start items-center">
-              <Link href="/" className="header-link px-3">
-                <img className="w-7 h-auto logo-spin" src="/assets/logo-icon.png" alt="Logo" />
-              </Link>
-              <Link href="/blog" className="header-link text-base">
-                <span className="text-white -2">Blog</span>
-              </Link>
-              <span
-                className="header-link cursor-pointer text-white text-base"
-                onClick={() => setShowSetTokenDialog(true)}
-              >
-                {headerText}
-              </span>
-            </div>
-            <div className="hidden md:flex flex-row justify-center items-center">
-              <Link href="/blog/how-to-use-github-star-history" className="flex flex-row items-center text-base px-2 hover:underline">
-                <span className="text-white flex items-center gap-1"><SketchLightBulbIcon /> How to use this site</span>
-              </Link>
-            </div>
-            <div className="h-full hidden md:flex flex-row justify-end items-center px-3">
-              <GitHubStarButton />
-            </div>
+                    {/* Credit to the upstream project this is built on. */}
+                    <a
+                        href={STAR_HISTORY_UPSTREAM}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full border border-hairline px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:bg-black/5 hover:text-black sm:text-sm dark:border-hairline-dark dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-white"
+                        title="Built with Star History — view the upstream project on GitHub"
+                    >
+                        <span className="whitespace-nowrap">Built with Star History</span>
+                        <FaGithub className="h-4 w-4 shrink-0" />
+                    </a>
 
-            <div className="h-full flex md:hidden flex-row justify-end items-center">
-              <button
-                aria-label="Toggle menu"
-                aria-expanded={showDropMenu}
-                className="relative h-full w-10 px-3 flex flex-row justify-center items-center cursor-pointer font-semibold text-light hover:bg-zinc-800 bg-transparent border-none"
-                onClick={() => setShowDropMenu((prev) => !prev)}
-              >
-                <span className={`w-4 transition-all h-px bg-light absolute top-1/2 ${showDropMenu ? "w-6 rotate-45" : "-mt-1"}`}></span>
-                <span className={`w-4 transition-all h-px bg-light absolute top-1/2 ${showDropMenu ? "hidden" : ""}`}></span>
-                <span className={`w-4 transition-all h-px bg-light absolute top-1/2 ${showDropMenu ? "w-6 -rotate-45" : "mt-1"}`}></span>
-              </button>
-            </div>
-          </div>
+                    <ThemeToggle />
+                </div>
+            </nav>
         </header>
-        <div className={`w-full h-auto py-2 flex md:hidden flex-col justify-start items-start shadow-lg border-b ${showDropMenu ? "flex" : "hidden"}`}>
-          <span
-            className="h-12 px-3 text-base w-full flex flex-row justify-start items-center cursor-pointer font-semibold text-dark mr-2 hover:bg-gray-100 hover:text-blue-500"
-            onClick={() => setShowSetTokenDialog(true)}
-          >
-            {headerText}
-          </span>
-          <span className="h-12 text-base px-3 w-full flex flex-row justify-start items-center text-dark">
-            <GitHubStarButton />
-          </span>
-        </div>
-    </>
-  );
-};
+    )
+}
 
-export default Header;
+export default Header

@@ -67,6 +67,86 @@ const startServer = async () => {
     }, 200);
   });
 
+  /**
+   * JSON star data for the interactive UI (Ever fork).
+   *
+   * Upstream's frontend calls the GitHub API straight from the browser using a token
+   * the VISITOR has to paste in, so an anonymous visitor immediately hits the 60/hr
+   * unauthenticated limit and gets an "Access Token Unauthorized" dialog — the chart
+   * never renders. Serving the data here instead means:
+   *   - visitors never need a token, and never see that dialog
+   *   - the same per-Host allowlist applies as for /svg
+   *   - it shares the 24h LRU with /svg, so an interactive view is usually free
+   */
+  app.get("/api/star-data", async (c) => {
+    const reposParam = c.req.query("repos");
+    if (!reposParam) {
+      return c.json({ error: "Repo name required" }, 400);
+    }
+    const repos = reposParam.split(",").map((r) => r.trim()).filter(Boolean);
+    if (repos.length > MAX_REPOS_PER_REQUEST) {
+      return c.json({ error: `Too many repos: max ${MAX_REPOS_PER_REQUEST} per request` }, 400);
+    }
+
+    const host = c.req.header("host");
+    const rejected = rejectedRepos(host, repos);
+    if (rejected.length > 0) {
+      return c.json(
+        {
+          error: `Not allowed on this host: ${rejected.join(", ")}`,
+          allowed: allowedFor(host),
+        },
+        403
+      );
+    }
+
+    const data: { repo: string; starRecords: unknown; logoUrl: string }[] = [];
+    const missing: string[] = [];
+    for (const repo of repos) {
+      const hit = cache.get(repo);
+      if (hit) {
+        recordCacheHit("starData");
+        data.push({ repo, starRecords: hit.starRecords, logoUrl: hit.logoUrl });
+      } else {
+        recordCacheMiss("starData");
+        missing.push(repo);
+      }
+    }
+
+    if (missing.length > 0) {
+      const token = getNextToken();
+      if (!token) {
+        return c.json({ error: "All GitHub API tokens are rate-limited, try again later" }, 503);
+      }
+      try {
+        const fetched = await getRepoData(missing, token, MAX_REQUEST_AMOUNT);
+        await Promise.all(
+          fetched.map(async (d) => {
+            d.logoUrl = await getBase64Image(`${d.logoUrl}&size=22`);
+            cache.set(d.repo, {
+              starRecords: d.starRecords,
+              starAmount: d.starRecords[d.starRecords.length - 1].count,
+              logoUrl: d.logoUrl,
+            });
+            data.push(d);
+          })
+        );
+      } catch (error: any) {
+        const status = error.status || 400;
+        if (status === 403) markTokenExhausted(token);
+        return c.json({ error: error.message || "Failed to fetch star data", repo: error.repo }, status);
+      }
+    }
+
+    // Order the response the way the caller asked for, so chart series colours are stable.
+    const byRepo = new Map(data.map((d) => [d.repo.toLowerCase(), d]));
+    const ordered = repos.map((r) => byRepo.get(r.toLowerCase())).filter(Boolean);
+
+    return c.json({ data: ordered }, 200, {
+      "Cache-Control": `public, max-age=${CACHE_TTL_SECONDS}, s-maxage=${CACHE_TTL_SECONDS}`,
+    });
+  });
+
   // Normalize /svg query params for CDN cache efficiency.
   // Redirects to the canonical URL so Cloudflare caches one entry per unique chart.
   app.get("/svg", async (c, next) => {

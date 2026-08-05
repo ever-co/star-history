@@ -1,21 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, useRef } from "react"
 import StarXYChart from "./Charts/StarXYChart"
-import TokenSettingDialog from "./TokenSettingDialog"
 import GenerateEmbedCodeDialog from "./GenerateEmbedCodeDialog"
 import { SketchPuzzleIcon } from "./SketchIcons"
 import EmbedMarkdownSection from "./EmbedMarkdownSection"
 import { useAppStore } from "store"
 import { FaSpinner } from "react-icons/fa"
 import { XYChartData } from "@shared/packages/xy-chart"
-import { convertDataToChartData, getRepoData } from "@shared/common/chart"
+import { convertDataToChartData } from "@shared/common/chart"
+import { fetchStarData } from "helpers/starData"
 import toast from "helpers/toast"
 import { ChartMode, RepoData, LegendPosition } from "@shared/types/chart"
 
 const VALID_LEGEND_POSITIONS: LegendPosition[] = ["top-left", "bottom-right"]
-import BytebaseBanner from "./SponsorView"
 import utils from "@shared/common/utils"
-import api from "@shared/common/api"
 
 interface State {
     chartMode: "Date" | "Timeline"
@@ -33,7 +31,7 @@ interface State {
     >
     chartData: XYChartData | undefined
     isGeneratingImage: boolean
-    showSetTokenDialog: boolean
+
     showGenEmbedCodeDialog: boolean
     showEmbedCodeDialog: boolean
 }
@@ -53,7 +51,7 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
         chartData: undefined,
         isGeneratingImage: false,
         showEmbedCodeDialog: false,
-        showSetTokenDialog: false,
+
         showGenEmbedCodeDialog: false,
     })
 
@@ -73,7 +71,8 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
             }
 
             try {
-                const data = await getRepoData(notCachedRepos, store.token)
+                // Ever fork: our backend, not the GitHub API. No visitor token needed.
+                const data = await fetchStarData(notCachedRepos)
                 for (const { repo, starRecords, logoUrl } of data) {
                     state.repoCacheMap.set(repo, {
                         starData: starRecords,
@@ -81,11 +80,12 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
                     })
                 }
             } catch (error: any) {
+                // 403 here means "not on this host's allowlist", NOT "needs a token" —
+                // the server holds the PATs. Surfacing a token dialog would be a lie, so
+                // we just report what happened.
                 toast.warn(error.message)
 
-                if (error.status === 401 || error.status === 403) {
-                    setState((prevState) => ({ ...prevState, showSetTokenDialog: true }))
-                } else if (error.status === 404 || error.status === 501) {
+                if (error.status === 404 || error.status === 501) {
                     store.actions.delRepo(error.repo)
                 }
             }
@@ -256,13 +256,12 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
 
         if (repos.length === 1) {
             const repo = repos[0]
-            let starCount = 0
-
-            try {
-                starCount = await api.getRepoStargazersCount(repo, store.token)
-            } catch (error) {
-                // handle error
-            }
+            // Ever fork: read the total from the series we already have rather than
+            // making another GitHub call. The last star record IS the current count,
+            // so this is both accurate and free — and it keeps the browser off the
+            // GitHub API entirely.
+            const cached = state.repoCacheMap.get(repo)
+            const starCount = cached?.starData?.length ? cached.starData[cached.starData.length - 1].count : 0
 
             let starText = ""
             if (starCount > 0) {
@@ -347,9 +346,6 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
         fetchReposData(store.repos, state.chartMode)
     }, [state.chartMode, store.actions, store.repos, fetchReposData])
 
-    const handleSetTokenDialogClose = () => {
-        setState((prevState) => ({ ...prevState, showSetTokenDialog: false }))
-    }
     return (
         <>
             <div ref={containerElRef} className="relative w-full h-auto min-h-400px self-center max-w-3xl 2xl:max-w-4xl sm:p-4 pt-0">
@@ -406,13 +402,6 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
                 )}
                 <div id="capture">{state.chartData && state.chartData.datasets.length > 0 && <StarXYChart classname={`w-full h-auto ${compact ? "" : "mt-6"}`} data={state.chartData} chartMode={state.chartMode} useLogScale={state.useLogScale} legendPosition={state.legendPosition} />}</div>
                 {/* ... rest of the JSX here */}
-                {state.showSetTokenDialog && (
-                    <TokenSettingDialog
-                        onClose={handleSetTokenDialogClose}
-                        show={state.showSetTokenDialog}
-                    />
-                )}
-
                 {state.showEmbedCodeDialog && <GenerateEmbedCodeDialog onClose={handleGenEmbedCodeDialogClose} show={state.showEmbedCodeDialog} />}
             </div>
 
@@ -456,7 +445,6 @@ function StarChartViewer({ compact = false }: StarChartViewerProps) {
 
                         <EmbedMarkdownSection />
                     </div>
-                    <BytebaseBanner v-if="state.chartData" />
                 </>
             )}
         </>

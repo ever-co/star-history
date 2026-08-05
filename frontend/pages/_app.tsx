@@ -3,7 +3,6 @@ import { AppProps } from "next/app"
 import "../global.css"
 import "@fortawesome/fontawesome-free/css/all.css"
 import Head from "next/head"
-import Script from "next/script"
 import ErrorBoundary from "../components/ErrorBoundary"
 import { AppStateProvider } from "../store"
 
@@ -22,8 +21,14 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <>
             <Head>
                 <link rel="icon" href="/assets/favicon.ico" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
-            <Script defer data-domain="star-history.com" src="https://plausible.io/js/script.js" strategy="afterInteractive" />
+            {/*
+             * Ever fork: upstream loaded Plausible with data-domain="star-history.com",
+             * which reported OUR visitors' page views into a third party's analytics
+             * account. Removed — a self-hosted instance must not phone home. If we want
+             * analytics here, wire our own Umami (analytics.ever.co) instead.
+             */}
             <AppStateProvider>
                 <ErrorBoundary>
                     {getLayout(<Component {...pageProps} />)}

@@ -238,13 +238,17 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    // Generate the paths we want to pre-render based on blogs
-    const paths = blogs.map((blog) => ({
-        params: { slug: blog.slug },
-    }))
+    // Ever fork: upstream's 92 blog posts are star-history.com's editorial content.
+    // Publishing them under stats-github.ever.co would be off-brand and would duplicate
+    // star-history.com's pages, so they are GATED OFF by default rather than deleted —
+    // set NEXT_PUBLIC_ENABLE_BLOG=true at build time to restore them.
+    const blogEnabled = process.env.NEXT_PUBLIC_ENABLE_BLOG === "true"
 
-    // Return the paths with a fallback strategy
-    return { paths, fallback: false } // Or use 'blocking' or true for fallback pages
+    const paths = blogEnabled
+        ? blogs.map((blog) => ({ params: { slug: blog.slug } }))
+        : []
+
+    return { paths, fallback: false }
 }
 
 export default BlogPost
