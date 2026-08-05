@@ -27,6 +27,12 @@ badges are backed by our own PAT quota and our own uptime.
 | File | Change |
 |---|---|
 | `ever/allowlist.json` | **New.** The canonical per-Host repo allowlist. |
+| `frontend/helpers/brand.ts` | **New.** Per-domain brand (name, tagline, legal site, socials), resolved from `window.location.hostname`. |
+| `frontend/helpers/theme.ts` | **New.** Light/dark/system, plus the pre-paint boot script. |
+| `frontend/helpers/starData.ts` | **New.** Fetches chart data from our `/api/star-data` instead of GitHub. |
+| `frontend/components/BrandLogo.tsx` | **New.** The three brand marks. |
+| `frontend/components/ThemeToggle.tsx` | **New.** light → dark → system. |
+| `backend/main.ts` | Adds `GET /api/star-data` (allowlisted JSON star data). |
 | `ever/seed-gh-data.mjs` | **New.** Builds `gh/data/*.json` from the allowlist via the GitHub REST API, replacing upstream's BigQuery pipeline (which we have no access to). |
 | `ever/nginx.conf` | **New.** Serves the frontend's static export. |
 | `backend/allowlist.ts` | **New.** Loads the allowlist and answers "may this Host see this repo". |
@@ -41,6 +47,44 @@ badges are backed by our own PAT quota and our own uptime.
 | `.dockerignore` | **New.** See below. |
 | `.gitignore` | `gh/data/*.json` is now committed (we generate it, upstream doesn't). |
 | `.github/workflows/k8s-build.yml` | **New.** Fleet-standard build to GHCR. |
+
+## Branding: one build, three brands
+
+The brand is resolved at **runtime** from `window.location.hostname`, so a single image
+still serves all three domains — three forks would have tripled CI and the image count just
+to change a logo. An inline script in `_document.tsx` stamps `data-brand` and the `dark`
+class on `<html>` **before first paint**, so neither the brand nor the theme flashes (this is
+a static export; there is no server to negotiate per host).
+
+Consequences worth knowing:
+
+- `NEXT_PUBLIC_API_URL` must stay `same-origin`. Each host has to call **its own** backend
+  vhost, because the backend allowlists per `Host`; a baked absolute URL sends ever.works'
+  charts at ever.co's vhost and earns a 403.
+- Anything that must differ per host has to be **client-side**. The tab title goes through
+  `<Head>` off brand state, not `document.title` — Next owns that element and overwrites a
+  direct assignment.
+- The D3 chart cannot see Tailwind's `dark:` classes (it draws into an SVG), so
+  `StarXYChart` mirrors the `dark` class via `MutationObserver` and redraws.
+
+Cloc has no published logo (cloc.com is still the under-construction page), so it gets a
+typographic mark — swap it in `BrandLogo.tsx` when brand assets exist. Its legal links point
+at ever.co for the same reason.
+
+## No visitor token, ever
+
+Upstream calls the GitHub API **from the browser** with a token the visitor pastes in. An
+anonymous visitor gets 60 requests/hour, which one chart exceeds, so the first load showed
+"Access Token Unauthorized" and no chart — fatal for a page linked from public READMEs.
+
+`GET /api/star-data?repos=…` serves that data from our PATs instead, under the same
+allowlist, sharing the 24h cache that backs `/svg`. The token dialog is gone because the
+condition that raised it cannot occur. A 403 from this endpoint now means "not allowlisted
+on this host", never "paste a token".
+
+> 🛑 The Ingress must route **`/api`** to the backend alongside `/svg` and `/healthz`. Without
+> it those calls fall through to the static frontend and return **HTML**, so the chart
+> silently fails while the badge endpoint still looks healthy.
 
 ### Two upstream bugs fixed on the way
 
@@ -90,6 +134,7 @@ Repos the token cannot see are skipped with a warning rather than failing the ru
 | `PORT` | backend | Listen port, default 8080. |
 | `NEXT_PUBLIC_API_URL` | frontend build | `same-origin` in our deployment — see below. |
 | `NEXT_PUBLIC_SITE_URL` | frontend build | Canonical/OG/sitemap origin. |
+| `NEXT_PUBLIC_ENABLE_BLOG` | frontend build | `true` restores upstream's 92 blog posts. Off by default: they are star-history.com's editorial content and duplicate their pages on our domains. |
 
 `NEXT_PUBLIC_API_URL=same-origin` is load-bearing. One static build serves all three hostnames,
 and each must call **its own** backend vhost, because the backend allowlists per `Host`. A baked
