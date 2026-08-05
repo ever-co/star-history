@@ -129,12 +129,27 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
 
     const hasAttributes = repo.attributes && Object.values(repo.attributes).some(v => v > 0)
 
+    /*
+     * Ever fork: the card is a Satori VDOM tree rendered to elements, not Tailwind, so
+     * it cannot see `dark:` classes — the palette has to be passed in. Mirror the `dark`
+     * class off <html> and rebuild the card (and its radar) whenever it flips.
+     * Declared before the memos below because both depend on it.
+     */
+    const [cardDark, setCardDark] = useState(false)
+    useEffect(() => {
+        const read = () => setCardDark(document.documentElement.classList.contains("dark"))
+        read()
+        const obs = new MutationObserver(read)
+        obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] })
+        return () => obs.disconnect()
+    }, [])
+
     // Build radar SVG as data-URL (same as backend og-card.ts)
     const radarSvgBase64 = useMemo(() => {
         if (!hasAttributes) return null
-        const svg = renderRadarSvg(repo.attributes, 400)
+        const svg = renderRadarSvg(repo.attributes, 400, cardDark ? "dark" : "light")
         return `data:image/svg+xml;base64,${btoa(svg)}`
-    }, [repo.attributes])
+    }, [repo.attributes, hasAttributes, cardDark])
 
     // Build the shared VDOM layout — same code path as the /svg?style=landscape1 endpoint
     const cardWatermark = typeof window !== "undefined" ? window.location.hostname : ""
@@ -153,7 +168,8 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
         logoBase64: "/assets/logo-icon.png",
         // Ever fork: stamp THIS host, not star-history.com.
         watermark: cardWatermark,
-    }), [repo, radarSvgBase64, cardWatermark])
+        theme: cardDark ? "dark" : "light",
+    }), [repo, radarSvgBase64, cardWatermark, cardDark])
 
     // Scale the native 1200×630 card to fit the container
     useEffect(() => {
@@ -352,7 +368,7 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
 
                 <div
                     ref={wrapperRef}
-                    className="w-full max-w-5xl rounded-2xl shadow-xl overflow-hidden [&_[data-repo-name]]:cursor-pointer [&_[data-repo-name]:hover]:underline"
+                    className="w-full max-w-5xl rounded-2xl shadow-xl overflow-hidden ring-1 ring-black/5 dark:ring-white/10 [&_[data-repo-name]]:cursor-pointer [&_[data-repo-name]:hover]:underline"
                     style={{ aspectRatio: `${CARD_WIDTH}/${CARD_HEIGHT}` }}
                     onClick={(e) => {
                         const target = (e.target as HTMLElement).closest?.("[data-repo-name]")

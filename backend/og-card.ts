@@ -18,6 +18,8 @@ export interface OgCardInput {
   rank: number | null;
   /** Ever fork: branding line on the card. Defaults to upstream when unset. */
   watermark?: string;
+  /** Ever fork: card palette; follows the /svg `theme` query param. */
+  theme?: "light" | "dark";
 }
 
 // ---------- Assets (loaded once at init) ----------
@@ -40,7 +42,7 @@ export function initOgAssets() {
 export async function renderOgCard(data: OgCardInput): Promise<string> {
   let radarSvgBase64: string | null = null;
   if (data.attributes && Object.values(data.attributes).some((v) => v > 0)) {
-    const radarSvg = renderRadarSvg(data.attributes, 400);
+    const radarSvg = renderRadarSvg(data.attributes, 400, data.theme === "dark" ? "dark" : "light");
     radarSvgBase64 = `data:image/svg+xml;base64,${Buffer.from(radarSvg).toString("base64")}`;
   }
 

@@ -74,7 +74,17 @@ function sketchyPolygonPath(
   return segments.join(" ");
 }
 
-export function renderRadarSvg(attributes: RepoAttributes, size = 400): string {
+/**
+ * Ever fork: theme-aware. The grid/label greys were tuned for a white card and become
+ * nearly invisible on a dark one. "light" reproduces upstream's exact values.
+ */
+const RADAR_PALETTES = {
+  light: { grid: "#ccc", outer: "#999", spoke: "#bbb", level: "#999", label: "#555", data: "#16a34a" },
+  dark:  { grid: "#3a3a3f", outer: "#4d4d53", spoke: "#3a3a3f", level: "#7a7a80", label: "#c8c8ce", data: "#22c55e" },
+} as const;
+
+export function renderRadarSvg(attributes: RepoAttributes, size = 400, theme: "light" | "dark" = "light"): string {
+  const RP = RADAR_PALETTES[theme === "dark" ? "dark" : "light"];
   const margin = 70;
   const radius = (size - margin * 2) / 2;
   const cx = size / 2;
@@ -114,14 +124,14 @@ export function renderRadarSvg(attributes: RepoAttributes, size = 400): string {
   for (const level of levels) {
     const pts = polygonPoints(scaleR(level));
     parts.push(
-      `<path d="${sketchyPolygonPath(pts, 1.5, rng)}" fill="none" stroke="#ccc" stroke-width="1" stroke-dasharray="6,4"/>`
+      `<path d="${sketchyPolygonPath(pts, 1.5, rng)}" fill="none" stroke="${RP.grid}" stroke-width="1" stroke-dasharray="6,4"/>`
     );
   }
 
   // Outer ring
   const outerPts = polygonPoints(radius);
   parts.push(
-    `<path d="${sketchyPolygonPath(outerPts, 2, rng)}" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="8,5"/>`
+    `<path d="${sketchyPolygonPath(outerPts, 2, rng)}" fill="none" stroke="${RP.outer}" stroke-width="1.5" stroke-dasharray="8,5"/>`
   );
 
   // Axis lines
@@ -130,12 +140,12 @@ export function renderRadarSvg(attributes: RepoAttributes, size = 400): string {
     const x = Math.cos(angle) * radius;
     const y = Math.sin(angle) * radius;
     parts.push(
-      `<path d="${sketchyPolygonPath([[0, 0], [x, y]], 1.5, rng, false)}" fill="none" stroke="#bbb" stroke-width="1"/>`
+      `<path d="${sketchyPolygonPath([[0, 0], [x, y]], 1.5, rng, false)}" fill="none" stroke="${RP.spoke}" stroke-width="1"/>`
     );
   }
 
   // Data polygon
-  const dataColor = "#16a34a";
+  const dataColor = RP.data;
   const dataPts: [number, number][] = KEYS.map((key, i) => {
     const value = attributes[key];
     const angle = angleSlice * i - Math.PI / 2;
@@ -158,7 +168,7 @@ export function renderRadarSvg(attributes: RepoAttributes, size = 400): string {
   for (const level of levels) {
     const r = scaleR(level);
     parts.push(
-      `<text x="4" y="${(-r - 2).toFixed(1)}" font-size="9" fill="#999" stroke="none">${level}</text>`
+      `<text x="4" y="${(-r - 2).toFixed(1)}" font-size="9" fill="${RP.level}" stroke="none">${level}</text>`
     );
   }
 
@@ -169,7 +179,7 @@ export function renderRadarSvg(attributes: RepoAttributes, size = 400): string {
     const x = Math.cos(angle) * labelRadius;
     const y = Math.sin(angle) * labelRadius;
     parts.push(
-      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="17" fill="#555" stroke="none">${LABELS[i]}</text>`
+      `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="17" fill="${RP.label}" stroke="none">${LABELS[i]}</text>`
     );
   }
 

@@ -201,7 +201,13 @@ const startServer = async () => {
         return c.text(`Repo not found in gh dataset: ${repo}`, 404);
       }
 
-      const cachedCard = ogCardCache.get(repo);
+      // Ever fork: the card now varies by theme AND by host (the watermark), so both
+      // must be in the cache key — keying on repo alone would serve one brand's card,
+      // or the wrong palette, to everyone.
+      const cardTheme: "light" | "dark" = c.req.query("theme") === "dark" ? "dark" : "light";
+      const cardCacheKey = `${host ?? ""}|${repo}|${cardTheme}`;
+
+      const cachedCard = ogCardCache.get(cardCacheKey);
       if (cachedCard) {
         recordCacheHit("ogCard");
         return c.body(cachedCard, 200, SVG_HEADERS);
@@ -237,8 +243,11 @@ const startServer = async () => {
           attributes: cardData.attributes,
           rank: cardData.rank,
           watermark: (host ?? "").replace(/:\d+$/, "") || undefined,
+          // Ever fork: ?theme=dark renders a dark card. Read locally — the shared
+          // `theme` const below belongs to the chart branch and is not in scope here.
+          theme: cardTheme,
         });
-        ogCardCache.set(repo, svg);
+        ogCardCache.set(cardCacheKey, svg);
         return c.body(svg, 200, SVG_HEADERS);
       } catch (error: any) {
         const status = error.status || 500;

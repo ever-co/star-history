@@ -53,6 +53,8 @@ export interface Landscape1Data {
   logoBase64: string;
   /** Ever fork: branding line bottom-right. Defaults to upstream. */
   watermark?: string;
+  /** Ever fork: card palette. Defaults to light, so upstream behaviour is unchanged. */
+  theme?: "light" | "dark";
 }
 
 const LANG_COLORS: Record<string, string> = {
@@ -98,7 +100,37 @@ function sealTextLayer(
   );
 }
 
+/**
+ * Ever fork: the card was hardcoded to a white background with near-black text, so on
+ * our dark theme it sat on the page as a glaring white slab. These are the two palettes;
+ * "light" reproduces upstream's exact values, so nothing changes unless theme="dark".
+ */
+const CARD_PALETTES = {
+  light: {
+    bg: "white",
+    primary: "#171717",
+    secondary: "#525252",
+    meta: "#737373",
+    muted: "#a3a3a3",
+    faint: "#d4d4d4",
+    divider: "#f0f0f0",
+    watermark: "#b5b5b5",
+  },
+  dark: {
+    // Slightly raised off the page's pure black so the card still reads as a card.
+    bg: "#141417",
+    primary: "#f5f5f5",
+    secondary: "#d4d4d4",
+    meta: "#a1a1a1",
+    muted: "#8a8a8a",
+    faint: "#5a5a5a",
+    divider: "#2a2a2e",
+    watermark: "#6b6b6b",
+  },
+} as const;
+
 export function buildLandscape1(data: Landscape1Data) {
+  const P = CARD_PALETTES[data.theme === "dark" ? "dark" : "light"];
   const [owner, repoName] = data.name.split("/");
   const langColor = data.language ? LANG_COLORS[data.language] ?? "#6b7280" : null;
 
@@ -108,7 +140,7 @@ export function buildLandscape1(data: Landscape1Data) {
       style: {
         display: "flex", flexDirection: "column",
         width: 1200, height: 630,
-        backgroundColor: "white", fontFamily: "xkcd",
+        backgroundColor: P.bg, fontFamily: "xkcd",
         padding: "40px 48px",
         position: "relative",
       },
@@ -170,9 +202,9 @@ export function buildLandscape1(data: Landscape1Data) {
         h(
           "div",
           { "data-repo-name": true, style: { display: "flex", alignItems: "baseline", flexWrap: "wrap", fontSize: 34, fontWeight: "bold" } },
-          h("span", { style: { color: "#a3a3a3", fontWeight: "normal" } }, owner),
-          h("span", { style: { color: "#d4d4d4", margin: "0 5px" } }, "/"),
-          h("span", { style: { color: "#171717" } }, repoName),
+          h("span", { style: { color: P.muted, fontWeight: "normal" } }, owner),
+          h("span", { style: { color: P.faint, margin: "0 5px" } }, "/"),
+          h("span", { style: { color: P.primary } }, repoName),
         ),
 
         // Avatar + description row
@@ -203,7 +235,7 @@ export function buildLandscape1(data: Landscape1Data) {
             h("path", {
               d: WOBBLY_PATH,
               fill: "none",
-              stroke: "#525252",
+              stroke: P.secondary,
               "stroke-width": "1.2",
               "stroke-linecap": "round",
             }),
@@ -215,7 +247,7 @@ export function buildLandscape1(data: Landscape1Data) {
             data.description
               ? h(
                   "span",
-                  { style: { fontSize: 20, color: "#525252", lineHeight: 1.5 } },
+                  { style: { fontSize: 20, color: P.secondary, lineHeight: 1.5 } },
                   data.description.length > 120
                     ? data.description.slice(0, 117) + "..."
                     : data.description,
@@ -224,7 +256,7 @@ export function buildLandscape1(data: Landscape1Data) {
             // Meta: language · license · since
             h(
               "div",
-              { style: { display: "flex", alignItems: "center", gap: 18, marginTop: 14, fontSize: 18, color: "#737373" } },
+              { style: { display: "flex", alignItems: "center", gap: 18, marginTop: 14, fontSize: 18, color: P.meta } },
               data.language
                 ? h(
                     "span",
@@ -237,7 +269,7 @@ export function buildLandscape1(data: Landscape1Data) {
                 : null,
               data.license ? h("span", {}, data.license) : null,
               data.created_at
-                ? h("span", { style: { color: "#a3a3a3" } }, "since " + fmtDate(data.created_at))
+                ? h("span", { style: { color: P.muted } }, "since " + fmtDate(data.created_at))
                 : null,
             ),
           ),
@@ -255,10 +287,10 @@ export function buildLandscape1(data: Landscape1Data) {
               { viewBox: "0 0 24 24", width: 24, height: 24 },
               h("path", {
                 d: "M12 2L14.9 8.6L22 9.3L16.8 14L18.2 21L12 17.3L5.8 21L7.2 14L2 9.3L9.1 8.6Z",
-                fill: "#facc15", stroke: "#a3a3a3", "stroke-width": "1.2", "stroke-linecap": "round", "stroke-linejoin": "round",
+                fill: "#facc15", stroke: P.muted, "stroke-width": "1.2", "stroke-linecap": "round", "stroke-linejoin": "round",
               }),
             ),
-            h("span", { style: { fontSize: 36, fontWeight: "bold", color: "#171717" } }, fmt(data.stars)),
+            h("span", { style: { fontSize: 36, fontWeight: "bold", color: P.primary } }, fmt(data.stars)),
           ),
           h(
             "div",
@@ -267,21 +299,21 @@ export function buildLandscape1(data: Landscape1Data) {
               "svg",
               { viewBox: "0 0 32 24", width: 30, height: 24 },
               // Fork: tines
-              h("path", { d: "M3 2V10", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.4", "stroke-linecap": "round" }),
-              h("path", { d: "M7 2V10", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.4", "stroke-linecap": "round" }),
-              h("path", { d: "M11 2V10", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.4", "stroke-linecap": "round" }),
-              h("path", { d: "M15 2V10", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.4", "stroke-linecap": "round" }),
+              h("path", { d: "M3 2V10", fill: "none", stroke: P.muted, "stroke-width": "1.4", "stroke-linecap": "round" }),
+              h("path", { d: "M7 2V10", fill: "none", stroke: P.muted, "stroke-width": "1.4", "stroke-linecap": "round" }),
+              h("path", { d: "M11 2V10", fill: "none", stroke: P.muted, "stroke-width": "1.4", "stroke-linecap": "round" }),
+              h("path", { d: "M15 2V10", fill: "none", stroke: P.muted, "stroke-width": "1.4", "stroke-linecap": "round" }),
               // Fork: neck
-              h("path", { d: "M3 10C3 13 5 14 9 14C13 14 15 13 15 10", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.4", "stroke-linecap": "round" }),
+              h("path", { d: "M3 10C3 13 5 14 9 14C13 14 15 13 15 10", fill: "none", stroke: P.muted, "stroke-width": "1.4", "stroke-linecap": "round" }),
               // Fork: handle
-              h("path", { d: "M9 14V22", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.8", "stroke-linecap": "round" }),
+              h("path", { d: "M9 14V22", fill: "none", stroke: P.muted, "stroke-width": "1.8", "stroke-linecap": "round" }),
               // Knife: blade
-              h("path", { d: "M22 2C22 2 25 3 25 8C25 11 24 13 23 14", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.4", "stroke-linecap": "round", "stroke-linejoin": "round" }),
-              h("path", { d: "M22 2V14", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.4", "stroke-linecap": "round" }),
+              h("path", { d: "M22 2C22 2 25 3 25 8C25 11 24 13 23 14", fill: "none", stroke: P.muted, "stroke-width": "1.4", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+              h("path", { d: "M22 2V14", fill: "none", stroke: P.muted, "stroke-width": "1.4", "stroke-linecap": "round" }),
               // Knife: handle
-              h("path", { d: "M22 14V22", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.8", "stroke-linecap": "round" }),
+              h("path", { d: "M22 14V22", fill: "none", stroke: P.muted, "stroke-width": "1.8", "stroke-linecap": "round" }),
             ),
-            h("span", { style: { fontSize: 36, fontWeight: "bold", color: "#525252" } }, fmt(data.forks)),
+            h("span", { style: { fontSize: 36, fontWeight: "bold", color: P.secondary } }, fmt(data.forks)),
           ),
           data.attributes
             ? h(
@@ -291,13 +323,13 @@ export function buildLandscape1(data: Landscape1Data) {
                   "svg",
                   { viewBox: "0 0 32 24", width: 30, height: 24 },
                   // Left person: head + body
-                  h("circle", { cx: "7", cy: "6", r: "3.5", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.3" }),
-                  h("path", { d: "M1 22C1 17 3.5 14 7 14C10.5 14 13 17 13 22", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.3", "stroke-linecap": "round" }),
+                  h("circle", { cx: "7", cy: "6", r: "3.5", fill: "none", stroke: P.muted, "stroke-width": "1.3" }),
+                  h("path", { d: "M1 22C1 17 3.5 14 7 14C10.5 14 13 17 13 22", fill: "none", stroke: P.muted, "stroke-width": "1.3", "stroke-linecap": "round" }),
                   // Right person: head + body (slightly behind)
-                  h("circle", { cx: "22", cy: "6", r: "3.5", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.3" }),
-                  h("path", { d: "M16 22C16 17 18.5 14 22 14C25.5 14 28 17 28 22", fill: "none", stroke: "#a3a3a3", "stroke-width": "1.3", "stroke-linecap": "round" }),
+                  h("circle", { cx: "22", cy: "6", r: "3.5", fill: "none", stroke: P.muted, "stroke-width": "1.3" }),
+                  h("path", { d: "M16 22C16 17 18.5 14 22 14C25.5 14 28 17 28 22", fill: "none", stroke: P.muted, "stroke-width": "1.3", "stroke-linecap": "round" }),
                 ),
-                h("span", { style: { fontSize: 36, fontWeight: "bold", color: "#525252" } }, String(data.attributes.contributors)),
+                h("span", { style: { fontSize: 36, fontWeight: "bold", color: P.secondary } }, String(data.attributes.contributors)),
               )
             : null,
         ),
@@ -306,27 +338,27 @@ export function buildLandscape1(data: Landscape1Data) {
         data.attributes
           ? h(
               "div",
-              { style: { display: "flex", alignItems: "center", gap: 20, marginTop: 14, paddingTop: 14, borderTop: "1.5px solid #f0f0f0" } },
-              h("span", { style: { fontSize: 16, color: "#a3a3a3", textTransform: "uppercase", letterSpacing: "0.08em" } }, "Weekly"),
+              { style: { display: "flex", alignItems: "center", gap: 20, marginTop: 14, paddingTop: 14, borderTop: `1.5px solid ${P.divider}` } },
+              h("span", { style: { fontSize: 16, color: P.muted, textTransform: "uppercase", letterSpacing: "0.08em" } }, "Weekly"),
               h(
                 "div",
                 { title: `New stars: ${data.attributes.new_stars} · Top ${100 - data.attributes.new_stars}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: "#525252" } }, String(data.attributes.new_stars)),
-                h("span", { style: { fontSize: 15, color: "#a3a3a3" } }, "stars"),
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.new_stars)),
+                h("span", { style: { fontSize: 15, color: P.muted } }, "stars"),
               ),
-              h("span", { style: { fontSize: 14, color: "#d4d4d4" } }, "\u00b7"),
+              h("span", { style: { fontSize: 14, color: P.faint } }, "\u00b7"),
               h(
                 "div",
                 { title: `Pushes: ${data.attributes.pushes} · Top ${100 - data.attributes.pushes}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: "#525252" } }, String(data.attributes.pushes)),
-                h("span", { style: { fontSize: 15, color: "#a3a3a3" } }, "pushes"),
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.pushes)),
+                h("span", { style: { fontSize: 15, color: P.muted } }, "pushes"),
               ),
-              h("span", { style: { fontSize: 14, color: "#d4d4d4" } }, "\u00b7"),
+              h("span", { style: { fontSize: 14, color: P.faint } }, "\u00b7"),
               h(
                 "div",
                 { title: `Issues closed: ${data.attributes.issues_closed} · Top ${100 - data.attributes.issues_closed}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: "#525252" } }, String(data.attributes.issues_closed)),
-                h("span", { style: { fontSize: 15, color: "#a3a3a3" } }, "issues closed"),
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.issues_closed)),
+                h("span", { style: { fontSize: 15, color: P.muted } }, "issues closed"),
               ),
             )
           : null,
@@ -350,7 +382,7 @@ export function buildLandscape1(data: Landscape1Data) {
       "div",
       { style: { position: "absolute", bottom: 20, right: 48, display: "flex", alignItems: "center", gap: 8 } },
       h("img", { src: data.logoBase64, width: 24, height: 24, style: { opacity: 0.6 } }),
-      h("span", { style: { fontSize: 19, color: "#b5b5b5", letterSpacing: "0.02em" } }, data.watermark || "star-history.com"),
+      h("span", { style: { fontSize: 19, color: P.watermark, letterSpacing: "0.02em" } }, data.watermark || "star-history.com"),
     ),
   );
 }
