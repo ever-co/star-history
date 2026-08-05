@@ -13,16 +13,13 @@ const Index: NextPage = () => {
     const [isChartVisible, setChartVisibility] = useState(false)
     const [brand, setBrand] = useState<Brand>(BRANDS["ever-co"])
 
-    useEffect(() => {
-        const b = currentBrand()
-        setBrand(b)
-        // One static build serves three hostnames, so the tab title is branded at
-        // runtime rather than baked in.
-        document.title = `Star History · ${b.name}`
-    }, [])
+    useEffect(() => setBrand(currentBrand()), [])
 
     const metadata = {
-        title: "Star History",
+        // One static build serves three hostnames, so the tab title is branded at
+        // runtime. It goes through <Head> rather than an imperative document.title:
+        // Next owns the title element and would overwrite a direct assignment.
+        title: `Star History · ${brand.name}`,
         description: "Star history charts for our open-source projects.",
         imageURL: `${SITE_URL}/assets/star-history-preview.webp`,
     }
