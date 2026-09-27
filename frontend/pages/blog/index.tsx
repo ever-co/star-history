@@ -7,7 +7,7 @@ import Link from "next/link"
 import blogData from "helpers/blog.json"
 import { NextPageWithLayout } from "pages/_app"
 import { SketchMailboxIcon } from "../../components/SketchIcons"
-import { NEWSLETTER_URL } from "../../helpers/consts"
+import { NEWSLETTER_URL, canonicalUrl } from "../../helpers/consts"
 
 interface Blog {
     slug: string
@@ -31,6 +31,7 @@ const BlogPage: NextPageWithLayout = () => {
         <>
             <Head>
                 <title>Star History Blog</title>
+                <link rel="canonical" href={canonicalUrl("/blog")} key="canonical" />
             </Head>
             <div className="relative w-full h-auto min-h-screen flex flex-col overflow-x-hidden">
                 <Header />

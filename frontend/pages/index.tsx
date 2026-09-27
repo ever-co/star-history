@@ -6,7 +6,7 @@ import RepoInputer from "../components/RepoInputer"
 import type { NextPage } from "next"
 import StarChartViewer from "../components/StarChartViewer"
 import Head from "next/head"
-import { SITE_URL } from "../helpers/consts"
+import { SITE_URL, canonicalUrl } from "../helpers/consts"
 import { BRANDS, currentBrand, type Brand } from "../helpers/brand"
 
 const Index: NextPage = () => {
@@ -29,8 +29,10 @@ const Index: NextPage = () => {
             <Head>
                 <title>{metadata.title}</title>
                 <meta name="description" content={metadata.description} />
+                {/* Ever fork: all three hosts point at stats-github.ever.co — see canonicalUrl(). */}
+                <link rel="canonical" href={canonicalUrl("/")} key="canonical" />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content={SITE_URL} />
+                <meta property="og:url" content={canonicalUrl("/")} />
                 <meta property="og:title" content={metadata.title} />
                 <meta property="og:description" content={metadata.description} />
                 <meta property="og:image" content={metadata.imageURL} />

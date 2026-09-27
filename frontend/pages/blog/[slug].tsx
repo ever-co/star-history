@@ -12,7 +12,7 @@ import path from "path"
 import fs from "fs/promises"
 import blogs from "helpers/blog.json"
 import Head from "next/head"
-import { SITE_URL } from "../../helpers/consts"
+import { SITE_URL, canonicalUrl } from "../../helpers/consts"
 
 interface Blog {
     title: string
@@ -52,6 +52,7 @@ const BlogPost: React.FC<State> = ({ blog, prevBlog, nextBlog, parsedBlogHTML, t
                         <>
                             {/* Standard Meta Tags */}
                             <meta name="description" content={blog.description} />
+                            <link rel="canonical" href={canonicalUrl(`/blog/${blog.slug}`)} key="canonical" />
 
                             {/* Open Graph / Facebook */}
                             <meta property="og:type" content="website" />
