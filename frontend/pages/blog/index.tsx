@@ -7,7 +7,7 @@ import Link from "next/link"
 import blogData from "helpers/blog.json"
 import { NextPageWithLayout } from "pages/_app"
 import { SketchMailboxIcon } from "../../components/SketchIcons"
-import { NEWSLETTER_URL, canonicalUrl } from "../../helpers/consts"
+import { BLOG_ENABLED, NEWSLETTER_URL, canonicalUrl } from "../../helpers/consts"
 
 interface Blog {
     slug: string
@@ -22,7 +22,10 @@ const formatDate = (dateStr: string) => {
     return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
 }
 
-const blogs = blogData as Blog[]
+// Ever fork: the post pages are gated off unless NEXT_PUBLIC_ENABLE_BLOG=true (see
+// [slug].tsx), so listing them here would publish 92 links that all 404, under
+// star-history.com's editorial titles. Same flag, same gate.
+const blogs = BLOG_ENABLED ? (blogData as Blog[]) : []
 const featured = blogs.find((b) => b.featured)
 const rest = blogs.filter((b) => b !== featured)
 
@@ -31,7 +34,8 @@ const BlogPage: NextPageWithLayout = () => {
         <>
             <Head>
                 <title>Star History Blog</title>
-                <link rel="canonical" href={canonicalUrl("/blog")} key="canonical" />
+                {/* Gated off: keep it out of the index rather than canonicalise an empty page. */}
+                {BLOG_ENABLED ? <link rel="canonical" href={canonicalUrl("/blog")} key="canonical" /> : <meta name="robots" content="noindex, follow" key="robots" />}
             </Head>
             <div className="relative w-full h-auto min-h-screen flex flex-col overflow-x-hidden">
                 <Header />

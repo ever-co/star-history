@@ -12,7 +12,7 @@ import path from "path"
 import fs from "fs/promises"
 import blogs from "helpers/blog.json"
 import Head from "next/head"
-import { SITE_URL, canonicalUrl } from "../../helpers/consts"
+import { BLOG_ENABLED, SITE_URL, canonicalUrl } from "../../helpers/consts"
 
 interface Blog {
     title: string
@@ -243,9 +243,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     // Publishing them under stats-github.ever.co would be off-brand and would duplicate
     // star-history.com's pages, so they are GATED OFF by default rather than deleted —
     // set NEXT_PUBLIC_ENABLE_BLOG=true at build time to restore them.
-    const blogEnabled = process.env.NEXT_PUBLIC_ENABLE_BLOG === "true"
-
-    const paths = blogEnabled
+    const paths = BLOG_ENABLED
         ? blogs.map((blog) => ({ params: { slug: blog.slug } }))
         : []
 
