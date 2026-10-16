@@ -14,7 +14,14 @@
  *   star-count.json     - star-tier pyramid
  *
  * Run: GITHUB_TOKEN=<pat> node ever/seed-gh-data.mjs
- * Ranks/percentiles are WITHIN the Ever set, not against all of GitHub.
+ * Runs DAILY in CI (.github/workflows/ever-refresh-data.yml), which commits the result
+ * and rebuilds the images — the pages bake this data in at build time, so without
+ * that job every number on them freezes at the day this was last run by hand.
+ *
+ * Ranks and percentiles are WITHIN each GitHub owner (one owner per host), never across
+ * hosts: stats-github.ever.co ranks the ever-co repos, not ever-works'.
+ * Any public-repo token works, including CI's own GITHUB_TOKEN: nothing here needs
+ * collaborator access since stars come from the public stargazers/history endpoint.
  */
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -30,9 +37,12 @@ if (!TOKEN) {
   process.exit(1);
 }
 
-const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+const DAY_MS = 24 * 60 * 60 * 1000;
+const WEEK_MS = 7 * DAY_MS;
 const NOW = new Date();
 const updated_at = NOW.toISOString().slice(0, 10);
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const gh = async (path, { accept = "application/vnd.github+json", raw = false } = {}) => {
   const url = path.startsWith("http") ? path : `https://api.github.com${path}`;
@@ -42,13 +52,32 @@ const gh = async (path, { accept = "application/vnd.github+json", raw = false } 
     });
     // /stats/* endpoints return 202 while GitHub computes the series.
     if (res.status === 202) {
-      await new Promise((r) => setTimeout(r, 2000 * (attempt + 1)));
+      await sleep(2000 * (attempt + 1));
       continue;
     }
-    if (!res.ok) throw new Error(`${res.status} ${res.statusText} for ${url}`);
+    // Primary or secondary rate limit (search allows 30/min): wait it out, capped, then retry.
+    if ((res.status === 403 || res.status === 429) &&
+        (res.headers.get("retry-after") || res.headers.get("x-ratelimit-remaining") === "0")) {
+      const retryAfter = Number(res.headers.get("retry-after")) * 1000;
+      const reset = Number(res.headers.get("x-ratelimit-reset")) * 1000 - Date.now();
+      const wait = Math.min(Math.max(retryAfter || reset || 0, 1000) + 1000, 70_000);
+      console.warn(`  … rate-limited on ${url}, waiting ${Math.round(wait / 1000)}s`);
+      await sleep(wait);
+      continue;
+    }
+    if (!res.ok) {
+      const err = new Error(`${res.status} ${res.statusText} for ${url}`);
+      err.status = res.status;
+      throw err;
+    }
     return raw ? res : res.json();
   }
   throw new Error(`gave up waiting on ${url}`);
+};
+
+const lastPageOf = (res) => {
+  const m = /[?&]page=(\d+)>;\s*rel="last"/.exec(res.headers.get("link") || "");
+  return m ? Number(m[1]) : 1;
 };
 
 /** Total item count for a paginated endpoint, read from the Link rel="last" header. */
@@ -63,8 +92,36 @@ const countViaLastPage = async (path, accept) => {
   return Array.isArray(body) ? body.length : 0;
 };
 
-/** Stars gained in the last 7 days, counted from the final page of stargazers. */
-const newStarsLastWeek = async (repo) => {
+/**
+ * Every day of a repo's star history, oldest first: [{ t: ms, n: stars that day }].
+ * From GET /repos/{repo}/stargazers/history (public since 2026-09-04): weeks, newest first,
+ * 30 a page, each with a Sunday-first `days` array. Days after now are dropped.
+ */
+const starHistoryDays = async (repo) => {
+  const first = await gh(`/repos/${repo}/stargazers/history?per_page=30`, { raw: true });
+  const pages = Math.min(lastPageOf(first), 100);
+  const weeks = [...(await first.json())];
+  for (let page = 2; page <= pages; page++) {
+    weeks.push(...(await gh(`/repos/${repo}/stargazers/history?per_page=30&page=${page}`)));
+  }
+  const days = [];
+  for (const w of weeks.sort((a, b) => a.week - b.week)) {
+    w.days.forEach((n, d) => {
+      const t = w.week * 1000 + d * DAY_MS;
+      if (t <= NOW.getTime()) days.push({ t, n: Number(n) || 0 });
+    });
+  }
+  return days;
+};
+
+const starsSince = (days, ms) => days.filter((d) => d.t >= NOW.getTime() - ms).reduce((s, d) => s + d.n, 0);
+
+/**
+ * Fallback only: stars in the last 7 days from the final page of the stargazer LIST.
+ * GitHub restricted that list to the repo's admins/collaborators in July 2026, and one
+ * page holds at most 100, so this undercounts any week above 100 stars.
+ */
+const newStarsLastWeekFromList = async (repo) => {
   const accept = "application/vnd.github.star+json";
   try {
     const first = await gh(`/repos/${repo}/stargazers?per_page=100`, { accept, raw: true });
@@ -82,6 +139,18 @@ const newStarsLastWeek = async (repo) => {
   }
 };
 
+/** New stars over the last 7 days and the last 8 weeks. */
+const newStars = async (repo) => {
+  try {
+    const days = await starHistoryDays(repo);
+    return { week: starsSince(days, WEEK_MS), eightWeeks: starsSince(days, 8 * WEEK_MS) };
+  } catch (err) {
+    console.warn(`  ! stargazers/history for ${repo}: ${err.message} — falling back to the stargazer list`);
+    const week = await newStarsLastWeekFromList(repo);
+    return { week, eightWeeks: week };
+  }
+};
+
 const issuesClosedSince = async (repo, sinceISO) => {
   try {
     const q = encodeURIComponent(`repo:${repo} is:issue is:closed closed:>=${sinceISO}`);
@@ -93,14 +162,35 @@ const issuesClosedSince = async (repo, sinceISO) => {
   }
 };
 
-const pushesLast8Weeks = async (repo) => {
+/**
+ * Issues (not PRs) closed in the last 7 days, via the issues LIST rather than search, so
+ * the run stays inside search's 30 requests/minute. `since` filters on updated_at, which
+ * every close bumps, so filtering on closed_at afterwards is exact.
+ */
+const issuesClosedLastWeek = async (repo) => {
+  const sinceISO = new Date(NOW.getTime() - WEEK_MS).toISOString();
+  try {
+    let count = 0;
+    for (let page = 1; page <= 10; page++) {
+      const items = await gh(`/repos/${repo}/issues?state=closed&since=${sinceISO}&per_page=100&page=${page}`);
+      count += items.filter((i) => !i.pull_request && i.closed_at && i.closed_at >= sinceISO).length;
+      if (items.length < 100) break;
+    }
+    return count;
+  } catch (err) {
+    console.warn(`  ! issues_closed (week) for ${repo}: ${err.message} — recording 0`);
+    return 0;
+  }
+};
+
+/** Commits per week, oldest first, for the last 52 weeks. */
+const participation = async (repo) => {
   try {
     const part = await gh(`/repos/${repo}/stats/participation`);
-    const all = part?.all ?? [];
-    return all.slice(-8).reduce((n, v) => n + v, 0);
+    return part?.all ?? [];
   } catch (err) {
     console.warn(`  ! pushes for ${repo}: ${err.message} — recording 0`);
-    return 0;
+    return [];
   }
 };
 
@@ -120,16 +210,30 @@ for (const name of wanted) {
     meta = await gh(`/repos/${name}`);
   } catch (err) {
     // A private repo (e.g. cloc-co/zero before it is opened) simply isn't in the UI yet.
-    console.log(`skipped (${err.message})`);
+    // Anything else (5xx, network) must FAIL the run: skipping it would drop the repo's
+    // page from the next build, and CI would commit that as if it were real.
+    if (err.status === 404) {
+      console.log(`skipped (${err.message})`);
+      continue;
+    }
+    console.log("failed");
+    throw err;
+  }
+  // A token that CAN see a private repo (a maintainer's own PAT) must not publish it: this
+  // data is baked into public pages. CI's GITHUB_TOKEN gets the 404 above instead.
+  if (meta.private) {
+    console.log("skipped (private)");
     continue;
   }
   const sinceISO = new Date(NOW.getTime() - 8 * WEEK_MS).toISOString().slice(0, 10);
-  const [new_stars, contributors, issues_closed, pushes] = await Promise.all([
-    newStarsLastWeek(name),
+  const [stars, contributors, issues_closed, issues_closed_week, weeks] = await Promise.all([
+    newStars(name),
     countViaLastPage(`/repos/${name}/contributors`).catch(() => 0),
     issuesClosedSince(name, sinceISO),
-    pushesLast8Weeks(name),
+    issuesClosedLastWeek(name),
+    participation(name),
   ]);
+  const pushes = weeks.slice(-8).reduce((n, v) => n + v, 0);
 
   collected.push({
     name: meta.full_name,
@@ -145,9 +249,14 @@ for (const name of wanted) {
     created_at: meta.created_at ?? null,
     archived: Boolean(meta.archived),
     size: meta.size,
-    _raw: { stars: meta.stargazers_count, new_stars, pushes, contributors, issues_closed, forks: meta.forks_count },
+    // Raw counts for the card's "Weekly" row. Upstream prints the percentiles below
+    // under that label, which read as "100 stars this week" for whichever repo led.
+    weekly: { new_stars: stars.week, pushes: weeks.at(-1) ?? 0, issues_closed: issues_closed_week },
+    contributors_count: contributors,
+    // 8-week aggregates, the window upstream's percentiles use.
+    _raw: { stars: meta.stargazers_count, new_stars: stars.eightWeeks, pushes, contributors, issues_closed, forks: meta.forks_count },
   });
-  console.log(`${meta.stargazers_count}★ (+${new_stars}/wk)`);
+  console.log(`${meta.stargazers_count}★ (+${stars.week}/wk)`);
 }
 
 if (collected.length === 0) {
@@ -155,34 +264,46 @@ if (collected.length === 0) {
   process.exit(1);
 }
 
-// --- rank + percentile WITHIN the Ever set ------------------------------------
+// --- rank + percentile WITHIN each owner --------------------------------------
+// Each host serves exactly one owner, so ranking across owners put ever-works repos into
+// stats-github.ever.co's "#n of 20" and its prev/next links.
 
 collected.sort((a, b) => b.stars_total - a.stars_total);
 
 const METRICS = ["stars", "new_stars", "pushes", "contributors", "issues_closed", "forks"];
-const sorted = Object.fromEntries(
-  METRICS.map((m) => [m, collected.map((r) => r._raw[m]).sort((a, b) => a - b)])
-);
 const percentile = (ascending, value) => {
   if (ascending.length === 0) return 0;
   const below = ascending.filter((v) => v <= value).length;
   return Math.round((below / ascending.length) * 100);
 };
 
-const total_repos = collected.length;
-const repos = collected.map((r, i) => {
-  const { _raw, ...card } = r;
-  return {
-    ...card,
-    rank: i + 1,
-    total_repos,
-    attributes: Object.fromEntries(METRICS.map((m) => [m, percentile(sorted[m], _raw[m])])),
-  };
-});
+const byOwner = new Map();
+for (const r of collected) {
+  const key = r.owner.toLowerCase();
+  if (!byOwner.has(key)) byOwner.set(key, []);
+  byOwner.get(key).push(r);
+}
+
+const cards = new Map();
+for (const group of byOwner.values()) {
+  const sorted = Object.fromEntries(
+    METRICS.map((m) => [m, group.map((r) => r._raw[m]).sort((a, b) => a - b)])
+  );
+  group.forEach((r, i) => {
+    const { _raw, ...card } = r;
+    cards.set(r.name, {
+      ...card,
+      rank: i + 1,
+      total_repos: group.length,
+      attributes: Object.fromEntries(METRICS.map((m) => [m, percentile(sorted[m], _raw[m])])),
+    });
+  });
+}
+const repos = collected.map((r) => cards.get(r.name));
 
 // --- star-count pyramid -------------------------------------------------------
 // Thresholds kept only where they actually bucket one of our repos, so the pyramid
-// never renders a run of empty tiers.
+// never renders a run of empty tiers. The sidebar recounts these per host.
 const TIERS = [
   { threshold: 0, label: "all" },
   { threshold: 10, label: "10+" },
@@ -191,6 +312,7 @@ const TIERS = [
   { threshold: 1000, label: "1k+" },
   { threshold: 2000, label: "2k+" },
   { threshold: 4000, label: "4k+" },
+  { threshold: 8000, label: "8k+" },
 ];
 const tiers = TIERS.map((t) => ({
   ...t,
@@ -210,8 +332,8 @@ write("leaderboard.json", {
 });
 write("weekly-ranking.json", {
   updated_at,
-  repos: collected
-    .map((r) => ({ name: r.name, new_stars: r._raw.new_stars, stars_total: r.stars_total }))
+  repos: repos
+    .map((r) => ({ name: r.name, new_stars: r.weekly.new_stars, stars_total: r.stars_total }))
     .sort((a, b) => b.new_stars - a.new_stars),
 });
 write("star-count.json", { updated_at, tiers });

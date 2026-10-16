@@ -24,4 +24,15 @@ export interface RepoCardData {
   rank: number;
   total_repos: number;
   attributes: RepoAttributes;
+  /** Ever fork: raw counts for the card's "Weekly" row (attributes are percentiles). */
+  weekly?: RepoWeekly;
+  /** Ever fork: raw contributor count (attributes.contributors is a percentile). */
+  contributors_count?: number;
+}
+
+/** Ever fork: last-7-days counts, written by ever/seed-gh-data.mjs. */
+export interface RepoWeekly {
+  new_stars: number;
+  pushes: number;
+  issues_closed: number;
 }

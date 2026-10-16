@@ -1,65 +1,65 @@
 {
-  "updated_at": "2026-08-04",
+  "updated_at": "2026-10-16",
   "repos": [
     {
       "name": "ever-co/ever-gauzy",
-      "new_stars": 25,
-      "stars_total": 4125
+      "new_stars": 72,
+      "stars_total": 8382
     },
     {
-      "name": "ever-co/ever-teams",
-      "new_stars": 21,
-      "stars_total": 541
+      "name": "ever-works/ever-works",
+      "new_stars": 7,
+      "stars_total": 169
     },
     {
-      "name": "ever-works/awesome-time-tracking",
-      "new_stars": 6,
-      "stars_total": 212
+      "name": "ever-co/ever-traduora",
+      "new_stars": 4,
+      "stars_total": 2137
     },
     {
       "name": "ever-co/ever-demand",
       "new_stars": 2,
-      "stars_total": 1845
+      "stars_total": 1866
     },
     {
-      "name": "ever-works/ever-works",
+      "name": "ever-works/awesome-time-tracking",
       "new_stars": 2,
-      "stars_total": 16
-    },
-    {
-      "name": "ever-works/awesome-rust-ai-libraries",
-      "new_stars": 2,
-      "stars_total": 12
-    },
-    {
-      "name": "ever-co/ever-rec",
-      "new_stars": 1,
-      "stars_total": 30
-    },
-    {
-      "name": "ever-co/ever-traduora",
-      "new_stars": 0,
-      "stars_total": 2122
+      "stars_total": 234
     },
     {
       "name": "ever-works/awesome-mcp-servers",
+      "new_stars": 2,
+      "stars_total": 119
+    },
+    {
+      "name": "ever-co/ever-teams",
+      "new_stars": 1,
+      "stars_total": 588
+    },
+    {
+      "name": "ever-works/awesome-startup-books",
+      "new_stars": 1,
+      "stars_total": 60
+    },
+    {
+      "name": "ever-works/awesome-rust-ai-libraries",
+      "new_stars": 1,
+      "stars_total": 20
+    },
+    {
+      "name": "ever-co/ever-rec",
       "new_stars": 0,
-      "stars_total": 95
+      "stars_total": 34
     },
     {
       "name": "ever-works/awesome-vector-databases",
       "new_stars": 0,
-      "stars_total": 26
-    },
-    {
-      "name": "ever-works/awesome-startup-books",
-      "new_stars": 0,
-      "stars_total": 18
+      "stars_total": 29
     },
     {
       "name": "ever-works/directory-web-template",
       "new_stars": 0,
-      "stars_total": 16
+      "stars_total": 20
     },
     {
       "name": "ever-works/awesome-starters",
@@ -69,7 +69,27 @@
     {
       "name": "ever-works/awesome-compliance-automation",
       "new_stars": 0,
+      "stars_total": 5
+    },
+    {
+      "name": "ever-works/awesome-memos",
+      "new_stars": 0,
+      "stars_total": 5
+    },
+    {
+      "name": "ever-works/awesome-remote-team-tools",
+      "new_stars": 0,
       "stars_total": 4
+    },
+    {
+      "name": "ever-works/directory-web-minimal-template",
+      "new_stars": 0,
+      "stars_total": 3
+    },
+    {
+      "name": "ever-works/awesome-chairs",
+      "new_stars": 0,
+      "stars_total": 3
     },
     {
       "name": "ever-works/awesome-open-source-llms",
@@ -77,27 +97,7 @@
       "stars_total": 3
     },
     {
-      "name": "ever-works/awesome-remote-team-tools",
-      "new_stars": 0,
-      "stars_total": 3
-    },
-    {
-      "name": "ever-works/directory-web-minimal-template",
-      "new_stars": 0,
-      "stars_total": 2
-    },
-    {
-      "name": "ever-works/awesome-chairs",
-      "new_stars": 0,
-      "stars_total": 2
-    },
-    {
       "name": "ever-works/awesome-memes",
-      "new_stars": 0,
-      "stars_total": 2
-    },
-    {
-      "name": "ever-works/awesome-memos",
       "new_stars": 0,
       "stars_total": 2
     }

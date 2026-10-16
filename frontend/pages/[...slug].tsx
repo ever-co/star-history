@@ -122,10 +122,16 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
     const [statTooltip, setStatTooltip] = useState<{ left: number; top: number; line1: string; line2: string } | null>(null)
 
     const title = `${repo.name} - ${formatNumber(repo.stars_total)} Stars`
+    // Ever fork: real counts when the data has them; upstream's attributes are percentiles.
+    const weeklyNumbers = {
+        new_stars: repo.weekly?.new_stars ?? repo.attributes?.new_stars,
+        pushes: repo.weekly?.pushes ?? repo.attributes?.pushes,
+        contributors: repo.contributors_count ?? repo.attributes?.contributors,
+    }
     const weeklyParts = [
-        repo.attributes?.new_stars ? `+${formatNumber(repo.attributes.new_stars)} stars` : "",
-        repo.attributes?.pushes ? `${formatNumber(repo.attributes.pushes)} pushes` : "",
-        repo.attributes?.contributors ? `${formatNumber(repo.attributes.contributors)} contributors` : "",
+        weeklyNumbers.new_stars ? `+${formatNumber(weeklyNumbers.new_stars)} stars` : "",
+        weeklyNumbers.pushes ? `${formatNumber(weeklyNumbers.pushes)} pushes` : "",
+        weeklyNumbers.contributors ? `${formatNumber(weeklyNumbers.contributors)} contributors` : "",
     ].filter(Boolean)
     const description = weeklyParts.length ? `This week: ${weeklyParts.join(", ")}` : `Star history and stats for ${repo.name}`
     const canonicalUrl = `${SITE_URL}/${repo.name.toLowerCase()}`
@@ -170,6 +176,9 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
         avatarBase64: `https://avatars.githubusercontent.com/${repo.owner}?s=460`,
         radarSvgBase64,
         attributes: hasAttributes ? repo.attributes : null,
+        // Ever fork: real last-7-days counts for the "Weekly" row.
+        weekly: repo.weekly ?? null,
+        contributors: repo.contributors_count ?? null,
         rank: repo.rank,
         logoBase64: "/assets/logo-icon.png",
         // Ever fork: stamp THIS host, not star-history.com.
@@ -509,9 +518,12 @@ export const getStaticProps: GetStaticProps<RepoPageProps> = async ({ params }) 
         return { notFound: true }
     }
 
-    const idx = store.repos.findIndex(r => r.name.toLowerCase() === slug.join("/").toLowerCase())
-    const prev = idx > 0 ? store.repos[idx - 1] : null
-    const next = idx >= 0 && idx < store.repos.length - 1 ? store.repos[idx + 1] : null
+    // Ever fork: prev/next stay within the repo's own owner, the set its rank is computed
+    // over. Each host serves one owner, so crossing owners linked to repos that host 403s.
+    const siblings = store.repos.filter(r => r.owner.toLowerCase() === repo.owner.toLowerCase())
+    const idx = siblings.findIndex(r => r.name.toLowerCase() === slug.join("/").toLowerCase())
+    const prev = idx > 0 ? siblings[idx - 1] : null
+    const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null
 
     return {
         props: {

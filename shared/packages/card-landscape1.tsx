@@ -61,6 +61,14 @@ export interface Landscape1Data {
   watermark?: string;
   /** Ever fork: card palette. Defaults to light, so upstream behaviour is unchanged. */
   theme?: "light" | "dark";
+  /**
+   * Ever fork: raw last-7-days counts for the "Weekly" row. Upstream prints the
+   * percentiles from `attributes` there, which read as "100 stars this week" for the
+   * top repo. Unset = upstream behaviour.
+   */
+  weekly?: { new_stars: number; pushes: number; issues_closed: number } | null;
+  /** Ever fork: raw contributor count; upstream shows the contributors percentile. */
+  contributors?: number | null;
 }
 
 const LANG_COLORS: Record<string, string> = {
@@ -137,6 +145,8 @@ const CARD_PALETTES = {
 
 export function buildLandscape1(data: Landscape1Data) {
   const P = CARD_PALETTES[data.theme === "dark" ? "dark" : "light"];
+  // Ever fork: the numbers shown in the "Weekly" row (see Landscape1Data.weekly).
+  const weekly = data.weekly ?? data.attributes;
   const [owner, repoName] = data.name.split("/");
   const langColor = data.language ? LANG_COLORS[data.language] ?? "#6b7280" : null;
 
@@ -386,7 +396,7 @@ export function buildLandscape1(data: Landscape1Data) {
           data.attributes
             ? h(
                 "div",
-                { title: `Contributors: ${data.attributes.contributors} · Top ${100 - data.attributes.contributors}%`, style: { display: "flex", alignItems: "center", gap: 8 } },
+                { title: `Contributors: ${data.contributors ?? data.attributes.contributors} · Top ${100 - data.attributes.contributors}%`, style: { display: "flex", alignItems: "center", gap: 8 } },
                 h(
                   "svg",
                   { viewBox: "0 0 32 24", width: 30, height: 24 },
@@ -397,35 +407,35 @@ export function buildLandscape1(data: Landscape1Data) {
                   h("circle", { cx: "22", cy: "6", r: "3.5", fill: "none", stroke: P.muted, "stroke-width": "1.3" }),
                   h("path", { d: "M16 22C16 17 18.5 14 22 14C25.5 14 28 17 28 22", fill: "none", stroke: P.muted, "stroke-width": "1.3", "stroke-linecap": "round" }),
                 ),
-                h("span", { style: { fontSize: 36, fontWeight: "bold", color: P.secondary } }, String(data.attributes.contributors)),
+                h("span", { style: { fontSize: 36, fontWeight: "bold", color: P.secondary } }, fmt(data.contributors ?? data.attributes.contributors)),
               )
             : null,
         ),
 
         // Stats: weekly numbers
-        data.attributes
+        data.attributes && weekly
           ? h(
               "div",
               { style: { display: "flex", alignItems: "center", gap: 20, marginTop: 14, paddingTop: 14, borderTop: `1.5px solid ${P.divider}` } },
               h("span", { style: { fontSize: 16, color: P.muted, textTransform: "uppercase", letterSpacing: "0.08em" } }, "Weekly"),
               h(
                 "div",
-                { title: `New stars: ${data.attributes.new_stars} · Top ${100 - data.attributes.new_stars}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.new_stars)),
+                { title: `New stars: ${weekly.new_stars} · Top ${100 - data.attributes.new_stars}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, fmt(weekly.new_stars)),
                 h("span", { style: { fontSize: 15, color: P.muted } }, "stars"),
               ),
               h("span", { style: { fontSize: 14, color: P.faint } }, "\u00b7"),
               h(
                 "div",
-                { title: `Pushes: ${data.attributes.pushes} · Top ${100 - data.attributes.pushes}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.pushes)),
+                { title: `Pushes: ${weekly.pushes} · Top ${100 - data.attributes.pushes}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, fmt(weekly.pushes)),
                 h("span", { style: { fontSize: 15, color: P.muted } }, "pushes"),
               ),
               h("span", { style: { fontSize: 14, color: P.faint } }, "\u00b7"),
               h(
                 "div",
-                { title: `Issues closed: ${data.attributes.issues_closed} · Top ${100 - data.attributes.issues_closed}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.issues_closed)),
+                { title: `Issues closed: ${weekly.issues_closed} · Top ${100 - data.attributes.issues_closed}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, fmt(weekly.issues_closed)),
                 h("span", { style: { fontSize: 15, color: P.muted } }, "issues closed"),
               ),
             )

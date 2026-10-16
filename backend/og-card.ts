@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import { buildLandscape1 } from "../shared/packages/card-landscape1.js";
 import { renderRadarSvg } from "../shared/packages/radar-svg.js";
-import type { RepoAttributes } from "../shared/types/gh.js";
+import type { RepoAttributes, RepoWeekly } from "../shared/types/gh.js";
 
 export interface OgCardInput {
   name: string;
@@ -20,6 +20,10 @@ export interface OgCardInput {
   watermark?: string;
   /** Ever fork: card palette; follows the /svg `theme` query param. */
   theme?: "light" | "dark";
+  /** Ever fork: raw last-7-days counts for the card's "Weekly" row. */
+  weekly?: RepoWeekly | null;
+  /** Ever fork: raw contributor count. */
+  contributors?: number | null;
 }
 
 // ---------- Assets (loaded once at init) ----------
