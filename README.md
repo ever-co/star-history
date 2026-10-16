@@ -4,8 +4,8 @@
 
 <a href="https://www.star-history.com/star-history/star-history">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=star-history/star-history&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=star-history/star-history" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=star-history/star-history&type=rank&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=star-history/star-history&type=rank" />
    <img alt="Star History Rank" src="https://api.star-history.com/badge?repo=star-history/star-history" />
  </picture>
 </a>
@@ -37,8 +37,8 @@
 <p align="left">
  <a href="https://www.star-history.com/star-history/star-history">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=star-history/star-history&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=star-history/star-history" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=star-history/star-history&type=rank&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=star-history/star-history&type=rank" />
     <img alt="Star History Rank" src="https://api.star-history.com/badge?repo=star-history/star-history" />
   </picture>
  </a>
@@ -65,6 +65,12 @@
 [SerpApi](https://serpapi.com/?utm_source=starhistory) scrapes search engine results easily using a simple API, including Google, Google Maps, Amazon, and more
 
 <a href="https://serpapi.com/?utm_source=starhistory"><img src="https://raw.githubusercontent.com/star-history/star-history/main/frontend/public/assets/ft/serpapi/landing.webp" /></a>
+
+### CodeRabbit
+
+[CodeRabbit](https://coderabbit.link/sh) AI code reviews for teams that move fast (but don’t break things)
+
+<a href="https://coderabbit.link/sh"><img src="https://raw.githubusercontent.com/star-history/star-history/main/frontend/public/assets/ft/coderabbit/landing.webp" /></a>
 
 ### pgplex
 
