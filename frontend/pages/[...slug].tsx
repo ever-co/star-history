@@ -179,6 +179,7 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
         // Ever fork: real last-7-days counts for the "Weekly" row.
         weekly: repo.weekly ?? null,
         contributors: repo.contributors_count ?? null,
+        attributesScale: repo.attributes_scale,
         rank: repo.rank,
         logoBase64: "/assets/logo-icon.png",
         // Ever fork: stamp THIS host, not star-history.com.
@@ -409,7 +410,15 @@ const RepoPage: NextPage<RepoPageProps> = ({ repo, minStars, prevRepo, nextRepo 
                                     rawValues={{
                                         stars: formatNumber(repo.stars_total),
                                         forks: formatNumber(repo.forks_count),
+                                        // Ever fork: the real numbers behind every axis, not the score.
+                                        ...(repo.contributors_count != null ? { contributors: formatNumber(repo.contributors_count) } : {}),
+                                        ...(repo.window_8w ? {
+                                            new_stars: `${formatNumber(repo.window_8w.new_stars)} in 8 wks`,
+                                            pushes: `${formatNumber(repo.window_8w.pushes)} in 8 wks`,
+                                            issues_closed: `${formatNumber(repo.window_8w.issues_closed)} in 8 wks`,
+                                        } : {}),
                                     }}
+                                    scale={repo.attributes_scale}
                                 />
                             </div>
                         )}

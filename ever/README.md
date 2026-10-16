@@ -169,10 +169,20 @@ resolve, keeps the previous run's value for a metric that fails (and fails the r
 is none) so a flaky request never publishes a 0, and skips private repos even when the token
 can see them, because this data is public.
 
-What the card shows: `rank` / `total_repos` and the radar's percentiles are computed
-**within the repo's owner** (each host serves one owner). `weekly` holds the real
-last-7-days counts (stars, commits, issues closed) and `contributors_count` the real
-contributor count; upstream prints the percentiles in those places.
+What the card shows: `rank` / `total_repos` are computed **within the repo's owner** (each
+host serves one owner). `weekly` holds the real last-7-days counts (stars, commits, issues
+closed) and `contributors_count` the real contributor count; upstream prints percentiles in
+those places.
+
+**The radar is NOT a percentile here.** Upstream's six axes are percentiles against all of
+GitHub (BigQuery). Against our handful of repos a percentile is meaningless: the repo leading
+its owner scores 100 on every axis and draws a full hexagon (ever-gauzy did). So each axis is
+an absolute log-scale score, `100 × log10(1+value) / log10(1+benchmark)`, capped at 100,
+against fixed benchmarks ("100 = a top-tier GitHub project"): stars 100k, forks 20k,
+contributors 500, and per 8 weeks new stars 5k, commits 2k, issues closed 1k. Hovering a point
+shows the real number and `score N/100`. `attributes_scale: "benchmark"` in `repos.json`
+marks this; `RADAR_SCALE=percentile` restores within-owner percentiles. Tune the benchmarks in
+`ever/seed-gh-data.mjs` if the shapes look too full or too small.
 
 ## GitHub's stargazer restriction (July 2026) and the new history endpoint
 

@@ -15,9 +15,11 @@ const scaleR = (value: number) => (value / 99) * RADIUS
 interface InteractiveRadarProps {
   attributes: RepoAttributes
   rawValues: Record<string, string>
+  /** Ever fork: "benchmark" = attributes are absolute 0-100 scores, not percentiles. */
+  scale?: "percentile" | "benchmark"
 }
 
-export default function InteractiveRadar({ attributes, rawValues }: InteractiveRadarProps) {
+export default function InteractiveRadar({ attributes, rawValues, scale }: InteractiveRadarProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const dots = useMemo(
@@ -32,6 +34,7 @@ export default function InteractiveRadar({ attributes, rawValues }: InteractiveR
           label: LABELS[i],
           rawValue: rawValues[key] ?? String(value),
           percentile: 100 - value,
+          value,
         }
       }),
     [attributes, rawValues]
@@ -122,7 +125,7 @@ export default function InteractiveRadar({ attributes, rawValues }: InteractiveR
               fill="black"
               style={{ fontFamily: '"xkcd", cursive' }}
             >
-              Top {hoveredDot.percentile}%
+              {scale === "benchmark" ? `score ${hoveredDot.value}/100` : `Top ${hoveredDot.percentile}%`}
             </text>
           </svg>
         </div>
