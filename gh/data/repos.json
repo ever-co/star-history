@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8382,
+      "stars_total": 8385,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -35,15 +35,15 @@
       "open_issues_count": 503,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 294688,
+      "size": 296025,
       "weekly": {
-        "new_stars": 72,
+        "new_stars": 75,
         "pushes": 808,
         "issues_closed": 1
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4069,
+        "new_stars": 4072,
         "pushes": 1756,
         "issues_closed": 122
       },
