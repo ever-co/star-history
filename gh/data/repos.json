@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 4125,
+      "stars_total": 8382,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,26 +31,37 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 826,
-      "open_issues_count": 451,
+      "forks_count": 1246,
+      "open_issues_count": 503,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 258331,
+      "size": 294688,
+      "weekly": {
+        "new_stars": 72,
+        "pushes": 808,
+        "issues_closed": 1
+      },
+      "contributors_count": 93,
+      "window_8w": {
+        "new_stars": 4069,
+        "pushes": 1756,
+        "issues_closed": 122
+      },
       "rank": 1,
-      "total_repos": 20,
+      "total_repos": 5,
       "attributes": {
         "stars": 100,
         "new_stars": 100,
-        "pushes": 95,
+        "pushes": 100,
         "contributors": 100,
-        "issues_closed": 95,
+        "issues_closed": 100,
         "forks": 100
       }
     },
     {
       "name": "ever-co/ever-traduora",
       "owner": "ever-co",
-      "stars_total": 2122,
+      "stars_total": 2137,
       "description": "Ever® Traduora™ - Open Translation Management Platform - https://traduora.co",
       "language": "JavaScript",
       "topics": [
@@ -70,26 +81,37 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://traduora.co",
-      "forks_count": 222,
-      "open_issues_count": 99,
+      "forks_count": 221,
+      "open_issues_count": 100,
       "created_at": "2019-03-05T07:46:09Z",
       "archived": false,
-      "size": 13877,
+      "size": 13890,
+      "weekly": {
+        "new_stars": 4,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 34,
+      "window_8w": {
+        "new_stars": 16,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 2,
-      "total_repos": 20,
+      "total_repos": 5,
       "attributes": {
-        "stars": 95,
-        "new_stars": 65,
-        "pushes": 80,
-        "contributors": 90,
-        "issues_closed": 85,
-        "forks": 90
+        "stars": 80,
+        "new_stars": 40,
+        "pushes": 20,
+        "contributors": 60,
+        "issues_closed": 40,
+        "forks": 60
       }
     },
     {
       "name": "ever-co/ever-demand",
       "owner": "ever-co",
-      "stars_total": 1845,
+      "stars_total": 1866,
       "description": "Ever® Demand™ - Open Commerce Platform - https://everdemand.co",
       "language": "TypeScript",
       "topics": [
@@ -117,25 +139,36 @@
       "license": "AGPL-3.0",
       "homepage": "https://everdemand.co",
       "forks_count": 475,
-      "open_issues_count": 71,
+      "open_issues_count": 72,
       "created_at": "2018-08-25T16:53:47Z",
       "archived": false,
-      "size": 33085,
+      "size": 33069,
+      "weekly": {
+        "new_stars": 2,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 29,
+      "window_8w": {
+        "new_stars": 20,
+        "pushes": 2,
+        "issues_closed": 0
+      },
       "rank": 3,
-      "total_repos": 20,
+      "total_repos": 5,
       "attributes": {
-        "stars": 90,
-        "new_stars": 85,
-        "pushes": 65,
-        "contributors": 85,
-        "issues_closed": 85,
-        "forks": 95
+        "stars": 60,
+        "new_stars": 60,
+        "pushes": 40,
+        "contributors": 40,
+        "issues_closed": 40,
+        "forks": 80
       }
     },
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 541,
+      "stars_total": 588,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -155,26 +188,37 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
-      "forks_count": 94,
-      "open_issues_count": 230,
+      "forks_count": 111,
+      "open_issues_count": 242,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 80118,
+      "size": 87422,
+      "weekly": {
+        "new_stars": 1,
+        "pushes": 328,
+        "issues_closed": 2
+      },
+      "contributors_count": 43,
+      "window_8w": {
+        "new_stars": 46,
+        "pushes": 566,
+        "issues_closed": 45
+      },
       "rank": 4,
-      "total_repos": 20,
+      "total_repos": 5,
       "attributes": {
-        "stars": 85,
-        "new_stars": 95,
-        "pushes": 90,
-        "contributors": 95,
-        "issues_closed": 85,
-        "forks": 80
+        "stars": 40,
+        "new_stars": 80,
+        "pushes": 80,
+        "contributors": 80,
+        "issues_closed": 80,
+        "forks": 40
       }
     },
     {
       "name": "ever-works/awesome-time-tracking",
       "owner": "ever-works",
-      "stars_total": 212,
+      "stars_total": 234,
       "description": "Time Tracking - Software, Methodologies and Practices - https://timetrack.ever.works",
       "language": null,
       "topics": [
@@ -196,26 +240,79 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://timetrack.ever.works",
-      "forks_count": 17,
-      "open_issues_count": 5,
+      "forks_count": 25,
+      "open_issues_count": 15,
       "created_at": "2023-11-04T12:58:22Z",
       "archived": false,
-      "size": 17424,
-      "rank": 5,
-      "total_repos": 20,
+      "size": 17882,
+      "weekly": {
+        "new_stars": 2,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 5,
+      "window_8w": {
+        "new_stars": 17,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 1,
+      "total_repos": 15,
       "attributes": {
-        "stars": 80,
-        "new_stars": 90,
-        "pushes": 60,
-        "contributors": 65,
-        "issues_closed": 85,
-        "forks": 75
+        "stars": 100,
+        "new_stars": 80,
+        "pushes": 73,
+        "contributors": 87,
+        "issues_closed": 87,
+        "forks": 93
+      }
+    },
+    {
+      "name": "ever-works/ever-works",
+      "owner": "ever-works",
+      "stars_total": 169,
+      "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships, and maintains entire businesses, 24/7 - https://ever.works",
+      "language": "TypeScript",
+      "topics": [
+        "agent-runtime",
+        "ai",
+        "ai-agents",
+        "directories",
+        "runtime"
+      ],
+      "license": "AGPL-3.0",
+      "homepage": "https://ever.works",
+      "forks_count": 25,
+      "open_issues_count": 8,
+      "created_at": "2025-01-06T16:50:16Z",
+      "archived": false,
+      "size": 127739,
+      "weekly": {
+        "new_stars": 7,
+        "pushes": 135,
+        "issues_closed": 3
+      },
+      "contributors_count": 11,
+      "window_8w": {
+        "new_stars": 143,
+        "pushes": 1970,
+        "issues_closed": 20
+      },
+      "rank": 2,
+      "total_repos": 15,
+      "attributes": {
+        "stars": 93,
+        "new_stars": 100,
+        "pushes": 100,
+        "contributors": 100,
+        "issues_closed": 100,
+        "forks": 93
       }
     },
     {
       "name": "ever-works/awesome-mcp-servers",
       "owner": "ever-works",
-      "stars_total": 95,
+      "stars_total": 119,
       "description": "A curated list of the best MCP Servers, featuring top solutions, libraries, tools, and more. - https://mcpserver.ever.works",
       "language": null,
       "topics": [
@@ -231,26 +328,73 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://mcpserver.ever.works",
-      "forks_count": 95,
-      "open_issues_count": 100,
+      "forks_count": 132,
+      "open_issues_count": 151,
       "created_at": "2025-05-14T01:00:14Z",
       "archived": false,
-      "size": 10754,
-      "rank": 6,
-      "total_repos": 20,
+      "size": 6527,
+      "weekly": {
+        "new_stars": 2,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 21,
+        "pushes": 0,
+        "issues_closed": 1
+      },
+      "rank": 3,
+      "total_repos": 15,
       "attributes": {
-        "stars": 75,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 50,
-        "issues_closed": 90,
-        "forks": 85
+        "stars": 87,
+        "new_stars": 87,
+        "pushes": 73,
+        "contributors": 67,
+        "issues_closed": 93,
+        "forks": 100
+      }
+    },
+    {
+      "name": "ever-works/awesome-startup-books",
+      "owner": "ever-works",
+      "stars_total": 60,
+      "description": "A curated list of books for Startups",
+      "language": null,
+      "topics": [],
+      "license": "CC-BY-SA-4.0",
+      "homepage": "https://startup-books.ever.works",
+      "forks_count": 5,
+      "open_issues_count": 1,
+      "created_at": "2025-11-07T18:15:57Z",
+      "archived": false,
+      "size": 930,
+      "weekly": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 34,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 4,
+      "total_repos": 15,
+      "attributes": {
+        "stars": 80,
+        "new_stars": 93,
+        "pushes": 73,
+        "contributors": 27,
+        "issues_closed": 87,
+        "forks": 73
       }
     },
     {
       "name": "ever-co/ever-rec",
       "owner": "ever-co",
-      "stars_total": 30,
+      "stars_total": 34,
       "description": "Ever® Rec™ - Open Screen Capture, Screen Recording, Images & Video Sharing Platform - https://rec.so",
       "language": "TypeScript",
       "topics": [
@@ -272,26 +416,37 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://rec.so",
-      "forks_count": 10,
-      "open_issues_count": 15,
+      "forks_count": 15,
+      "open_issues_count": 16,
       "created_at": "2024-08-08T06:51:05Z",
       "archived": false,
-      "size": 17844,
-      "rank": 7,
-      "total_repos": 20,
+      "size": 17866,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 8,
+      "window_8w": {
+        "new_stars": 4,
+        "pushes": 3,
+        "issues_closed": 1
+      },
+      "rank": 5,
+      "total_repos": 5,
       "attributes": {
-        "stars": 70,
-        "new_stars": 70,
-        "pushes": 70,
-        "contributors": 70,
-        "issues_closed": 85,
-        "forks": 70
+        "stars": 20,
+        "new_stars": 20,
+        "pushes": 60,
+        "contributors": 20,
+        "issues_closed": 60,
+        "forks": 20
       }
     },
     {
       "name": "ever-works/awesome-vector-databases",
       "owner": "ever-works",
-      "stars_total": 26,
+      "stars_total": 29,
       "description": "A curated list of vector database solutions, libraries, and resources for AI applications - https://vectordb.ever.works",
       "language": null,
       "topics": [
@@ -309,78 +464,33 @@
       "open_issues_count": 0,
       "created_at": "2025-05-13T22:30:04Z",
       "archived": false,
-      "size": 3491,
-      "rank": 8,
-      "total_repos": 20,
+      "size": 3646,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 2,
+        "pushes": 1,
+        "issues_closed": 0
+      },
+      "rank": 5,
+      "total_repos": 15,
       "attributes": {
-        "stars": 65,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 50,
-        "issues_closed": 85,
-        "forks": 65
-      }
-    },
-    {
-      "name": "ever-works/awesome-startup-books",
-      "owner": "ever-works",
-      "stars_total": 18,
-      "description": "A curated list of books for Startups",
-      "language": null,
-      "topics": [],
-      "license": "CC-BY-SA-4.0",
-      "homepage": "https://startup-books.ever.works",
-      "forks_count": 0,
-      "open_issues_count": 0,
-      "created_at": "2025-11-07T18:15:57Z",
-      "archived": false,
-      "size": 4598,
-      "rank": 9,
-      "total_repos": 20,
-      "attributes": {
-        "stars": 60,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 20,
-        "issues_closed": 85,
-        "forks": 35
-      }
-    },
-    {
-      "name": "ever-works/ever-works",
-      "owner": "ever-works",
-      "stars_total": 16,
-      "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships and maintains content-rich websites and Git repositories - https://ever.works",
-      "language": "TypeScript",
-      "topics": [
-        "agent-runtime",
-        "ai",
-        "ai-agents",
-        "directories",
-        "runtime"
-      ],
-      "license": "AGPL-3.0",
-      "homepage": "https://ever.works",
-      "forks_count": 1,
-      "open_issues_count": 8,
-      "created_at": "2025-01-06T16:50:16Z",
-      "archived": false,
-      "size": 56519,
-      "rank": 10,
-      "total_repos": 20,
-      "attributes": {
-        "stars": 55,
-        "new_stars": 85,
-        "pushes": 100,
-        "contributors": 75,
-        "issues_closed": 100,
-        "forks": 50
+        "stars": 73,
+        "new_stars": 60,
+        "pushes": 80,
+        "contributors": 67,
+        "issues_closed": 87,
+        "forks": 60
       }
     },
     {
       "name": "ever-works/directory-web-template",
       "owner": "ever-works",
-      "stars_total": 16,
+      "stars_total": 20,
       "description": "Open-Source Directory Website NextJs Boilerplate (part of Ever® Works™ Platform) - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -397,45 +507,67 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
-      "forks_count": 0,
-      "open_issues_count": 5,
+      "forks_count": 3,
+      "open_issues_count": 4,
       "created_at": "2025-01-06T16:51:42Z",
       "archived": false,
-      "size": 43439,
-      "rank": 11,
-      "total_repos": 20,
+      "size": 44242,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 11,
+      "window_8w": {
+        "new_stars": 3,
+        "pushes": 257,
+        "issues_closed": 0
+      },
+      "rank": 6,
+      "total_repos": 15,
       "attributes": {
-        "stars": 55,
-        "new_stars": 65,
-        "pushes": 85,
-        "contributors": 80,
-        "issues_closed": 85,
-        "forks": 35
+        "stars": 67,
+        "new_stars": 67,
+        "pushes": 93,
+        "contributors": 100,
+        "issues_closed": 87,
+        "forks": 53
       }
     },
     {
       "name": "ever-works/awesome-rust-ai-libraries",
       "owner": "ever-works",
-      "stars_total": 12,
+      "stars_total": 20,
       "description": "Curated directory of Rust-based libraries and crates for AI model training, inference, agentic systems, and related tools. Include popular crates like candle, burn, dfdx, tract, and more. Focus on open-source, high-quality projects with GitHub stars, docs, and examples.",
       "language": null,
       "topics": [],
       "license": "CC-BY-SA-4.0",
       "homepage": null,
-      "forks_count": 4,
-      "open_issues_count": 1,
+      "forks_count": 5,
+      "open_issues_count": 3,
       "created_at": "2026-04-01T12:33:19Z",
       "archived": false,
-      "size": 628,
-      "rank": 12,
-      "total_repos": 20,
+      "size": 739,
+      "weekly": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 7,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 7,
+      "total_repos": 15,
       "attributes": {
-        "stars": 45,
-        "new_stars": 85,
-        "pushes": 55,
-        "contributors": 50,
-        "issues_closed": 85,
-        "forks": 65
+        "stars": 67,
+        "new_stars": 73,
+        "pushes": 73,
+        "contributors": 67,
+        "issues_closed": 87,
+        "forks": 73
       }
     },
     {
@@ -451,22 +583,33 @@
       "open_issues_count": 0,
       "created_at": "2023-11-15T11:40:02Z",
       "archived": false,
-      "size": 11,
-      "rank": 13,
-      "total_repos": 20,
+      "size": 13,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 8,
+      "total_repos": 15,
       "attributes": {
-        "stars": 40,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 50,
-        "issues_closed": 85,
-        "forks": 50
+        "stars": 53,
+        "new_stars": 33,
+        "pushes": 73,
+        "contributors": 67,
+        "issues_closed": 87,
+        "forks": 47
       }
     },
     {
       "name": "ever-works/awesome-compliance-automation",
       "owner": "ever-works",
-      "stars_total": 4,
+      "stars_total": 5,
       "description": "A curated list of Compliance Automation Tools: SOC 2 automation tools, HIPAA compliance software, GDPR, Privacy Automation, etc.",
       "language": null,
       "topics": [
@@ -480,51 +623,73 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://compliance-automation.ever.works",
-      "forks_count": 3,
-      "open_issues_count": 1,
+      "forks_count": 8,
+      "open_issues_count": 4,
       "created_at": "2025-12-31T16:49:51Z",
       "archived": false,
-      "size": 62,
-      "rank": 14,
-      "total_repos": 20,
+      "size": 66,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 3,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 9,
+      "total_repos": 15,
       "attributes": {
-        "stars": 35,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 60,
-        "issues_closed": 85,
-        "forks": 55
+        "stars": 47,
+        "new_stars": 33,
+        "pushes": 73,
+        "contributors": 80,
+        "issues_closed": 87,
+        "forks": 80
       }
     },
     {
-      "name": "ever-works/awesome-open-source-llms",
+      "name": "ever-works/awesome-memos",
       "owner": "ever-works",
-      "stars_total": 3,
-      "description": "A comprehensive directory of open source large language models, comparing architectures, benchmark performance, licensing, and deployment options",
+      "stars_total": 5,
+      "description": "Collection of the best memos, each featuring an image and descriptions covering meaning, creation process, and context.",
       "language": null,
       "topics": [],
       "license": "CC-BY-SA-4.0",
       "homepage": null,
-      "forks_count": 1,
+      "forks_count": 0,
       "open_issues_count": 0,
-      "created_at": "2026-03-03T13:09:07Z",
+      "created_at": "2026-04-28T13:06:31Z",
       "archived": false,
-      "size": 596,
-      "rank": 15,
-      "total_repos": 20,
+      "size": 242,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 2,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 10,
+      "total_repos": 15,
       "attributes": {
-        "stars": 30,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 50,
-        "issues_closed": 85,
-        "forks": 50
+        "stars": 47,
+        "new_stars": 60,
+        "pushes": 73,
+        "contributors": 27,
+        "issues_closed": 87,
+        "forks": 27
       }
     },
     {
       "name": "ever-works/awesome-remote-team-tools",
       "owner": "ever-works",
-      "stars_total": 3,
+      "stars_total": 4,
       "description": "Directory for Remote Team Tools",
       "language": null,
       "topics": [],
@@ -534,22 +699,33 @@
       "open_issues_count": 1,
       "created_at": "2026-02-13T14:48:37Z",
       "archived": false,
-      "size": 321,
-      "rank": 16,
-      "total_repos": 20,
+      "size": 350,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 11,
+      "total_repos": 15,
       "attributes": {
-        "stars": 30,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 50,
-        "issues_closed": 85,
-        "forks": 35
+        "stars": 33,
+        "new_stars": 47,
+        "pushes": 73,
+        "contributors": 67,
+        "issues_closed": 87,
+        "forks": 27
       }
     },
     {
       "name": "ever-works/directory-web-minimal-template",
       "owner": "ever-works",
-      "stars_total": 2,
+      "stars_total": 3,
       "description": "Open-Source Directory Website Minimal Astro Boilerplate (part of Ever® Works™ Platform) - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -567,26 +743,37 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
-      "forks_count": 0,
+      "forks_count": 1,
       "open_issues_count": 0,
       "created_at": "2026-04-10T20:37:44Z",
       "archived": false,
-      "size": 3496,
-      "rank": 17,
-      "total_repos": 20,
+      "size": 3573,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 3,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 22,
+        "issues_closed": 0
+      },
+      "rank": 12,
+      "total_repos": 15,
       "attributes": {
-        "stars": 20,
-        "new_stars": 65,
-        "pushes": 75,
-        "contributors": 60,
-        "issues_closed": 85,
-        "forks": 35
+        "stars": 27,
+        "new_stars": 33,
+        "pushes": 87,
+        "contributors": 80,
+        "issues_closed": 87,
+        "forks": 47
       }
     },
     {
       "name": "ever-works/awesome-chairs",
       "owner": "ever-works",
-      "stars_total": 2,
+      "stars_total": 3,
       "description": "A directory of the best computer and gaming chairs for people who sit all day! ",
       "language": null,
       "topics": [],
@@ -596,16 +783,63 @@
       "open_issues_count": 0,
       "created_at": "2025-11-07T18:51:16Z",
       "archived": false,
-      "size": 2076,
-      "rank": 18,
-      "total_repos": 20,
+      "size": 2226,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 13,
+      "total_repos": 15,
       "attributes": {
-        "stars": 20,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 20,
-        "issues_closed": 85,
-        "forks": 35
+        "stars": 27,
+        "new_stars": 47,
+        "pushes": 73,
+        "contributors": 27,
+        "issues_closed": 87,
+        "forks": 27
+      }
+    },
+    {
+      "name": "ever-works/awesome-open-source-llms",
+      "owner": "ever-works",
+      "stars_total": 3,
+      "description": "A comprehensive directory of open source large language models, comparing architectures, benchmark performance, licensing, and deployment options",
+      "language": null,
+      "topics": [],
+      "license": "CC-BY-SA-4.0",
+      "homepage": null,
+      "forks_count": 1,
+      "open_issues_count": 0,
+      "created_at": "2026-03-03T13:09:07Z",
+      "archived": false,
+      "size": 641,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 14,
+      "total_repos": 15,
+      "attributes": {
+        "stars": 27,
+        "new_stars": 33,
+        "pushes": 73,
+        "contributors": 67,
+        "issues_closed": 87,
+        "forks": 47
       }
     },
     {
@@ -621,41 +855,27 @@
       "open_issues_count": 0,
       "created_at": "2026-05-02T15:48:12Z",
       "archived": false,
-      "size": 116,
-      "rank": 19,
-      "total_repos": 20,
+      "size": 127,
+      "weekly": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 15,
+      "total_repos": 15,
       "attributes": {
-        "stars": 20,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 20,
-        "issues_closed": 85,
-        "forks": 35
-      }
-    },
-    {
-      "name": "ever-works/awesome-memos",
-      "owner": "ever-works",
-      "stars_total": 2,
-      "description": "Collection of the best memos, each featuring an image and descriptions covering meaning, creation process, and context.",
-      "language": null,
-      "topics": [],
-      "license": "CC-BY-SA-4.0",
-      "homepage": null,
-      "forks_count": 0,
-      "open_issues_count": 0,
-      "created_at": "2026-04-28T13:06:31Z",
-      "archived": false,
-      "size": 218,
-      "rank": 20,
-      "total_repos": 20,
-      "attributes": {
-        "stars": 20,
-        "new_stars": 65,
-        "pushes": 55,
-        "contributors": 20,
-        "issues_closed": 85,
-        "forks": 35
+        "stars": 7,
+        "new_stars": 33,
+        "pushes": 73,
+        "contributors": 27,
+        "issues_closed": 87,
+        "forks": 27
       }
     }
   ]

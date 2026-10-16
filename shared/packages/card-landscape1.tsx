@@ -18,21 +18,27 @@ function h(type: string, props: Record<string, any> | null, ...children: any[]):
   };
 }
 
-/** Build an organic wax-blob path (slightly irregular circle). */
-function waxBlobPath(cx: number, cy: number, r: number): string {
-  const points = 64;
-  const step = (Math.PI * 2) / points;
+/** Build a scalloped rosette path (certificate-seal edge) with a slight hand-drawn wobble. */
+function rosettePath(cx: number, cy: number, r: number, depth: number, scallops: number): string {
+  const step = (Math.PI * 2) / scallops;
+  // Gentle organic wobble via layered sines, so the seal keeps the hand-drawn feel
+  const wob = (a: number) => 1.4 * Math.sin(a * 3 + 1.2) + 1 * Math.sin(a * 5 + 0.7);
   const parts: string[] = [];
-  for (let i = 0; i <= points; i++) {
-    const a = step * i;
-    // Gentle organic wobble via layered sines
-    const wobble = r
-      + 3.5 * Math.sin(a * 3 + 1.2)
-      + 2 * Math.sin(a * 5 + 0.7)
-      + 1.5 * Math.cos(a * 7 + 2.1);
-    const x = cx + Math.cos(a) * wobble;
-    const y = cy + Math.sin(a) * wobble;
-    parts.push(`${i === 0 ? "M" : "L"} ${x.toFixed(1)},${y.toFixed(1)}`);
+  for (let i = 0; i < scallops; i++) {
+    const a0 = step * i;
+    const a1 = step * (i + 1);
+    const mid = (a0 + a1) / 2;
+    const r0 = r + wob(a0);
+    const rc = r + depth + wob(mid);
+    const r1 = r + wob(a1);
+    const x0 = cx + Math.cos(a0) * r0;
+    const y0 = cy + Math.sin(a0) * r0;
+    const xc = cx + Math.cos(mid) * rc;
+    const yc = cy + Math.sin(mid) * rc;
+    const x1 = cx + Math.cos(a1) * r1;
+    const y1 = cy + Math.sin(a1) * r1;
+    if (i === 0) parts.push(`M ${x0.toFixed(1)},${y0.toFixed(1)}`);
+    parts.push(`Q ${xc.toFixed(1)},${yc.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`);
   }
   parts.push("Z");
   return parts.join(" ");
@@ -55,6 +61,14 @@ export interface Landscape1Data {
   watermark?: string;
   /** Ever fork: card palette. Defaults to light, so upstream behaviour is unchanged. */
   theme?: "light" | "dark";
+  /**
+   * Ever fork: raw last-7-days counts for the "Weekly" row. Upstream prints the
+   * percentiles from `attributes` there, which read as "100 stars this week" for the
+   * top repo. Unset = upstream behaviour.
+   */
+  weekly?: { new_stars: number; pushes: number; issues_closed: number } | null;
+  /** Ever fork: raw contributor count; upstream shows the contributors percentile. */
+  contributors?: number | null;
 }
 
 const LANG_COLORS: Record<string, string> = {
@@ -95,8 +109,8 @@ function sealTextLayer(
     "div",
     { style: { ...SEAL_LAYER_BASE, top: offset.top, left: offset.left, ...(opacity != null ? { opacity } : {}) } },
     h("span", { style: { fontSize: 10, textTransform: "uppercase", letterSpacing: "0.14em", color: colors.label } }, "Global Rank"),
-    h("span", { style: { fontSize: 42, fontWeight: "bold", lineHeight: 1, color: colors.rank } }, `#${rank}`),
-    h("span", { style: { fontSize: 9, marginTop: 4, color: colors.date, letterSpacing: "0.05em" } }, date),
+    h("span", { style: { fontSize: rank >= 10000 ? 32 : 42, fontWeight: "bold", lineHeight: 1, color: colors.rank } }, `#${rank}`),
+    h("span", { style: { fontSize: 10, marginTop: 4, color: colors.date, letterSpacing: "0.05em" } }, date),
   );
 }
 
@@ -131,6 +145,8 @@ const CARD_PALETTES = {
 
 export function buildLandscape1(data: Landscape1Data) {
   const P = CARD_PALETTES[data.theme === "dark" ? "dark" : "light"];
+  // Ever fork: the numbers shown in the "Weekly" row (see Landscape1Data.weekly).
+  const weekly = data.weekly ?? data.attributes;
   const [owner, repoName] = data.name.split("/");
   const langColor = data.language ? LANG_COLORS[data.language] ?? "#6b7280" : null;
 
@@ -146,7 +162,7 @@ export function buildLandscape1(data: Landscape1Data) {
       },
     },
 
-    // Sealing wax rank badge (top-right)
+    // Gold-foil rosette rank seal (top-right)
     data.rank && data.rank > 0
       ? h(
           "div",
@@ -158,7 +174,7 @@ export function buildLandscape1(data: Landscape1Data) {
               transform: "rotate(-8deg)",
             },
           },
-          // Wax blob shape
+          // Rosette seal shape
           h(
             "svg",
             {
@@ -166,23 +182,85 @@ export function buildLandscape1(data: Landscape1Data) {
               width: 160, height: 160,
               style: { position: "absolute", top: 0, left: 0 },
             },
+            h(
+              "defs",
+              null,
+              // Metallic gold body — light catches the upper left
+              h(
+                "radialGradient",
+                { id: "sh-seal-gold", cx: "38%", cy: "32%", r: "80%" },
+                h("stop", { offset: "0%", "stop-color": "#fdf4c2" }),
+                h("stop", { offset: "32%", "stop-color": "#f0d06a" }),
+                h("stop", { offset: "62%", "stop-color": "#d8a83c" }),
+                h("stop", { offset: "86%", "stop-color": "#b4832a" }),
+                h("stop", { offset: "100%", "stop-color": "#8a5f16" }),
+              ),
+              // Inner stamped disc — slightly deeper tone than the rim
+              h(
+                "radialGradient",
+                { id: "sh-seal-disc", cx: "40%", cy: "34%", r: "78%" },
+                h("stop", { offset: "0%", "stop-color": "#f7e49b" }),
+                h("stop", { offset: "50%", "stop-color": "#e0b84e" }),
+                h("stop", { offset: "100%", "stop-color": "#a87c1f" }),
+              ),
+              // Diagonal foil sheen
+              h(
+                "linearGradient",
+                { id: "sh-seal-sheen", x1: "0%", y1: "0%", x2: "100%", y2: "100%" },
+                h("stop", { offset: "0%", "stop-color": "#ffffff", "stop-opacity": "0.6" }),
+                h("stop", { offset: "35%", "stop-color": "#ffffff", "stop-opacity": "0.12" }),
+                h("stop", { offset: "60%", "stop-color": "#ffffff", "stop-opacity": "0" }),
+                h("stop", { offset: "100%", "stop-color": "#5a3c0a", "stop-opacity": "0.32" }),
+              ),
+              // Specular light streak across the foil
+              h(
+                "linearGradient",
+                { id: "sh-seal-streak", x1: "0%", y1: "100%", x2: "100%", y2: "0%" },
+                h("stop", { offset: "38%", "stop-color": "#ffffff", "stop-opacity": "0" }),
+                h("stop", { offset: "50%", "stop-color": "#ffffff", "stop-opacity": "0.28" }),
+                h("stop", { offset: "62%", "stop-color": "#ffffff", "stop-opacity": "0" }),
+              ),
+              h("clipPath", { id: "sh-seal-clip" }, h("path", { d: rosettePath(80, 80, 61, 6.5, 32) })),
+              // Soft drop shadow
+              h(
+                "filter",
+                { id: "sh-seal-blur", x: "-15%", y: "-15%", width: "130%", height: "130%" },
+                h("feGaussianBlur", { stdDeviation: "1.8" }),
+              ),
+              // Foil grain texture
+              h(
+                "filter",
+                { id: "sh-seal-grain", x: "-5%", y: "-5%", width: "110%", height: "110%" },
+                h("feTurbulence", { type: "fractalNoise", baseFrequency: "0.9", numOctaves: "2", result: "n" }),
+                h("feColorMatrix", { in: "n", type: "matrix", values: "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.6 0.6 0.6 0 0" }),
+                h("feComposite", { operator: "in", in2: "SourceGraphic" }),
+              ),
+            ),
             // Shadow — soft offset
-            h("path", { d: waxBlobPath(83, 83, 68), fill: "#44000028" }),
-            // Main wax body
-            h("path", { d: waxBlobPath(80, 80, 68), fill: "#e13129" }),
-            // Inner groove ring
-            h("circle", { cx: "80", cy: "80", r: "52", fill: "none", stroke: "#b02420", "stroke-width": "1.8", opacity: "0.5" }),
-            // Inner groove highlight
-            h("circle", { cx: "80", cy: "80", r: "51", fill: "none", stroke: "#e8a070", "stroke-width": "0.6", opacity: "0.25" }),
+            h("path", { d: rosettePath(82.5, 84, 61, 6.5, 32), fill: "#3f2d0538", filter: "url(#sh-seal-blur)" }),
+            // Gold rosette body
+            h("path", { d: rosettePath(80, 80, 61, 6.5, 32), fill: "url(#sh-seal-gold)", stroke: "#7a5a16", "stroke-width": "0.8", opacity: "1" }),
+            // Foil sheen overlay
+            h("path", { d: rosettePath(80, 80, 61, 6.5, 32), fill: "url(#sh-seal-sheen)" }),
+            // Specular streak, clipped to the seal
+            h("rect", { x: "0", y: "0", width: "160", height: "160", fill: "url(#sh-seal-streak)", "clip-path": "url(#sh-seal-clip)" }),
+            // Rim shading between scallops and milled ring for depth
+            h("circle", { cx: "80", cy: "80", r: "58", fill: "none", stroke: "#7c5714", "stroke-width": "5", opacity: "0.16" }),
+            // Milled ring — engraved ticks with an embossed highlight twin
+            h("circle", { cx: "80", cy: "80", r: "55.5", fill: "none", stroke: "#8a621a", "stroke-width": "2.2", "stroke-dasharray": "2 2.1", opacity: "0.85" }),
+            h("circle", { cx: "80.6", cy: "80.7", r: "55.5", fill: "none", stroke: "#fff3c0", "stroke-width": "0.8", "stroke-dasharray": "2 2.1", opacity: "0.5" }),
+            // Inner stamped disc with groove
+            h("circle", { cx: "80", cy: "80", r: "51", fill: "url(#sh-seal-disc)", stroke: "#8a621a", "stroke-width": "1", opacity: "1" }),
+            h("circle", { cx: "80", cy: "80", r: "49.5", fill: "none", stroke: "#ffefad", "stroke-width": "1", opacity: "0.5" }),
+            // Grain texture across the whole seal
+            h("path", { d: rosettePath(80, 80, 61, 6.5, 32), fill: "#6e4f12", filter: "url(#sh-seal-grain)", opacity: "0.25" }),
           ),
-          // Embossed gold text — three layers: shadow, body, highlight
+          // Engraved text — light emboss highlight below, deep stamped ink on top
           ...(() => {
             const date = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-            const dark = "#6e1510";
             return [
-              sealTextLayer(data.rank!, date, { label: dark, rank: dark, date: dark }, { top: 1.5, left: 1 }),
-              sealTextLayer(data.rank!, date, { label: "#e8b830", rank: "#f0c838", date: "#e8b830" }, { top: 0, left: 0 }),
-              sealTextLayer(data.rank!, date, { label: "#ffe870", rank: "#ffe870", date: "#ffe870" }, { top: -0.5, left: -0.5 }, 0.45),
+              sealTextLayer(data.rank!, date, { label: "#fff6cc", rank: "#fff6cc", date: "#fff6cc" }, { top: 1.2, left: 1.2 }, 0.85),
+              sealTextLayer(data.rank!, date, { label: "#61430e", rank: "#43300a", date: "#5c3f0c" }, { top: 0, left: 0 }),
             ];
           })(),
         )
@@ -318,7 +396,7 @@ export function buildLandscape1(data: Landscape1Data) {
           data.attributes
             ? h(
                 "div",
-                { title: `Contributors: ${data.attributes.contributors} · Top ${100 - data.attributes.contributors}%`, style: { display: "flex", alignItems: "center", gap: 8 } },
+                { title: `Contributors: ${data.contributors ?? data.attributes.contributors} · Top ${100 - data.attributes.contributors}%`, style: { display: "flex", alignItems: "center", gap: 8 } },
                 h(
                   "svg",
                   { viewBox: "0 0 32 24", width: 30, height: 24 },
@@ -329,35 +407,35 @@ export function buildLandscape1(data: Landscape1Data) {
                   h("circle", { cx: "22", cy: "6", r: "3.5", fill: "none", stroke: P.muted, "stroke-width": "1.3" }),
                   h("path", { d: "M16 22C16 17 18.5 14 22 14C25.5 14 28 17 28 22", fill: "none", stroke: P.muted, "stroke-width": "1.3", "stroke-linecap": "round" }),
                 ),
-                h("span", { style: { fontSize: 36, fontWeight: "bold", color: P.secondary } }, String(data.attributes.contributors)),
+                h("span", { style: { fontSize: 36, fontWeight: "bold", color: P.secondary } }, fmt(data.contributors ?? data.attributes.contributors)),
               )
             : null,
         ),
 
         // Stats: weekly numbers
-        data.attributes
+        data.attributes && weekly
           ? h(
               "div",
               { style: { display: "flex", alignItems: "center", gap: 20, marginTop: 14, paddingTop: 14, borderTop: `1.5px solid ${P.divider}` } },
               h("span", { style: { fontSize: 16, color: P.muted, textTransform: "uppercase", letterSpacing: "0.08em" } }, "Weekly"),
               h(
                 "div",
-                { title: `New stars: ${data.attributes.new_stars} · Top ${100 - data.attributes.new_stars}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.new_stars)),
+                { title: `New stars: ${weekly.new_stars} · Top ${100 - data.attributes.new_stars}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, fmt(weekly.new_stars)),
                 h("span", { style: { fontSize: 15, color: P.muted } }, "stars"),
               ),
               h("span", { style: { fontSize: 14, color: P.faint } }, "\u00b7"),
               h(
                 "div",
-                { title: `Pushes: ${data.attributes.pushes} · Top ${100 - data.attributes.pushes}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.pushes)),
+                { title: `Pushes: ${weekly.pushes} · Top ${100 - data.attributes.pushes}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, fmt(weekly.pushes)),
                 h("span", { style: { fontSize: 15, color: P.muted } }, "pushes"),
               ),
               h("span", { style: { fontSize: 14, color: P.faint } }, "\u00b7"),
               h(
                 "div",
-                { title: `Issues closed: ${data.attributes.issues_closed} · Top ${100 - data.attributes.issues_closed}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
-                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, String(data.attributes.issues_closed)),
+                { title: `Issues closed: ${weekly.issues_closed} · Top ${100 - data.attributes.issues_closed}%`, style: { display: "flex", alignItems: "baseline", gap: 5 } },
+                h("span", { style: { fontSize: 34, fontWeight: "bold", color: P.secondary } }, fmt(weekly.issues_closed)),
                 h("span", { style: { fontSize: 15, color: P.muted } }, "issues closed"),
               ),
             )

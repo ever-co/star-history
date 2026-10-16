@@ -1,10 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import leaderboardData from "@gh-data/leaderboard.json"
 import weeklyRankingData from "@gh-data/weekly-ranking.json"
 import starCountData from "@gh-data/star-count.json"
 import { formatNumber } from "../helpers/format"
 import { EASTER_EGG_REPOS } from "../helpers/consts"
+import { currentBrand } from "../helpers/brand"
 
 const leaderboard = leaderboardData as { updated_at: string; repos: { name: string; stars_total: number }[] }
 const weeklyRanking = weeklyRankingData as { updated_at: string; repos: { name: string; new_stars: number; stars_total: number }[] }
@@ -23,16 +24,27 @@ const LeftSidebar: React.FC = () => {
     // Weekly tab opened on a wall of "+0" and looked broken.
     const [activeTab, setActiveTab] = useState<Tab>("alltime")
 
+    // Ever fork: one build serves every host, and each host answers only for its own org,
+    // so list only that org's repos. Resolved after mount like the rest of the brand; the
+    // list stays invisible until then so the other orgs' rows never flash.
+    const [org, setOrg] = useState<string | null>(null)
+    useEffect(() => setOrg(currentBrand().org.toLowerCase()), [])
+    const ownRepo = (name: string) => org !== null && name.toLowerCase().startsWith(`${org}/`)
+    const orgRepos = leaderboard.repos.filter((r) => ownRepo(r.name))
+    const tiers = starCount.tiers
+        .map((t) => ({ ...t, count: orgRepos.filter((r) => r.stars_total >= t.threshold).length }))
+        .filter((t) => t.threshold === 0 || t.count > 0)
+
     const items = activeTab === "weekly"
-        ? weeklyRanking.repos.map((r) => ({ name: r.name, metric: `+${formatNumber(r.new_stars)}`, metricClass: "accent-text" }))
-        : leaderboard.repos.map((r) => ({ name: r.name, metric: formatNumber(r.stars_total), metricClass: "text-gray-400 dark:text-gray-500" }))
+        ? weeklyRanking.repos.filter((r) => ownRepo(r.name)).map((r) => ({ name: r.name, metric: `+${formatNumber(r.new_stars)}`, metricClass: "accent-text" }))
+        : orgRepos.map((r) => ({ name: r.name, metric: formatNumber(r.stars_total), metricClass: "text-gray-400 dark:text-gray-500" }))
 
     const updatedAt = activeTab === "weekly" ? weeklyRanking.updated_at
         : activeTab === "alltime" ? leaderboard.updated_at
         : starCount.updated_at
 
     return (
-        <div className="sidebar-sticky">
+        <div className={`sidebar-sticky ${org === null ? "invisible" : ""}`}>
             <div className="pt-4">
                 <div className="flex justify-center gap-4 mb-3">
                     {tabs.map((tab) => (
@@ -51,8 +63,8 @@ const LeftSidebar: React.FC = () => {
                 </div>
                 {activeTab === "pyramid" ? (
                     <div className="space-y-2 mt-1">
-                        {starCount.tiers.filter((tier) => tier.threshold > 1).map((tier, _, filtered) => {
-                            const total = starCount.tiers.find((t) => t.threshold === 0)?.count ?? filtered[filtered.length - 1].count
+                        {tiers.filter((tier) => tier.threshold > 1).map((tier, _, filtered) => {
+                            const total = tiers.find((t) => t.threshold === 0)?.count ?? filtered[filtered.length - 1].count
                             const widthPct = (tier.count / filtered[filtered.length - 1].count) * 100
                             const pct = (tier.count / total) * 100
                             const pctLabel = pct < 0.0001 ? `${pct.toFixed(5)}%` : pct < 0.001 ? `${pct.toFixed(4)}%` : pct < 0.01 ? `${pct.toFixed(3)}%` : pct < 0.1 ? `${pct.toFixed(2)}%` : `${pct.toFixed(1)}%`

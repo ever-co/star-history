@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-04",
+  "updated_at": "2026-10-16",
   "tiers": [
     {
       "threshold": 0,
@@ -14,7 +14,7 @@
     {
       "threshold": 100,
       "label": "100+",
-      "count": 5
+      "count": 7
     },
     {
       "threshold": 500,
@@ -34,6 +34,11 @@
     {
       "threshold": 4000,
       "label": "4k+",
+      "count": 1
+    },
+    {
+      "threshold": 8000,
+      "label": "8k+",
       "count": 1
     }
   ]

@@ -241,6 +241,8 @@ const startServer = async () => {
           created_at: gh.created_at,
           avatarBase64,
           attributes: cardData.attributes,
+          weekly: cardData.weekly ?? null,
+          contributors: cardData.contributors_count ?? null,
           rank: cardData.rank,
           watermark: (host ?? "").replace(/:\d+$/, "") || undefined,
           // Ever fork: ?theme=dark renders a dark card. Read locally — the shared
