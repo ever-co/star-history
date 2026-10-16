@@ -47,6 +47,13 @@ badges are backed by our own PAT quota and our own uptime.
 | `.dockerignore` | **New.** See below. |
 | `.gitignore` | `gh/data/*.json` is now committed (we generate it, upstream doesn't). |
 | `.github/workflows/k8s-build.yml` | **New.** Fleet-standard build to GHCR. |
+| `.github/workflows/ever-refresh-data.yml` | **New.** Daily: re-runs the seed script, commits `gh/data`, dispatches `k8s-build`. See "Data freshness". |
+| `shared/common/star-history.ts` | **New.** Exact star curves from GitHub's public `stargazers/history` endpoint. See "GitHub's stargazer restriction". |
+| `shared/common/api.tsx` | `getRepoStarRecords()` tries `star-history.ts` first; upstream's sampler is the fallback. |
+| `shared/packages/card-landscape1.tsx` | Palette/theme/watermark; the "Weekly" row and contributor count show real counts (`weekly`, `contributors`) instead of percentiles. |
+| `frontend/components/LeftSidebar.tsx` | Lists and pyramid show only the current host's org. |
+| `frontend/pages/[...slug].tsx` | Prev/next links and "#n of N" stay within the repo's owner; meta description uses real counts. |
+| `ever/test/` | **New.** `backend/node_modules/.bin/tsx --test ever/test/*.test.ts` |
 
 ## Branding: one build, three brands
 
@@ -142,6 +149,46 @@ absolute API URL would send `ever.works` charts at `ever.co`'s vhost and collect
 
 `NEXT_PUBLIC_SITE_URL` can only hold one value for a shared build, so it points at
 `stats-github.ever.co`. It only feeds canonical/OG tags and the sitemap, never chart rendering.
+
+## Data freshness
+
+The repo pages (`/owner/repo`), the home sidebar and the OG cards read `gh/data/*.json`,
+which is **baked into both images at build time**. Charts (`/svg`, `/api/star-data`) are
+live (24h cache); those files are not. They were generated once by hand on 2026-08-04 and
+never again, so in October the ever-gauzy page still said **4.1k stars** while the chart
+beside it said 8.4k.
+
+`.github/workflows/ever-refresh-data.yml` now re-runs `ever/seed-gh-data.mjs` daily
+(04:23 UTC) with CI's own `GITHUB_TOKEN`, commits `gh/data` when it changed and
+dispatches `k8s-build` (a `GITHUB_TOKEN` push does not trigger workflows; a dispatch does).
+Pages are therefore at most ~1 day old. Run it by hand from the Actions tab after adding a
+repo to the allowlist.
+
+The seed script fails the run instead of committing partial data when a public repo does not
+resolve, and skips private repos even when the token can see them, because this data is
+public.
+
+What the card shows: `rank` / `total_repos` and the radar's percentiles are computed
+**within the repo's owner** (each host serves one owner). `weekly` holds the real
+last-7-days counts (stars, commits, issues closed) and `contributors_count` the real
+contributor count; upstream prints the percentiles in those places.
+
+## GitHub's stargazer restriction (July 2026) and the new history endpoint
+
+- **June 30 / July 2026:** GitHub limited `GET /repos/{o}/{r}/stargazers`, the per-user list
+  upstream's chart code samples, to the repo's own **admins and collaborators**. Everyone
+  else gets **404**. This instance kept working only because our PAT is an admin on our repos.
+- **2026-09-04:** GitHub added `GET /repos/{o}/{r}/stargazers/history`: public, no
+  identities, stars per calendar week with a Sunday-first per-day breakdown, newest week
+  first, 30 weeks a page, back to the repo's creation. star-history.com's hosted site was
+  rebuilt on it, which is why it no longer asks for a token. Its open-source code (this
+  fork's upstream) still uses the sampler.
+
+`shared/common/star-history.ts` uses the history endpoint, so our curves are **exact**
+(they end on the repo's live star count) and need no collaborator access. A chart costs
+about `age / 30 weeks` requests (13 for ever-gauzy). Not-found, auth and rate-limit errors
+propagate exactly as before; anything else falls back to the sampler. The endpoint counts
+stars that still exist, so curves never go down.
 
 ## Syncing upstream
 

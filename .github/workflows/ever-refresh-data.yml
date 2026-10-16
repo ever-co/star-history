@@ -1,0 +1,65 @@
+# Ever fork only — keeps the UI data (gh/data/*.json) fresh.
+#
+# The repo pages (/owner/repo), the home sidebar and the OG cards read gh/data/*.json at
+# BUILD time. That snapshot was generated once by hand on 2026-08-04 and never again, so in
+# October stats-github.ever.co/ever-co/ever-gauzy still said 4.1k stars when it had 8.4k.
+#
+# This regenerates it daily from the GitHub API, commits only when something changed, then
+# dispatches k8s-build. The dispatch is required: a push made with GITHUB_TOKEN does not
+# trigger other workflows, but a workflow_dispatch does.
+#
+# CI's own GITHUB_TOKEN is enough: every endpoint the seed script uses is public. It also
+# cannot see private repos (cloc-co/zero), which must stay out of this public data.
+name: ever-refresh-data
+on:
+  schedule:
+    # Daily, off the hour so it does not queue behind the fleet's top-of-hour jobs.
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+concurrency:
+  group: ever-refresh-data
+  cancel-in-progress: false
+permissions:
+  contents: write
+  actions: write
+jobs:
+  refresh:
+    runs-on: ${{ vars.RUNNER_LINUX_X64_4 || 'ubuntu-latest' }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+      # No dependencies: the script uses only Node built-ins and fetch. It exits non-zero
+      # when a public repo fails to resolve, so a GitHub outage never commits a partial
+      # dataset (which would drop that repo's page from the next build).
+      - name: Regenerate gh/data
+        run: node ever/seed-gh-data.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - id: commit
+        name: Commit if changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- gh/data; then
+            echo "gh/data unchanged"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git diff --stat -- gh/data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add gh/data
+          git commit -m "ever(data): refresh gh/data from the GitHub API"
+          # main may have moved while the seed ran; gh/data is only ever written here.
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      - name: Rebuild the images
+        if: steps.commit.outputs.changed == 'true'
+        run: gh workflow run k8s-build.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
