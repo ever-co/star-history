@@ -127,7 +127,7 @@ const newStarsLastWeekFromList = async (repo) => {
   const first = await gh(`/repos/${repo}/stargazers?per_page=100`, { accept, raw: true });
   const link = first.headers.get("link");
   let page = await first.json();
-  const lastMatch = link && /[?&]page=(d+)>; rel="last"/.exec(link);
+  const lastMatch = link && /[?&]page=(\d+)>; rel="last"/.exec(link);
   if (lastMatch) {
     page = await gh(`/repos/${repo}/stargazers?per_page=100&page=${lastMatch[1]}`, { accept });
   }

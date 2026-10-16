@@ -6,8 +6,8 @@
 #
 # This regenerates it daily from the GitHub API, commits it, then dispatches k8s-build. The
 # files carry updated_at, so in practice that is one commit and one rollout a day; a run that
-# changes nothing (re-run the same day) commits nothing. The dispatch is required: a push made with GITHUB_TOKEN does not
-# trigger other workflows, but a workflow_dispatch does.
+# changes nothing (re-run the same day) commits nothing. The dispatch is required: a push
+# made with GITHUB_TOKEN does not trigger other workflows, but a workflow_dispatch does.
 #
 # CI's own GITHUB_TOKEN is enough: every endpoint the seed script uses is public. It also
 # cannot see private repos (cloc-co/zero), which must stay out of this public data.
