@@ -243,6 +243,7 @@ const startServer = async () => {
           attributes: cardData.attributes,
           weekly: cardData.weekly ?? null,
           contributors: cardData.contributors_count ?? null,
+          attributesScale: cardData.attributes_scale,
           rank: cardData.rank,
           watermark: (host ?? "").replace(/:\d+$/, "") || undefined,
           // Ever fork: ?theme=dark renders a dark card. Read locally — the shared

@@ -26,8 +26,12 @@ export interface RepoCardData {
   attributes: RepoAttributes;
   /** Ever fork: raw counts for the card's "Weekly" row (attributes are percentiles). */
   weekly?: RepoWeekly;
-  /** Ever fork: raw contributor count (attributes.contributors is a percentile). */
+  /** Ever fork: raw contributor count (attributes.contributors is a 0-100 radar value). */
   contributors_count?: number;
+  /** Ever fork: "benchmark" = attributes are absolute 0-100 scores, not percentiles. */
+  attributes_scale?: "percentile" | "benchmark";
+  /** Ever fork: the raw 8-week totals behind the activity axes of the radar. */
+  window_8w?: RepoWeekly;
 }
 
 /** Ever fork: last-7-days counts, written by ever/seed-gh-data.mjs. */

@@ -50,13 +50,14 @@
       "rank": 1,
       "total_repos": 5,
       "attributes": {
-        "stars": 100,
-        "new_stars": 100,
-        "pushes": 100,
-        "contributors": 100,
-        "issues_closed": 100,
-        "forks": 100
-      }
+        "stars": 78,
+        "new_stars": 98,
+        "pushes": 98,
+        "contributors": 73,
+        "issues_closed": 70,
+        "forks": 72
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-co/ever-traduora",
@@ -100,13 +101,14 @@
       "rank": 2,
       "total_repos": 5,
       "attributes": {
-        "stars": 80,
-        "new_stars": 40,
-        "pushes": 20,
-        "contributors": 60,
-        "issues_closed": 40,
-        "forks": 60
-      }
+        "stars": 67,
+        "new_stars": 33,
+        "pushes": 0,
+        "contributors": 57,
+        "issues_closed": 0,
+        "forks": 55
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-co/ever-demand",
@@ -157,13 +159,14 @@
       "rank": 3,
       "total_repos": 5,
       "attributes": {
-        "stars": 60,
-        "new_stars": 60,
-        "pushes": 40,
-        "contributors": 40,
-        "issues_closed": 40,
-        "forks": 80
-      }
+        "stars": 65,
+        "new_stars": 36,
+        "pushes": 14,
+        "contributors": 55,
+        "issues_closed": 0,
+        "forks": 62
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-co/ever-teams",
@@ -207,13 +210,14 @@
       "rank": 4,
       "total_repos": 5,
       "attributes": {
-        "stars": 40,
-        "new_stars": 80,
-        "pushes": 80,
-        "contributors": 80,
-        "issues_closed": 80,
-        "forks": 40
-      }
+        "stars": 55,
+        "new_stars": 45,
+        "pushes": 83,
+        "contributors": 61,
+        "issues_closed": 55,
+        "forks": 48
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-time-tracking",
@@ -259,13 +263,14 @@
       "rank": 1,
       "total_repos": 15,
       "attributes": {
-        "stars": 100,
-        "new_stars": 80,
-        "pushes": 73,
-        "contributors": 87,
-        "issues_closed": 87,
-        "forks": 93
-      }
+        "stars": 47,
+        "new_stars": 34,
+        "pushes": 0,
+        "contributors": 29,
+        "issues_closed": 0,
+        "forks": 33
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/ever-works",
@@ -301,13 +306,14 @@
       "rank": 2,
       "total_repos": 15,
       "attributes": {
-        "stars": 93,
-        "new_stars": 100,
+        "stars": 45,
+        "new_stars": 58,
         "pushes": 100,
-        "contributors": 100,
-        "issues_closed": 100,
-        "forks": 93
-      }
+        "contributors": 40,
+        "issues_closed": 44,
+        "forks": 33
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-mcp-servers",
@@ -347,13 +353,14 @@
       "rank": 3,
       "total_repos": 15,
       "attributes": {
-        "stars": 87,
-        "new_stars": 87,
-        "pushes": 73,
-        "contributors": 67,
-        "issues_closed": 93,
-        "forks": 100
-      }
+        "stars": 42,
+        "new_stars": 36,
+        "pushes": 0,
+        "contributors": 18,
+        "issues_closed": 10,
+        "forks": 49
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-startup-books",
@@ -383,13 +390,14 @@
       "rank": 4,
       "total_repos": 15,
       "attributes": {
-        "stars": 80,
-        "new_stars": 93,
-        "pushes": 73,
-        "contributors": 27,
-        "issues_closed": 87,
-        "forks": 73
-      }
+        "stars": 36,
+        "new_stars": 42,
+        "pushes": 0,
+        "contributors": 11,
+        "issues_closed": 0,
+        "forks": 18
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-co/ever-rec",
@@ -435,13 +443,14 @@
       "rank": 5,
       "total_repos": 5,
       "attributes": {
-        "stars": 20,
-        "new_stars": 20,
-        "pushes": 60,
-        "contributors": 20,
-        "issues_closed": 60,
-        "forks": 20
-      }
+        "stars": 31,
+        "new_stars": 19,
+        "pushes": 18,
+        "contributors": 35,
+        "issues_closed": 10,
+        "forks": 28
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-vector-databases",
@@ -479,13 +488,14 @@
       "rank": 5,
       "total_repos": 15,
       "attributes": {
-        "stars": 73,
-        "new_stars": 60,
-        "pushes": 80,
-        "contributors": 67,
-        "issues_closed": 87,
-        "forks": 60
-      }
+        "stars": 30,
+        "new_stars": 13,
+        "pushes": 9,
+        "contributors": 18,
+        "issues_closed": 0,
+        "forks": 16
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/directory-web-template",
@@ -526,13 +536,14 @@
       "rank": 6,
       "total_repos": 15,
       "attributes": {
-        "stars": 67,
-        "new_stars": 67,
-        "pushes": 93,
-        "contributors": 100,
-        "issues_closed": 87,
-        "forks": 53
-      }
+        "stars": 26,
+        "new_stars": 16,
+        "pushes": 73,
+        "contributors": 40,
+        "issues_closed": 0,
+        "forks": 14
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-rust-ai-libraries",
@@ -562,13 +573,14 @@
       "rank": 7,
       "total_repos": 15,
       "attributes": {
-        "stars": 67,
-        "new_stars": 73,
-        "pushes": 73,
-        "contributors": 67,
-        "issues_closed": 87,
-        "forks": 73
-      }
+        "stars": 26,
+        "new_stars": 24,
+        "pushes": 0,
+        "contributors": 18,
+        "issues_closed": 0,
+        "forks": 18
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-starters",
@@ -598,13 +610,14 @@
       "rank": 8,
       "total_repos": 15,
       "attributes": {
-        "stars": 53,
-        "new_stars": 33,
-        "pushes": 73,
-        "contributors": 67,
-        "issues_closed": 87,
-        "forks": 47
-      }
+        "stars": 17,
+        "new_stars": 0,
+        "pushes": 0,
+        "contributors": 18,
+        "issues_closed": 0,
+        "forks": 7
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-compliance-automation",
@@ -642,13 +655,14 @@
       "rank": 9,
       "total_repos": 15,
       "attributes": {
-        "stars": 47,
-        "new_stars": 33,
-        "pushes": 73,
-        "contributors": 80,
-        "issues_closed": 87,
-        "forks": 80
-      }
+        "stars": 16,
+        "new_stars": 0,
+        "pushes": 0,
+        "contributors": 22,
+        "issues_closed": 0,
+        "forks": 22
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-memos",
@@ -678,13 +692,14 @@
       "rank": 10,
       "total_repos": 15,
       "attributes": {
-        "stars": 47,
-        "new_stars": 60,
-        "pushes": 73,
-        "contributors": 27,
-        "issues_closed": 87,
-        "forks": 27
-      }
+        "stars": 16,
+        "new_stars": 13,
+        "pushes": 0,
+        "contributors": 11,
+        "issues_closed": 0,
+        "forks": 0
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-remote-team-tools",
@@ -714,13 +729,14 @@
       "rank": 11,
       "total_repos": 15,
       "attributes": {
-        "stars": 33,
-        "new_stars": 47,
-        "pushes": 73,
-        "contributors": 67,
-        "issues_closed": 87,
-        "forks": 27
-      }
+        "stars": 14,
+        "new_stars": 8,
+        "pushes": 0,
+        "contributors": 18,
+        "issues_closed": 0,
+        "forks": 0
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/directory-web-minimal-template",
@@ -762,13 +778,14 @@
       "rank": 12,
       "total_repos": 15,
       "attributes": {
-        "stars": 27,
-        "new_stars": 33,
-        "pushes": 87,
-        "contributors": 80,
-        "issues_closed": 87,
-        "forks": 47
-      }
+        "stars": 12,
+        "new_stars": 0,
+        "pushes": 41,
+        "contributors": 22,
+        "issues_closed": 0,
+        "forks": 7
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-chairs",
@@ -798,13 +815,14 @@
       "rank": 13,
       "total_repos": 15,
       "attributes": {
-        "stars": 27,
-        "new_stars": 47,
-        "pushes": 73,
-        "contributors": 27,
-        "issues_closed": 87,
-        "forks": 27
-      }
+        "stars": 12,
+        "new_stars": 8,
+        "pushes": 0,
+        "contributors": 11,
+        "issues_closed": 0,
+        "forks": 0
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-open-source-llms",
@@ -834,13 +852,14 @@
       "rank": 14,
       "total_repos": 15,
       "attributes": {
-        "stars": 27,
-        "new_stars": 33,
-        "pushes": 73,
-        "contributors": 67,
-        "issues_closed": 87,
-        "forks": 47
-      }
+        "stars": 12,
+        "new_stars": 0,
+        "pushes": 0,
+        "contributors": 18,
+        "issues_closed": 0,
+        "forks": 7
+      },
+      "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-memes",
@@ -870,13 +889,14 @@
       "rank": 15,
       "total_repos": 15,
       "attributes": {
-        "stars": 7,
-        "new_stars": 33,
-        "pushes": 73,
-        "contributors": 27,
-        "issues_closed": 87,
-        "forks": 27
-      }
+        "stars": 10,
+        "new_stars": 0,
+        "pushes": 0,
+        "contributors": 11,
+        "issues_closed": 0,
+        "forks": 0
+      },
+      "attributes_scale": "benchmark"
     }
   ]
 }

@@ -59,8 +59,23 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
+      # The ARC runner image has no `gh` CLI (`gh: command not found`, exit 127, on the first
+      # real run 2026-10-16), so dispatch through the REST API with the Node set up above.
       - name: Rebuild the images
         if: steps.commit.outputs.changed == 'true'
-        run: gh workflow run k8s-build.yml --ref main
+        run: |
+          node --input-type=module -e '
+            const res = await fetch(`https://api.github.com/repos/${process.env.REPO}/actions/workflows/k8s-build.yml/dispatches`, {
+              method: "POST",
+              headers: { Authorization: `Bearer ${process.env.GH_TOKEN}`, Accept: "application/vnd.github+json" },
+              body: JSON.stringify({ ref: "main" }),
+            });
+            if (res.status !== 204) {
+              console.error(`dispatch failed: ${res.status} ${await res.text()}`);
+              process.exit(1);
+            }
+            console.log("dispatched k8s-build on main");
+          '
         env:
           GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}

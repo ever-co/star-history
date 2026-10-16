@@ -24,6 +24,8 @@ export interface OgCardInput {
   weekly?: RepoWeekly | null;
   /** Ever fork: raw contributor count. */
   contributors?: number | null;
+  /** Ever fork: "benchmark" = attributes are absolute 0-100 scores. */
+  attributesScale?: "percentile" | "benchmark";
 }
 
 // ---------- Assets (loaded once at init) ----------

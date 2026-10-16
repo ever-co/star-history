@@ -274,13 +274,32 @@ if (collected.length === 0) {
   process.exit(1);
 }
 
-// --- rank + percentile WITHIN each owner --------------------------------------
+// --- rank WITHIN each owner, radar scores against fixed benchmarks -------------
 // Each host serves exactly one owner, so ranking across owners put ever-works repos into
 // stats-github.ever.co's "#n of 20" and its prev/next links.
+//
+// Radar: upstream's six axes are percentiles against ALL of GitHub (BigQuery). Against our
+// own handful of repos a percentile is meaningless: whichever repo leads its owner scores
+// 100 on every axis and draws a full hexagon (ever-gauzy did, 2026-10-16). So each axis is
+// an ABSOLUTE log-scale score against a fixed benchmark, "100 = a top-tier GitHub project":
+// stable over time, independent of the sibling repos, and every repo gets its own shape.
+// The activity axes use the same 8-week window as upstream. RADAR_SCALE=percentile restores
+// the within-owner percentiles.
 
 collected.sort((a, b) => b.stars_total - a.stars_total);
 
 const METRICS = ["stars", "new_stars", "pushes", "contributors", "issues_closed", "forks"];
+const RADAR_SCALE = process.env.RADAR_SCALE === "percentile" ? "percentile" : "benchmark";
+const BENCHMARKS = {
+  stars: 100_000,
+  forks: 20_000,
+  contributors: 500, // the contributors API stops attributing after 500
+  new_stars: 5_000, // per 8 weeks
+  pushes: 2_000, // commits per 8 weeks
+  issues_closed: 1_000, // per 8 weeks
+};
+const benchmarkScore = (metric, value) =>
+  Math.min(100, Math.round((100 * Math.log10(1 + Math.max(0, value))) / Math.log10(1 + BENCHMARKS[metric])));
 const percentile = (ascending, value) => {
   if (ascending.length === 0) return 0;
   const below = ascending.filter((v) => v <= value).length;
@@ -305,7 +324,11 @@ for (const group of byOwner.values()) {
       ...card,
       rank: i + 1,
       total_repos: group.length,
-      attributes: Object.fromEntries(METRICS.map((m) => [m, percentile(sorted[m], _raw[m])])),
+      attributes: Object.fromEntries(METRICS.map((m) => [
+        m,
+        RADAR_SCALE === "benchmark" ? benchmarkScore(m, _raw[m]) : percentile(sorted[m], _raw[m]),
+      ])),
+      attributes_scale: RADAR_SCALE,
     });
   });
 }
