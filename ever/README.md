@@ -159,14 +159,15 @@ never again, so in October the ever-gauzy page still said **4.1k stars** while t
 beside it said 8.4k.
 
 `.github/workflows/ever-refresh-data.yml` now re-runs `ever/seed-gh-data.mjs` daily
-(04:23 UTC) with CI's own `GITHUB_TOKEN`, commits `gh/data` when it changed and
-dispatches `k8s-build` (a `GITHUB_TOKEN` push does not trigger workflows; a dispatch does).
+(04:23 UTC) with CI's own `GITHUB_TOKEN`, commits `gh/data` (daily in practice: the files carry
+`updated_at`) and dispatches `k8s-build` (a `GITHUB_TOKEN` push does not trigger workflows; a dispatch does).
 Pages are therefore at most ~1 day old. Run it by hand from the Actions tab after adding a
 repo to the allowlist.
 
 The seed script fails the run instead of committing partial data when a public repo does not
-resolve, and skips private repos even when the token can see them, because this data is
-public.
+resolve, keeps the previous run's value for a metric that fails (and fails the run when there
+is none) so a flaky request never publishes a 0, and skips private repos even when the token
+can see them, because this data is public.
 
 What the card shows: `rank` / `total_repos` and the radar's percentiles are computed
 **within the repo's owner** (each host serves one owner). `weekly` holds the real

@@ -4,8 +4,9 @@
 # BUILD time. That snapshot was generated once by hand on 2026-08-04 and never again, so in
 # October stats-github.ever.co/ever-co/ever-gauzy still said 4.1k stars when it had 8.4k.
 #
-# This regenerates it daily from the GitHub API, commits only when something changed, then
-# dispatches k8s-build. The dispatch is required: a push made with GITHUB_TOKEN does not
+# This regenerates it daily from the GitHub API, commits it, then dispatches k8s-build. The
+# files carry updated_at, so in practice that is one commit and one rollout a day; a run that
+# changes nothing (re-run the same day) commits nothing. The dispatch is required: a push made with GITHUB_TOKEN does not
 # trigger other workflows, but a workflow_dispatch does.
 #
 # CI's own GITHUB_TOKEN is enough: every endpoint the seed script uses is public. It also
@@ -34,8 +35,8 @@ jobs:
         with:
           node-version: 26
       # No dependencies: the script uses only Node built-ins and fetch. It exits non-zero
-      # when a public repo fails to resolve, so a GitHub outage never commits a partial
-      # dataset (which would drop that repo's page from the next build).
+      # when a public repo fails to resolve (a skip would drop its page from the build), and
+      # a metric that fails keeps the previous run's value, so an outage never commits zeros.
       - name: Regenerate gh/data
         run: node ever/seed-gh-data.mjs
         env:

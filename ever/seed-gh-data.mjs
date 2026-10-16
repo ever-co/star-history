@@ -118,25 +118,21 @@ const starsSince = (days, ms) => days.filter((d) => d.t >= NOW.getTime() - ms).r
 
 /**
  * Fallback only: stars in the last 7 days from the final page of the stargazer LIST.
- * GitHub restricted that list to the repo's admins/collaborators in July 2026, and one
- * page holds at most 100, so this undercounts any week above 100 stars.
+ * GitHub restricted that list to the repo's admins/collaborators in July 2026 (CI's
+ * GITHUB_TOKEN gets 404), and one page holds at most 100, so this undercounts any week
+ * above 100 stars.
  */
 const newStarsLastWeekFromList = async (repo) => {
   const accept = "application/vnd.github.star+json";
-  try {
-    const first = await gh(`/repos/${repo}/stargazers?per_page=100`, { accept, raw: true });
-    const link = first.headers.get("link");
-    let page = await first.json();
-    const lastMatch = link && /[?&]page=(\d+)>; rel="last"/.exec(link);
-    if (lastMatch) {
-      page = await gh(`/repos/${repo}/stargazers?per_page=100&page=${lastMatch[1]}`, { accept });
-    }
-    const cutoff = NOW.getTime() - WEEK_MS;
-    return page.filter((s) => s.starred_at && new Date(s.starred_at).getTime() >= cutoff).length;
-  } catch (err) {
-    console.warn(`  ! new_stars for ${repo}: ${err.message} — recording 0`);
-    return 0;
+  const first = await gh(`/repos/${repo}/stargazers?per_page=100`, { accept, raw: true });
+  const link = first.headers.get("link");
+  let page = await first.json();
+  const lastMatch = link && /[?&]page=(d+)>; rel="last"/.exec(link);
+  if (lastMatch) {
+    page = await gh(`/repos/${repo}/stargazers?per_page=100&page=${lastMatch[1]}`, { accept });
   }
+  const cutoff = NOW.getTime() - WEEK_MS;
+  return page.filter((s) => s.starred_at && new Date(s.starred_at).getTime() >= cutoff).length;
 };
 
 /** New stars over the last 7 days and the last 8 weeks. */
@@ -145,21 +141,16 @@ const newStars = async (repo) => {
     const days = await starHistoryDays(repo);
     return { week: starsSince(days, WEEK_MS), eightWeeks: starsSince(days, 8 * WEEK_MS) };
   } catch (err) {
-    console.warn(`  ! stargazers/history for ${repo}: ${err.message} — falling back to the stargazer list`);
+    console.warn(`  ! stargazers/history for ${repo}: ${err.message} — trying the stargazer list`);
     const week = await newStarsLastWeekFromList(repo);
     return { week, eightWeeks: week };
   }
 };
 
 const issuesClosedSince = async (repo, sinceISO) => {
-  try {
-    const q = encodeURIComponent(`repo:${repo} is:issue is:closed closed:>=${sinceISO}`);
-    const res = await gh(`/search/issues?q=${q}&per_page=1`);
-    return res.total_count ?? 0;
-  } catch (err) {
-    console.warn(`  ! issues_closed for ${repo}: ${err.message} — recording 0`);
-    return 0;
-  }
+  const q = encodeURIComponent(`repo:${repo} is:issue is:closed closed:>=${sinceISO}`);
+  const res = await gh(`/search/issues?q=${q}&per_page=1`);
+  return res.total_count ?? 0;
 };
 
 /**
@@ -169,28 +160,43 @@ const issuesClosedSince = async (repo, sinceISO) => {
  */
 const issuesClosedLastWeek = async (repo) => {
   const sinceISO = new Date(NOW.getTime() - WEEK_MS).toISOString();
-  try {
-    let count = 0;
-    for (let page = 1; page <= 10; page++) {
-      const items = await gh(`/repos/${repo}/issues?state=closed&since=${sinceISO}&per_page=100&page=${page}`);
-      count += items.filter((i) => !i.pull_request && i.closed_at && i.closed_at >= sinceISO).length;
-      if (items.length < 100) break;
-    }
-    return count;
-  } catch (err) {
-    console.warn(`  ! issues_closed (week) for ${repo}: ${err.message} — recording 0`);
-    return 0;
+  let count = 0;
+  for (let page = 1; page <= 10; page++) {
+    const items = await gh(`/repos/${repo}/issues?state=closed&since=${sinceISO}&per_page=100&page=${page}`);
+    count += items.filter((i) => !i.pull_request && i.closed_at && i.closed_at >= sinceISO).length;
+    if (items.length < 100) break;
   }
+  return count;
 };
 
-/** Commits per week, oldest first, for the last 52 weeks. */
-const participation = async (repo) => {
+/** Commits in the latest week and over the last 8 (stats/participation, oldest week first). */
+const commits = async (repo) => {
+  const all = (await gh(`/repos/${repo}/stats/participation`))?.all;
+  if (!Array.isArray(all)) throw new Error("no participation series");
+  return { week: all.at(-1) ?? 0, eightWeeks: all.slice(-8).reduce((n, v) => n + v, 0) };
+};
+
+// The previous run's output. A metric that fails today keeps yesterday's value instead of
+// becoming a confident 0 on a public page; with nothing to keep, the run fails and commits
+// nothing (the pages stay one day older, which is honest).
+const previous = new Map();
+try {
+  for (const r of JSON.parse(readFileSync(join(DATA_DIR, "repos.json"), "utf-8")).repos ?? []) {
+    previous.set(r.name.toLowerCase(), r);
+  }
+} catch {
+  // first run: nothing to carry forward
+}
+
+const isCount = (v) => typeof v === "number" && Number.isFinite(v);
+const metric = async (repo, label, fetchIt, kept) => {
   try {
-    const part = await gh(`/repos/${repo}/stats/participation`);
-    return part?.all ?? [];
+    return await fetchIt();
   } catch (err) {
-    console.warn(`  ! pushes for ${repo}: ${err.message} — recording 0`);
-    return [];
+    const usable = kept !== undefined && (typeof kept === "object" ? Object.values(kept).every(isCount) : isCount(kept));
+    if (!usable) throw new Error(`${label} for ${repo}: ${err.message} (no previous value to keep)`);
+    console.warn(`  ! ${label} for ${repo}: ${err.message} — keeping the previous value ${JSON.stringify(kept)}`);
+    return kept;
   }
 };
 
@@ -226,14 +232,16 @@ for (const name of wanted) {
     continue;
   }
   const sinceISO = new Date(NOW.getTime() - 8 * WEEK_MS).toISOString().slice(0, 10);
-  const [stars, contributors, issues_closed, issues_closed_week, weeks] = await Promise.all([
-    newStars(name),
-    countViaLastPage(`/repos/${name}/contributors`).catch(() => 0),
-    issuesClosedSince(name, sinceISO),
-    issuesClosedLastWeek(name),
-    participation(name),
+  const prev = previous.get(name.toLowerCase());
+  const [stars, contributors, issues_closed, issues_closed_week, pushes] = await Promise.all([
+    metric(name, "new stars", () => newStars(name),
+      prev && { week: prev.weekly?.new_stars, eightWeeks: prev.window_8w?.new_stars }),
+    metric(name, "contributors", () => countViaLastPage(`/repos/${name}/contributors`), prev?.contributors_count),
+    metric(name, "issues closed (8 weeks)", () => issuesClosedSince(name, sinceISO), prev?.window_8w?.issues_closed),
+    metric(name, "issues closed (week)", () => issuesClosedLastWeek(name), prev?.weekly?.issues_closed),
+    metric(name, "commits", () => commits(name),
+      prev && { week: prev.weekly?.pushes, eightWeeks: prev.window_8w?.pushes }),
   ]);
-  const pushes = weeks.slice(-8).reduce((n, v) => n + v, 0);
 
   collected.push({
     name: meta.full_name,
@@ -251,10 +259,12 @@ for (const name of wanted) {
     size: meta.size,
     // Raw counts for the card's "Weekly" row. Upstream prints the percentiles below
     // under that label, which read as "100 stars this week" for whichever repo led.
-    weekly: { new_stars: stars.week, pushes: weeks.at(-1) ?? 0, issues_closed: issues_closed_week },
+    weekly: { new_stars: stars.week, pushes: pushes.week, issues_closed: issues_closed_week },
     contributors_count: contributors,
-    // 8-week aggregates, the window upstream's percentiles use.
-    _raw: { stars: meta.stargazers_count, new_stars: stars.eightWeeks, pushes, contributors, issues_closed, forks: meta.forks_count },
+    // 8-week aggregates: the window upstream's percentiles use, kept so a failed metric
+    // can carry forward next run.
+    window_8w: { new_stars: stars.eightWeeks, pushes: pushes.eightWeeks, issues_closed },
+    _raw: { stars: meta.stargazers_count, new_stars: stars.eightWeeks, pushes: pushes.eightWeeks, contributors, issues_closed, forks: meta.forks_count },
   });
   console.log(`${meta.stargazers_count}★ (+${stars.week}/wk)`);
 }

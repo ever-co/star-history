@@ -32,7 +32,7 @@
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
       "forks_count": 1246,
-      "open_issues_count": 505,
+      "open_issues_count": 503,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
       "size": 294688,
@@ -42,6 +42,11 @@
         "issues_closed": 1
       },
       "contributors_count": 93,
+      "window_8w": {
+        "new_stars": 4069,
+        "pushes": 1756,
+        "issues_closed": 122
+      },
       "rank": 1,
       "total_repos": 5,
       "attributes": {
@@ -87,6 +92,11 @@
         "issues_closed": 0
       },
       "contributors_count": 34,
+      "window_8w": {
+        "new_stars": 16,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 2,
       "total_repos": 5,
       "attributes": {
@@ -139,6 +149,11 @@
         "issues_closed": 0
       },
       "contributors_count": 29,
+      "window_8w": {
+        "new_stars": 20,
+        "pushes": 2,
+        "issues_closed": 0
+      },
       "rank": 3,
       "total_repos": 5,
       "attributes": {
@@ -184,6 +199,11 @@
         "issues_closed": 2
       },
       "contributors_count": 43,
+      "window_8w": {
+        "new_stars": 46,
+        "pushes": 566,
+        "issues_closed": 45
+      },
       "rank": 4,
       "total_repos": 5,
       "attributes": {
@@ -231,6 +251,11 @@
         "issues_closed": 0
       },
       "contributors_count": 5,
+      "window_8w": {
+        "new_stars": 17,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 1,
       "total_repos": 15,
       "attributes": {
@@ -268,6 +293,11 @@
         "issues_closed": 3
       },
       "contributors_count": 11,
+      "window_8w": {
+        "new_stars": 143,
+        "pushes": 1970,
+        "issues_closed": 20
+      },
       "rank": 2,
       "total_repos": 15,
       "attributes": {
@@ -309,6 +339,11 @@
         "issues_closed": 0
       },
       "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 21,
+        "pushes": 0,
+        "issues_closed": 1
+      },
       "rank": 3,
       "total_repos": 15,
       "attributes": {
@@ -340,6 +375,11 @@
         "issues_closed": 0
       },
       "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 34,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 4,
       "total_repos": 15,
       "attributes": {
@@ -387,6 +427,11 @@
         "issues_closed": 0
       },
       "contributors_count": 8,
+      "window_8w": {
+        "new_stars": 4,
+        "pushes": 3,
+        "issues_closed": 1
+      },
       "rank": 5,
       "total_repos": 5,
       "attributes": {
@@ -426,6 +471,11 @@
         "issues_closed": 0
       },
       "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 2,
+        "pushes": 1,
+        "issues_closed": 0
+      },
       "rank": 5,
       "total_repos": 15,
       "attributes": {
@@ -468,6 +518,11 @@
         "issues_closed": 0
       },
       "contributors_count": 11,
+      "window_8w": {
+        "new_stars": 3,
+        "pushes": 257,
+        "issues_closed": 0
+      },
       "rank": 6,
       "total_repos": 15,
       "attributes": {
@@ -499,6 +554,11 @@
         "issues_closed": 0
       },
       "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 7,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 7,
       "total_repos": 15,
       "attributes": {
@@ -530,6 +590,11 @@
         "issues_closed": 0
       },
       "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 8,
       "total_repos": 15,
       "attributes": {
@@ -569,6 +634,11 @@
         "issues_closed": 0
       },
       "contributors_count": 3,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 9,
       "total_repos": 15,
       "attributes": {
@@ -600,6 +670,11 @@
         "issues_closed": 0
       },
       "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 2,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 10,
       "total_repos": 15,
       "attributes": {
@@ -631,6 +706,11 @@
         "issues_closed": 0
       },
       "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 11,
       "total_repos": 15,
       "attributes": {
@@ -674,6 +754,11 @@
         "issues_closed": 0
       },
       "contributors_count": 3,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 22,
+        "issues_closed": 0
+      },
       "rank": 12,
       "total_repos": 15,
       "attributes": {
@@ -705,6 +790,11 @@
         "issues_closed": 0
       },
       "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 13,
       "total_repos": 15,
       "attributes": {
@@ -736,6 +826,11 @@
         "issues_closed": 0
       },
       "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 14,
       "total_repos": 15,
       "attributes": {
@@ -767,6 +862,11 @@
         "issues_closed": 0
       },
       "contributors_count": 1,
+      "window_8w": {
+        "new_stars": 0,
+        "pushes": 0,
+        "issues_closed": 0
+      },
       "rank": 15,
       "total_repos": 15,
       "attributes": {
