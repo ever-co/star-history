@@ -1,5 +1,6 @@
 import axios from "axios"
 import utils from "./utils"
+import { getRepoStarRecordsFromHistory } from "./star-history"
 
 const API_PER_PAGE = 100  // GitHub API max items per request
 const REQUEST_TIMEOUT_MS = 15000  // 15s timeout for GitHub API calls
@@ -33,6 +34,11 @@ namespace api {
     }
 
     export async function getRepoStarRecords(repo: string, token: string, maxRequestAmount: number) {
+        // Ever fork: GitHub restricted /stargazers to collaborators (July 2026) and added the
+        // public /stargazers/history. Use its exact curve; the sampler below is the fallback.
+        const exact = await getRepoStarRecordsFromHistory(repo, token)
+        if (exact) return exact
+
         const patchRes = await getRepoStargazers(repo, token)
 
         const headerLink = patchRes.headers["link"] || ""
