@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8385,
+      "stars_total": 8384,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,30 +31,30 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1246,
-      "open_issues_count": 503,
+      "forks_count": 1245,
+      "open_issues_count": 399,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 296025,
+      "size": 295333,
       "weekly": {
-        "new_stars": 75,
-        "pushes": 808,
-        "issues_closed": 1
+        "new_stars": 49,
+        "pushes": 1124,
+        "issues_closed": 49
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4072,
-        "pushes": 1756,
-        "issues_closed": 122
+        "new_stars": 4071,
+        "pushes": 2197,
+        "issues_closed": 169
       },
       "rank": 1,
       "total_repos": 5,
       "attributes": {
         "stars": 78,
         "new_stars": 98,
-        "pushes": 98,
+        "pushes": 100,
         "contributors": 73,
-        "issues_closed": 70,
+        "issues_closed": 74,
         "forks": 72
       },
       "attributes_scale": "benchmark"
@@ -171,7 +171,7 @@
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 588,
+      "stars_total": 589,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -198,13 +198,13 @@
       "size": 87422,
       "weekly": {
         "new_stars": 1,
-        "pushes": 328,
+        "pushes": 311,
         "issues_closed": 2
       },
       "contributors_count": 43,
       "window_8w": {
-        "new_stars": 46,
-        "pushes": 566,
+        "new_stars": 47,
+        "pushes": 561,
         "issues_closed": 45
       },
       "rank": 4,
@@ -275,7 +275,7 @@
     {
       "name": "ever-works/ever-works",
       "owner": "ever-works",
-      "stars_total": 169,
+      "stars_total": 170,
       "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships, and maintains entire businesses, 24/7 - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -288,19 +288,19 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 25,
-      "open_issues_count": 8,
+      "open_issues_count": 3,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 127739,
+      "size": 128575,
       "weekly": {
-        "new_stars": 7,
-        "pushes": 135,
+        "new_stars": 6,
+        "pushes": 392,
         "issues_closed": 3
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 143,
-        "pushes": 1970,
+        "new_stars": 142,
+        "pushes": 2291,
         "issues_closed": 20
       },
       "rank": 2,
@@ -383,7 +383,7 @@
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 34,
+        "new_stars": 33,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -391,7 +391,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 36,
-        "new_stars": 42,
+        "new_stars": 41,
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
@@ -530,7 +530,7 @@
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 3,
-        "pushes": 257,
+        "pushes": 246,
         "issues_closed": 0
       },
       "rank": 6,
@@ -538,7 +538,7 @@
       "attributes": {
         "stars": 26,
         "new_stars": 16,
-        "pushes": 73,
+        "pushes": 72,
         "contributors": 40,
         "issues_closed": 0,
         "forks": 14
@@ -772,7 +772,7 @@
       "contributors_count": 3,
       "window_8w": {
         "new_stars": 0,
-        "pushes": 22,
+        "pushes": 15,
         "issues_closed": 0
       },
       "rank": 12,
@@ -780,7 +780,7 @@
       "attributes": {
         "stars": 12,
         "new_stars": 0,
-        "pushes": 41,
+        "pushes": 36,
         "contributors": 22,
         "issues_closed": 0,
         "forks": 7
