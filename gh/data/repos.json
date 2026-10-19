@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8387,
+      "stars_total": 8394,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,20 +31,20 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1246,
-      "open_issues_count": 397,
+      "forks_count": 1249,
+      "open_issues_count": 415,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 296159,
+      "size": 298211,
       "weekly": {
-        "new_stars": 48,
-        "pushes": 1632,
+        "new_stars": 47,
+        "pushes": 1882,
         "issues_closed": 89
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4072,
-        "pushes": 2767,
+        "new_stars": 4076,
+        "pushes": 3013,
         "issues_closed": 210
       },
       "rank": 1,
@@ -88,7 +88,7 @@
       "archived": false,
       "size": 13890,
       "weekly": {
-        "new_stars": 4,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -146,7 +146,7 @@
       "archived": false,
       "size": 33069,
       "weekly": {
-        "new_stars": 2,
+        "new_stars": 1,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -192,19 +192,19 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 111,
-      "open_issues_count": 212,
+      "open_issues_count": 215,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 91558,
+      "size": 88686,
       "weekly": {
         "new_stars": 1,
-        "pushes": 194,
+        "pushes": 272,
         "issues_closed": 24
       },
       "contributors_count": 43,
       "window_8w": {
-        "new_stars": 47,
-        "pushes": 571,
+        "new_stars": 46,
+        "pushes": 670,
         "issues_closed": 67
       },
       "rank": 4,
@@ -212,7 +212,7 @@
       "attributes": {
         "stars": 55,
         "new_stars": 45,
-        "pushes": 84,
+        "pushes": 86,
         "contributors": 61,
         "issues_closed": 61,
         "forks": 48
@@ -222,7 +222,7 @@
     {
       "name": "ever-works/awesome-time-tracking",
       "owner": "ever-works",
-      "stars_total": 234,
+      "stars_total": 235,
       "description": "Time Tracking - Software, Methodologies and Practices - https://timetrack.ever.works",
       "language": null,
       "topics": [
@@ -250,13 +250,13 @@
       "archived": false,
       "size": 17882,
       "weekly": {
-        "new_stars": 2,
+        "new_stars": 3,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 5,
       "window_8w": {
-        "new_stars": 17,
+        "new_stars": 18,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -264,7 +264,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 47,
-        "new_stars": 34,
+        "new_stars": 35,
         "pushes": 0,
         "contributors": 29,
         "issues_closed": 0,
@@ -275,7 +275,7 @@
     {
       "name": "ever-works/ever-works",
       "owner": "ever-works",
-      "stars_total": 170,
+      "stars_total": 171,
       "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships, and maintains entire businesses, 24/7 - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -288,20 +288,20 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 25,
-      "open_issues_count": 5,
+      "open_issues_count": 15,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 139948,
+      "size": 143853,
       "weekly": {
-        "new_stars": 6,
-        "pushes": 696,
+        "new_stars": 5,
+        "pushes": 972,
         "issues_closed": 3
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 142,
-        "pushes": 2566,
-        "issues_closed": 20
+        "new_stars": 143,
+        "pushes": 2698,
+        "issues_closed": 19
       },
       "rank": 2,
       "total_repos": 15,
@@ -310,7 +310,7 @@
         "new_stars": 58,
         "pushes": 100,
         "contributors": 40,
-        "issues_closed": 44,
+        "issues_closed": 43,
         "forks": 33
       },
       "attributes_scale": "benchmark"
@@ -318,7 +318,7 @@
     {
       "name": "ever-works/awesome-mcp-servers",
       "owner": "ever-works",
-      "stars_total": 119,
+      "stars_total": 121,
       "description": "A curated list of the best MCP Servers, featuring top solutions, libraries, tools, and more. - https://mcpserver.ever.works",
       "language": null,
       "topics": [
@@ -335,18 +335,18 @@
       "license": "CC-BY-SA-4.0",
       "homepage": "https://mcpserver.ever.works",
       "forks_count": 132,
-      "open_issues_count": 151,
+      "open_issues_count": 152,
       "created_at": "2025-05-14T01:00:14Z",
       "archived": false,
       "size": 6527,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 3,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 2,
       "window_8w": {
-        "new_stars": 21,
+        "new_stars": 23,
         "pushes": 0,
         "issues_closed": 1
       },
@@ -354,7 +354,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 42,
-        "new_stars": 36,
+        "new_stars": 37,
         "pushes": 0,
         "contributors": 18,
         "issues_closed": 10,
@@ -498,6 +498,43 @@
       "attributes_scale": "benchmark"
     },
     {
+      "name": "ever-works/awesome-rust-ai-libraries",
+      "owner": "ever-works",
+      "stars_total": 21,
+      "description": "Curated directory of Rust-based libraries and crates for AI model training, inference, agentic systems, and related tools. Include popular crates like candle, burn, dfdx, tract, and more. Focus on open-source, high-quality projects with GitHub stars, docs, and examples.",
+      "language": null,
+      "topics": [],
+      "license": "CC-BY-SA-4.0",
+      "homepage": null,
+      "forks_count": 5,
+      "open_issues_count": 3,
+      "created_at": "2026-04-01T12:33:19Z",
+      "archived": false,
+      "size": 739,
+      "weekly": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 7,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 6,
+      "total_repos": 15,
+      "attributes": {
+        "stars": 27,
+        "new_stars": 24,
+        "pushes": 0,
+        "contributors": 18,
+        "issues_closed": 0,
+        "forks": 18
+      },
+      "attributes_scale": "benchmark"
+    },
+    {
       "name": "ever-works/directory-web-template",
       "owner": "ever-works",
       "stars_total": 20,
@@ -521,64 +558,27 @@
       "open_issues_count": 4,
       "created_at": "2025-01-06T16:51:42Z",
       "archived": false,
-      "size": 44242,
+      "size": 43642,
       "weekly": {
         "new_stars": 0,
-        "pushes": 0,
+        "pushes": 5,
         "issues_closed": 0
       },
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 3,
-        "pushes": 222,
-        "issues_closed": 0
-      },
-      "rank": 6,
-      "total_repos": 15,
-      "attributes": {
-        "stars": 26,
-        "new_stars": 16,
-        "pushes": 71,
-        "contributors": 40,
-        "issues_closed": 0,
-        "forks": 14
-      },
-      "attributes_scale": "benchmark"
-    },
-    {
-      "name": "ever-works/awesome-rust-ai-libraries",
-      "owner": "ever-works",
-      "stars_total": 20,
-      "description": "Curated directory of Rust-based libraries and crates for AI model training, inference, agentic systems, and related tools. Include popular crates like candle, burn, dfdx, tract, and more. Focus on open-source, high-quality projects with GitHub stars, docs, and examples.",
-      "language": null,
-      "topics": [],
-      "license": "CC-BY-SA-4.0",
-      "homepage": null,
-      "forks_count": 5,
-      "open_issues_count": 3,
-      "created_at": "2026-04-01T12:33:19Z",
-      "archived": false,
-      "size": 739,
-      "weekly": {
-        "new_stars": 0,
-        "pushes": 0,
-        "issues_closed": 0
-      },
-      "contributors_count": 2,
-      "window_8w": {
-        "new_stars": 6,
-        "pushes": 0,
+        "pushes": 210,
         "issues_closed": 0
       },
       "rank": 7,
       "total_repos": 15,
       "attributes": {
         "stars": 26,
-        "new_stars": 23,
-        "pushes": 0,
-        "contributors": 18,
+        "new_stars": 16,
+        "pushes": 70,
+        "contributors": 40,
         "issues_closed": 0,
-        "forks": 18
+        "forks": 14
       },
       "attributes_scale": "benchmark"
     },
