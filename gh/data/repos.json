@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8403,
+      "stars_total": 8409,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,21 +31,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1249,
-      "open_issues_count": 422,
+      "forks_count": 1250,
+      "open_issues_count": 444,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 299146,
+      "size": 299321,
       "weekly": {
         "new_stars": 48,
-        "pushes": 1892,
-        "issues_closed": 89
+        "pushes": 1894,
+        "issues_closed": 90
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4085,
-        "pushes": 3047,
-        "issues_closed": 210
+        "new_stars": 4092,
+        "pushes": 3086,
+        "issues_closed": 211
       },
       "rank": 1,
       "total_repos": 5,
@@ -54,7 +54,7 @@
         "new_stars": 98,
         "pushes": 100,
         "contributors": 73,
-        "issues_closed": 77,
+        "issues_closed": 78,
         "forks": 72
       },
       "attributes_scale": "benchmark"
@@ -94,7 +94,7 @@
       },
       "contributors_count": 34,
       "window_8w": {
-        "new_stars": 16,
+        "new_stars": 15,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -171,7 +171,7 @@
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 589,
+      "stars_total": 591,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -192,27 +192,27 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 111,
-      "open_issues_count": 223,
+      "open_issues_count": 221,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 89910,
+      "size": 90051,
       "weekly": {
-        "new_stars": 1,
-        "pushes": 162,
-        "issues_closed": 24
+        "new_stars": 3,
+        "pushes": 200,
+        "issues_closed": 25
       },
       "contributors_count": 43,
       "window_8w": {
-        "new_stars": 46,
-        "pushes": 663,
-        "issues_closed": 67
+        "new_stars": 48,
+        "pushes": 672,
+        "issues_closed": 68
       },
       "rank": 4,
       "total_repos": 5,
       "attributes": {
         "stars": 55,
-        "new_stars": 45,
-        "pushes": 85,
+        "new_stars": 46,
+        "pushes": 86,
         "contributors": 61,
         "issues_closed": 61,
         "forks": 48
@@ -250,7 +250,7 @@
       "archived": false,
       "size": 17882,
       "weekly": {
-        "new_stars": 4,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -291,16 +291,16 @@
       "open_issues_count": 12,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 146263,
+      "size": 146378,
       "weekly": {
         "new_stars": 4,
-        "pushes": 1025,
+        "pushes": 1027,
         "issues_closed": 3
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 142,
-        "pushes": 2612,
+        "new_stars": 141,
+        "pushes": 2602,
         "issues_closed": 18
       },
       "rank": 2,
@@ -340,7 +340,7 @@
       "archived": false,
       "size": 6527,
       "weekly": {
-        "new_stars": 3,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -365,7 +365,7 @@
     {
       "name": "ever-works/awesome-startup-books",
       "owner": "ever-works",
-      "stars_total": 62,
+      "stars_total": 63,
       "description": "A curated list of books for Startups",
       "language": null,
       "topics": [],
@@ -436,7 +436,7 @@
       },
       "contributors_count": 8,
       "window_8w": {
-        "new_stars": 4,
+        "new_stars": 3,
         "pushes": 3,
         "issues_closed": 1
       },
@@ -444,7 +444,7 @@
       "total_repos": 5,
       "attributes": {
         "stars": 31,
-        "new_stars": 19,
+        "new_stars": 16,
         "pushes": 18,
         "contributors": 35,
         "issues_closed": 10,
@@ -567,7 +567,7 @@
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 3,
-        "pushes": 206,
+        "pushes": 191,
         "issues_closed": 0
       },
       "rank": 7,
@@ -575,7 +575,7 @@
       "attributes": {
         "stars": 26,
         "new_stars": 16,
-        "pushes": 70,
+        "pushes": 69,
         "contributors": 40,
         "issues_closed": 0,
         "forks": 14
@@ -702,6 +702,43 @@
       "attributes_scale": "benchmark"
     },
     {
+      "name": "ever-works/awesome-open-source-llms",
+      "owner": "ever-works",
+      "stars_total": 4,
+      "description": "A comprehensive directory of open source large language models, comparing architectures, benchmark performance, licensing, and deployment options",
+      "language": null,
+      "topics": [],
+      "license": "CC-BY-SA-4.0",
+      "homepage": null,
+      "forks_count": 1,
+      "open_issues_count": 0,
+      "created_at": "2026-03-03T13:09:07Z",
+      "archived": false,
+      "size": 641,
+      "weekly": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "contributors_count": 2,
+      "window_8w": {
+        "new_stars": 1,
+        "pushes": 0,
+        "issues_closed": 0
+      },
+      "rank": 11,
+      "total_repos": 15,
+      "attributes": {
+        "stars": 14,
+        "new_stars": 8,
+        "pushes": 0,
+        "contributors": 18,
+        "issues_closed": 0,
+        "forks": 7
+      },
+      "attributes_scale": "benchmark"
+    },
+    {
       "name": "ever-works/awesome-remote-team-tools",
       "owner": "ever-works",
       "stars_total": 4,
@@ -726,7 +763,7 @@
         "pushes": 0,
         "issues_closed": 0
       },
-      "rank": 11,
+      "rank": 12,
       "total_repos": 15,
       "attributes": {
         "stars": 14,
@@ -775,7 +812,7 @@
         "pushes": 15,
         "issues_closed": 0
       },
-      "rank": 12,
+      "rank": 13,
       "total_repos": 15,
       "attributes": {
         "stars": 12,
@@ -812,7 +849,7 @@
         "pushes": 0,
         "issues_closed": 0
       },
-      "rank": 13,
+      "rank": 14,
       "total_repos": 15,
       "attributes": {
         "stars": 12,
@@ -821,43 +858,6 @@
         "contributors": 11,
         "issues_closed": 0,
         "forks": 0
-      },
-      "attributes_scale": "benchmark"
-    },
-    {
-      "name": "ever-works/awesome-open-source-llms",
-      "owner": "ever-works",
-      "stars_total": 3,
-      "description": "A comprehensive directory of open source large language models, comparing architectures, benchmark performance, licensing, and deployment options",
-      "language": null,
-      "topics": [],
-      "license": "CC-BY-SA-4.0",
-      "homepage": null,
-      "forks_count": 1,
-      "open_issues_count": 0,
-      "created_at": "2026-03-03T13:09:07Z",
-      "archived": false,
-      "size": 641,
-      "weekly": {
-        "new_stars": 0,
-        "pushes": 0,
-        "issues_closed": 0
-      },
-      "contributors_count": 2,
-      "window_8w": {
-        "new_stars": 0,
-        "pushes": 0,
-        "issues_closed": 0
-      },
-      "rank": 14,
-      "total_repos": 15,
-      "attributes": {
-        "stars": 12,
-        "new_stars": 0,
-        "pushes": 0,
-        "contributors": 18,
-        "issues_closed": 0,
-        "forks": 7
       },
       "attributes_scale": "benchmark"
     },

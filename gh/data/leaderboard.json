@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-20",
+  "updated_at": "2026-10-21",
   "repos": [
     {
       "name": "ever-co/ever-gauzy",
-      "stars_total": 8403
+      "stars_total": 8409
     },
     {
       "name": "ever-co/ever-traduora",
@@ -15,7 +15,7 @@
     },
     {
       "name": "ever-co/ever-teams",
-      "stars_total": 589
+      "stars_total": 591
     },
     {
       "name": "ever-works/awesome-time-tracking",
@@ -31,7 +31,7 @@
     },
     {
       "name": "ever-works/awesome-startup-books",
-      "stars_total": 62
+      "stars_total": 63
     },
     {
       "name": "ever-co/ever-rec",
@@ -62,6 +62,10 @@
       "stars_total": 5
     },
     {
+      "name": "ever-works/awesome-open-source-llms",
+      "stars_total": 4
+    },
+    {
       "name": "ever-works/awesome-remote-team-tools",
       "stars_total": 4
     },
@@ -71,10 +75,6 @@
     },
     {
       "name": "ever-works/awesome-chairs",
-      "stars_total": 3
-    },
-    {
-      "name": "ever-works/awesome-open-source-llms",
       "stars_total": 3
     },
     {
