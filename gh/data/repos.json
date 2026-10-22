@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8409,
+      "stars_total": 8411,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,21 +31,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1250,
-      "open_issues_count": 444,
+      "forks_count": 1254,
+      "open_issues_count": 457,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 299321,
+      "size": 301325,
       "weekly": {
-        "new_stars": 48,
-        "pushes": 1894,
-        "issues_closed": 90
+        "new_stars": 42,
+        "pushes": 1530,
+        "issues_closed": 91
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4092,
-        "pushes": 3086,
-        "issues_closed": 211
+        "new_stars": 4093,
+        "pushes": 3084,
+        "issues_closed": 212
       },
       "rank": 1,
       "total_repos": 5,
@@ -62,7 +62,7 @@
     {
       "name": "ever-co/ever-traduora",
       "owner": "ever-co",
-      "stars_total": 2137,
+      "stars_total": 2138,
       "description": "Ever® Traduora™ - Open Translation Management Platform - https://traduora.co",
       "language": "JavaScript",
       "topics": [
@@ -88,13 +88,13 @@
       "archived": false,
       "size": 13890,
       "weekly": {
-        "new_stars": 0,
+        "new_stars": 1,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 34,
       "window_8w": {
-        "new_stars": 15,
+        "new_stars": 16,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -140,8 +140,8 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://everdemand.co",
-      "forks_count": 473,
-      "open_issues_count": 72,
+      "forks_count": 474,
+      "open_issues_count": 71,
       "created_at": "2018-08-25T16:53:47Z",
       "archived": false,
       "size": 33069,
@@ -192,27 +192,27 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 111,
-      "open_issues_count": 221,
+      "open_issues_count": 222,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 90051,
+      "size": 90058,
       "weekly": {
         "new_stars": 3,
-        "pushes": 200,
+        "pushes": 201,
         "issues_closed": 25
       },
       "contributors_count": 43,
       "window_8w": {
         "new_stars": 48,
-        "pushes": 672,
-        "issues_closed": 68
+        "pushes": 652,
+        "issues_closed": 69
       },
       "rank": 4,
       "total_repos": 5,
       "attributes": {
         "stars": 55,
         "new_stars": 46,
-        "pushes": 86,
+        "pushes": 85,
         "contributors": 61,
         "issues_closed": 61,
         "forks": 48
@@ -256,7 +256,7 @@
       },
       "contributors_count": 5,
       "window_8w": {
-        "new_stars": 19,
+        "new_stars": 17,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -264,7 +264,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 47,
-        "new_stars": 35,
+        "new_stars": 34,
         "pushes": 0,
         "contributors": 29,
         "issues_closed": 0,
@@ -287,20 +287,20 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
-      "forks_count": 25,
-      "open_issues_count": 12,
+      "forks_count": 26,
+      "open_issues_count": 7,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 146378,
+      "size": 144225,
       "weekly": {
-        "new_stars": 4,
-        "pushes": 1027,
+        "new_stars": 2,
+        "pushes": 1502,
         "issues_closed": 3
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 141,
-        "pushes": 2602,
+        "new_stars": 140,
+        "pushes": 3061,
         "issues_closed": 18
       },
       "rank": 2,
@@ -402,7 +402,7 @@
     {
       "name": "ever-co/ever-rec",
       "owner": "ever-co",
-      "stars_total": 34,
+      "stars_total": 33,
       "description": "Ever® Rec™ - Open Screen Capture, Screen Recording, Images & Video Sharing Platform - https://rec.so",
       "language": "TypeScript",
       "topics": [
@@ -424,7 +424,7 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://rec.so",
-      "forks_count": 15,
+      "forks_count": 16,
       "open_issues_count": 16,
       "created_at": "2024-08-08T06:51:05Z",
       "archived": false,
@@ -448,7 +448,7 @@
         "pushes": 18,
         "contributors": 35,
         "issues_closed": 10,
-        "forks": 28
+        "forks": 29
       },
       "attributes_scale": "benchmark"
     },
@@ -567,7 +567,7 @@
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 3,
-        "pushes": 191,
+        "pushes": 187,
         "issues_closed": 0
       },
       "rank": 7,

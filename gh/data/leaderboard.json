@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-10-21",
+  "updated_at": "2026-10-22",
   "repos": [
     {
       "name": "ever-co/ever-gauzy",
-      "stars_total": 8409
+      "stars_total": 8411
     },
     {
       "name": "ever-co/ever-traduora",
-      "stars_total": 2137
+      "stars_total": 2138
     },
     {
       "name": "ever-co/ever-demand",
@@ -35,7 +35,7 @@
     },
     {
       "name": "ever-co/ever-rec",
-      "stars_total": 34
+      "stars_total": 33
     },
     {
       "name": "ever-works/awesome-vector-databases",
