@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8411,
+      "stars_total": 8456,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,26 +31,26 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1254,
-      "open_issues_count": 457,
+      "forks_count": 1268,
+      "open_issues_count": 530,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 301325,
+      "size": 301986,
       "weekly": {
-        "new_stars": 42,
-        "pushes": 1530,
-        "issues_closed": 91
+        "new_stars": 81,
+        "pushes": 1389,
+        "issues_closed": 96
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4093,
-        "pushes": 3084,
-        "issues_closed": 212
+        "new_stars": 4137,
+        "pushes": 3079,
+        "issues_closed": 216
       },
       "rank": 1,
       "total_repos": 5,
       "attributes": {
-        "stars": 78,
+        "stars": 79,
         "new_stars": 98,
         "pushes": 100,
         "contributors": 73,
@@ -113,7 +113,7 @@
     {
       "name": "ever-co/ever-demand",
       "owner": "ever-co",
-      "stars_total": 1867,
+      "stars_total": 1868,
       "description": "Ever® Demand™ - Open Commerce Platform - https://everdemand.co",
       "language": "TypeScript",
       "topics": [
@@ -141,18 +141,18 @@
       "license": "AGPL-3.0",
       "homepage": "https://everdemand.co",
       "forks_count": 474,
-      "open_issues_count": 71,
+      "open_issues_count": 72,
       "created_at": "2018-08-25T16:53:47Z",
       "archived": false,
       "size": 33069,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 29,
       "window_8w": {
-        "new_stars": 20,
+        "new_stars": 21,
         "pushes": 2,
         "issues_closed": 0
       },
@@ -171,7 +171,7 @@
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 591,
+      "stars_total": 593,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -192,20 +192,20 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 111,
-      "open_issues_count": 222,
+      "open_issues_count": 225,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 90058,
+      "size": 90079,
       "weekly": {
-        "new_stars": 3,
-        "pushes": 201,
-        "issues_closed": 25
+        "new_stars": 4,
+        "pushes": 206,
+        "issues_closed": 24
       },
       "contributors_count": 43,
       "window_8w": {
-        "new_stars": 48,
-        "pushes": 652,
-        "issues_closed": 69
+        "new_stars": 50,
+        "pushes": 647,
+        "issues_closed": 68
       },
       "rank": 4,
       "total_repos": 5,
@@ -275,7 +275,7 @@
     {
       "name": "ever-works/ever-works",
       "owner": "ever-works",
-      "stars_total": 171,
+      "stars_total": 172,
       "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships, and maintains entire businesses, 24/7 - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -294,13 +294,13 @@
       "size": 144225,
       "weekly": {
         "new_stars": 2,
-        "pushes": 1502,
-        "issues_closed": 3
+        "pushes": 1454,
+        "issues_closed": 2
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 140,
-        "pushes": 3061,
+        "new_stars": 141,
+        "pushes": 3055,
         "issues_closed": 18
       },
       "rank": 2,
@@ -334,8 +334,8 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://mcpserver.ever.works",
-      "forks_count": 131,
-      "open_issues_count": 151,
+      "forks_count": 133,
+      "open_issues_count": 153,
       "created_at": "2025-05-14T01:00:14Z",
       "archived": false,
       "size": 6527,
@@ -346,7 +346,7 @@
       },
       "contributors_count": 2,
       "window_8w": {
-        "new_stars": 23,
+        "new_stars": 22,
         "pushes": 0,
         "issues_closed": 1
       },
@@ -402,7 +402,7 @@
     {
       "name": "ever-co/ever-rec",
       "owner": "ever-co",
-      "stars_total": 33,
+      "stars_total": 34,
       "description": "Ever® Rec™ - Open Screen Capture, Screen Recording, Images & Video Sharing Platform - https://rec.so",
       "language": "TypeScript",
       "topics": [
@@ -430,13 +430,13 @@
       "archived": false,
       "size": 17866,
       "weekly": {
-        "new_stars": 0,
+        "new_stars": 1,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 8,
       "window_8w": {
-        "new_stars": 3,
+        "new_stars": 4,
         "pushes": 3,
         "issues_closed": 1
       },
@@ -444,7 +444,7 @@
       "total_repos": 5,
       "attributes": {
         "stars": 31,
-        "new_stars": 16,
+        "new_stars": 19,
         "pushes": 18,
         "contributors": 35,
         "issues_closed": 10,

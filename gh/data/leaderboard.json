@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-10-22",
+  "updated_at": "2026-10-23",
   "repos": [
     {
       "name": "ever-co/ever-gauzy",
-      "stars_total": 8411
+      "stars_total": 8456
     },
     {
       "name": "ever-co/ever-traduora",
@@ -11,11 +11,11 @@
     },
     {
       "name": "ever-co/ever-demand",
-      "stars_total": 1867
+      "stars_total": 1868
     },
     {
       "name": "ever-co/ever-teams",
-      "stars_total": 591
+      "stars_total": 593
     },
     {
       "name": "ever-works/awesome-time-tracking",
@@ -23,7 +23,7 @@
     },
     {
       "name": "ever-works/ever-works",
-      "stars_total": 171
+      "stars_total": 172
     },
     {
       "name": "ever-works/awesome-mcp-servers",
@@ -35,7 +35,7 @@
     },
     {
       "name": "ever-co/ever-rec",
-      "stars_total": 33
+      "stars_total": 34
     },
     {
       "name": "ever-works/awesome-vector-databases",
