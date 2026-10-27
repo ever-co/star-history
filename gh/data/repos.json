@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8600,
+      "stars_total": 8620,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,21 +31,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1298,
+      "forks_count": 1303,
       "open_issues_count": 399,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 302877,
+      "size": 303124,
       "weekly": {
-        "new_stars": 211,
-        "pushes": 927,
+        "new_stars": 222,
+        "pushes": 984,
         "issues_closed": 17
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4279,
-        "pushes": 3914,
-        "issues_closed": 208
+        "new_stars": 4296,
+        "pushes": 4011,
+        "issues_closed": 202
       },
       "rank": 1,
       "total_repos": 5,
@@ -86,7 +86,7 @@
       "open_issues_count": 100,
       "created_at": "2019-03-05T07:46:09Z",
       "archived": false,
-      "size": 13799,
+      "size": 13801,
       "weekly": {
         "new_stars": 2,
         "pushes": 49,
@@ -94,7 +94,7 @@
       },
       "contributors_count": 34,
       "window_8w": {
-        "new_stars": 16,
+        "new_stars": 15,
         "pushes": 49,
         "issues_closed": 0
       },
@@ -171,7 +171,7 @@
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 597,
+      "stars_total": 598,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -191,21 +191,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
-      "forks_count": 113,
-      "open_issues_count": 279,
+      "forks_count": 114,
+      "open_issues_count": 280,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 92282,
+      "size": 90580,
       "weekly": {
-        "new_stars": 8,
-        "pushes": 289,
+        "new_stars": 7,
+        "pushes": 265,
         "issues_closed": 2
       },
       "contributors_count": 44,
       "window_8w": {
-        "new_stars": 54,
-        "pushes": 855,
-        "issues_closed": 56
+        "new_stars": 55,
+        "pushes": 872,
+        "issues_closed": 53
       },
       "rank": 4,
       "total_repos": 5,
@@ -214,7 +214,7 @@
         "new_stars": 47,
         "pushes": 89,
         "contributors": 61,
-        "issues_closed": 59,
+        "issues_closed": 58,
         "forks": 48
       },
       "attributes_scale": "benchmark"
@@ -291,16 +291,16 @@
       "open_issues_count": 9,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 144363,
+      "size": 153587,
       "weekly": {
         "new_stars": 11,
-        "pushes": 492,
+        "pushes": 566,
         "issues_closed": 0
       },
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 150,
-        "pushes": 3081,
+        "pushes": 3180,
         "issues_closed": 17
       },
       "rank": 2,
@@ -334,8 +334,8 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://mcpserver.ever.works",
-      "forks_count": 134,
-      "open_issues_count": 155,
+      "forks_count": 133,
+      "open_issues_count": 158,
       "created_at": "2025-05-14T01:00:14Z",
       "archived": false,
       "size": 6527,
@@ -358,7 +358,7 @@
         "pushes": 0,
         "contributors": 18,
         "issues_closed": 10,
-        "forks": 50
+        "forks": 49
       },
       "attributes_scale": "benchmark"
     },
@@ -371,19 +371,19 @@
       "topics": [],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://startup-books.ever.works",
-      "forks_count": 7,
-      "open_issues_count": 2,
+      "forks_count": 6,
+      "open_issues_count": 1,
       "created_at": "2025-11-07T18:15:57Z",
       "archived": false,
       "size": 930,
       "weekly": {
-        "new_stars": 3,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 32,
+        "new_stars": 31,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -395,7 +395,7 @@
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
-        "forks": 21
+        "forks": 20
       },
       "attributes_scale": "benchmark"
     },
@@ -428,16 +428,16 @@
       "open_issues_count": 16,
       "created_at": "2024-08-08T06:51:05Z",
       "archived": false,
-      "size": 18861,
+      "size": 18859,
       "weekly": {
         "new_stars": 1,
-        "pushes": 13,
+        "pushes": 15,
         "issues_closed": 0
       },
       "contributors_count": 8,
       "window_8w": {
         "new_stars": 4,
-        "pushes": 16,
+        "pushes": 18,
         "issues_closed": 1
       },
       "rank": 5,
@@ -445,7 +445,7 @@
       "attributes": {
         "stars": 31,
         "new_stars": 19,
-        "pushes": 37,
+        "pushes": 39,
         "contributors": 35,
         "issues_closed": 10,
         "forks": 29
@@ -566,7 +566,7 @@
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 3,
+        "new_stars": 2,
         "pushes": 187,
         "issues_closed": 0
       },
@@ -574,7 +574,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 26,
-        "new_stars": 16,
+        "new_stars": 13,
         "pushes": 69,
         "contributors": 40,
         "issues_closed": 0,
@@ -716,7 +716,7 @@
       "archived": false,
       "size": 641,
       "weekly": {
-        "new_stars": 2,
+        "new_stars": 1,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -800,16 +800,16 @@
       "open_issues_count": 0,
       "created_at": "2026-04-10T20:37:44Z",
       "archived": false,
-      "size": 3619,
+      "size": 3621,
       "weekly": {
         "new_stars": 0,
-        "pushes": 5,
+        "pushes": 7,
         "issues_closed": 0
       },
       "contributors_count": 3,
       "window_8w": {
         "new_stars": 0,
-        "pushes": 20,
+        "pushes": 22,
         "issues_closed": 0
       },
       "rank": 13,
@@ -817,7 +817,7 @@
       "attributes": {
         "stars": 12,
         "new_stars": 0,
-        "pushes": 40,
+        "pushes": 41,
         "contributors": 22,
         "issues_closed": 0,
         "forks": 7
