@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8620,
+      "stars_total": 8632,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,21 +31,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1303,
-      "open_issues_count": 399,
+      "forks_count": 1306,
+      "open_issues_count": 398,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 303124,
+      "size": 307259,
       "weekly": {
-        "new_stars": 222,
-        "pushes": 984,
-        "issues_closed": 17
+        "new_stars": 232,
+        "pushes": 958,
+        "issues_closed": 16
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4296,
-        "pushes": 4011,
-        "issues_closed": 202
+        "new_stars": 4305,
+        "pushes": 4067,
+        "issues_closed": 187
       },
       "rank": 1,
       "total_repos": 5,
@@ -54,7 +54,7 @@
         "new_stars": 98,
         "pushes": 100,
         "contributors": 73,
-        "issues_closed": 77,
+        "issues_closed": 76,
         "forks": 72
       },
       "attributes_scale": "benchmark"
@@ -88,7 +88,7 @@
       "archived": false,
       "size": 13801,
       "weekly": {
-        "new_stars": 2,
+        "new_stars": 1,
         "pushes": 49,
         "issues_closed": 0
       },
@@ -171,7 +171,7 @@
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 598,
+      "stars_total": 599,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -192,20 +192,20 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 114,
-      "open_issues_count": 280,
+      "open_issues_count": 283,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 90580,
+      "size": 93749,
       "weekly": {
-        "new_stars": 7,
-        "pushes": 265,
-        "issues_closed": 2
+        "new_stars": 8,
+        "pushes": 217,
+        "issues_closed": 1
       },
       "contributors_count": 44,
       "window_8w": {
-        "new_stars": 55,
+        "new_stars": 56,
         "pushes": 872,
-        "issues_closed": 53
+        "issues_closed": 51
       },
       "rank": 4,
       "total_repos": 5,
@@ -214,7 +214,7 @@
         "new_stars": 47,
         "pushes": 89,
         "contributors": 61,
-        "issues_closed": 58,
+        "issues_closed": 57,
         "forks": 48
       },
       "attributes_scale": "benchmark"
@@ -288,19 +288,19 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 29,
-      "open_issues_count": 9,
+      "open_issues_count": 6,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 153587,
+      "size": 161583,
       "weekly": {
         "new_stars": 11,
-        "pushes": 566,
+        "pushes": 922,
         "issues_closed": 0
       },
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 150,
-        "pushes": 3180,
+        "pushes": 3532,
         "issues_closed": 17
       },
       "rank": 2,
@@ -334,8 +334,8 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://mcpserver.ever.works",
-      "forks_count": 133,
-      "open_issues_count": 158,
+      "forks_count": 134,
+      "open_issues_count": 161,
       "created_at": "2025-05-14T01:00:14Z",
       "archived": false,
       "size": 6527,
@@ -358,14 +358,14 @@
         "pushes": 0,
         "contributors": 18,
         "issues_closed": 10,
-        "forks": 49
+        "forks": 50
       },
       "attributes_scale": "benchmark"
     },
     {
       "name": "ever-works/awesome-startup-books",
       "owner": "ever-works",
-      "stars_total": 64,
+      "stars_total": 65,
       "description": "A curated list of books for Startups",
       "language": null,
       "topics": [],
@@ -377,13 +377,13 @@
       "archived": false,
       "size": 930,
       "weekly": {
-        "new_stars": 2,
+        "new_stars": 3,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 31,
+        "new_stars": 30,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -391,7 +391,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 36,
-        "new_stars": 41,
+        "new_stars": 40,
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
@@ -555,10 +555,10 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 4,
-      "open_issues_count": 4,
+      "open_issues_count": 5,
       "created_at": "2025-01-06T16:51:42Z",
       "archived": false,
-      "size": 43642,
+      "size": 43713,
       "weekly": {
         "new_stars": 0,
         "pushes": 0,
