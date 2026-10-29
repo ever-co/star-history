@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8632,
+      "stars_total": 8642,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,21 +31,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1306,
+      "forks_count": 1308,
       "open_issues_count": 398,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 307259,
+      "size": 306917,
       "weekly": {
-        "new_stars": 232,
-        "pushes": 958,
-        "issues_closed": 16
+        "new_stars": 186,
+        "pushes": 1012,
+        "issues_closed": 15
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4305,
-        "pushes": 4067,
-        "issues_closed": 187
+        "new_stars": 4311,
+        "pushes": 4127,
+        "issues_closed": 182
       },
       "rank": 1,
       "total_repos": 5,
@@ -54,7 +54,7 @@
         "new_stars": 98,
         "pushes": 100,
         "contributors": 73,
-        "issues_closed": 76,
+        "issues_closed": 75,
         "forks": 72
       },
       "attributes_scale": "benchmark"
@@ -82,8 +82,8 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://traduora.co",
-      "forks_count": 222,
-      "open_issues_count": 100,
+      "forks_count": 223,
+      "open_issues_count": 101,
       "created_at": "2019-03-05T07:46:09Z",
       "archived": false,
       "size": 13801,
@@ -146,7 +146,7 @@
       "archived": false,
       "size": 33069,
       "weekly": {
-        "new_stars": 2,
+        "new_stars": 1,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -191,30 +191,30 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
-      "forks_count": 114,
+      "forks_count": 115,
       "open_issues_count": 283,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 93749,
+      "size": 93767,
       "weekly": {
-        "new_stars": 8,
-        "pushes": 217,
-        "issues_closed": 1
+        "new_stars": 5,
+        "pushes": 225,
+        "issues_closed": 0
       },
       "contributors_count": 44,
       "window_8w": {
-        "new_stars": 56,
-        "pushes": 872,
-        "issues_closed": 51
+        "new_stars": 57,
+        "pushes": 883,
+        "issues_closed": 48
       },
       "rank": 4,
       "total_repos": 5,
       "attributes": {
         "stars": 56,
-        "new_stars": 47,
+        "new_stars": 48,
         "pushes": 89,
         "contributors": 61,
-        "issues_closed": 57,
+        "issues_closed": 56,
         "forks": 48
       },
       "attributes_scale": "benchmark"
@@ -288,20 +288,20 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 29,
-      "open_issues_count": 6,
+      "open_issues_count": 3,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 161583,
+      "size": 161117,
       "weekly": {
-        "new_stars": 11,
-        "pushes": 922,
-        "issues_closed": 0
+        "new_stars": 7,
+        "pushes": 536,
+        "issues_closed": 1
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 150,
-        "pushes": 3532,
-        "issues_closed": 17
+        "new_stars": 149,
+        "pushes": 3580,
+        "issues_closed": 18
       },
       "rank": 2,
       "total_repos": 15,
@@ -310,7 +310,7 @@
         "new_stars": 59,
         "pushes": 100,
         "contributors": 40,
-        "issues_closed": 42,
+        "issues_closed": 43,
         "forks": 34
       },
       "attributes_scale": "benchmark"
@@ -318,7 +318,7 @@
     {
       "name": "ever-works/awesome-mcp-servers",
       "owner": "ever-works",
-      "stars_total": 123,
+      "stars_total": 124,
       "description": "A curated list of the best MCP Servers, featuring top solutions, libraries, tools, and more. - https://mcpserver.ever.works",
       "language": null,
       "topics": [
@@ -334,19 +334,19 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://mcpserver.ever.works",
-      "forks_count": 134,
-      "open_issues_count": 161,
+      "forks_count": 136,
+      "open_issues_count": 163,
       "created_at": "2025-05-14T01:00:14Z",
       "archived": false,
       "size": 6527,
       "weekly": {
-        "new_stars": 2,
+        "new_stars": 3,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 2,
       "window_8w": {
-        "new_stars": 23,
+        "new_stars": 24,
         "pushes": 0,
         "issues_closed": 1
       },
@@ -354,7 +354,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 42,
-        "new_stars": 37,
+        "new_stars": 38,
         "pushes": 0,
         "contributors": 18,
         "issues_closed": 10,
@@ -365,37 +365,37 @@
     {
       "name": "ever-works/awesome-startup-books",
       "owner": "ever-works",
-      "stars_total": 65,
+      "stars_total": 67,
       "description": "A curated list of books for Startups",
       "language": null,
       "topics": [],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://startup-books.ever.works",
-      "forks_count": 6,
+      "forks_count": 7,
       "open_issues_count": 1,
       "created_at": "2025-11-07T18:15:57Z",
       "archived": false,
       "size": 930,
       "weekly": {
-        "new_stars": 3,
+        "new_stars": 5,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 30,
+        "new_stars": 32,
         "pushes": 0,
         "issues_closed": 0
       },
       "rank": 4,
       "total_repos": 15,
       "attributes": {
-        "stars": 36,
-        "new_stars": 40,
+        "stars": 37,
+        "new_stars": 41,
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
-        "forks": 20
+        "forks": 21
       },
       "attributes_scale": "benchmark"
     },
@@ -430,7 +430,7 @@
       "archived": false,
       "size": 18859,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 0,
         "pushes": 15,
         "issues_closed": 0
       },
@@ -567,7 +567,7 @@
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 2,
-        "pushes": 187,
+        "pushes": 186,
         "issues_closed": 0
       },
       "rank": 7,
@@ -685,7 +685,7 @@
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 2,
+        "new_stars": 1,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -693,7 +693,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 16,
-        "new_stars": 13,
+        "new_stars": 8,
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
@@ -870,7 +870,7 @@
       "topics": [],
       "license": "CC-BY-SA-4.0",
       "homepage": null,
-      "forks_count": 0,
+      "forks_count": 1,
       "open_issues_count": 0,
       "created_at": "2026-05-02T15:48:12Z",
       "archived": false,
@@ -894,7 +894,7 @@
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
-        "forks": 0
+        "forks": 7
       },
       "attributes_scale": "benchmark"
     }
