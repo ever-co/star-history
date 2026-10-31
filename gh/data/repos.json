@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8656,
+      "stars_total": 8663,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,21 +31,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1308,
-      "open_issues_count": 406,
+      "forks_count": 1310,
+      "open_issues_count": 194,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 308575,
+      "size": 311638,
       "weekly": {
-        "new_stars": 117,
-        "pushes": 947,
-        "issues_closed": 10
+        "new_stars": 93,
+        "pushes": 753,
+        "issues_closed": 230
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4324,
-        "pushes": 4176,
-        "issues_closed": 182
+        "new_stars": 4332,
+        "pushes": 4198,
+        "issues_closed": 402
       },
       "rank": 1,
       "total_repos": 5,
@@ -54,7 +54,7 @@
         "new_stars": 98,
         "pushes": 100,
         "contributors": 73,
-        "issues_closed": 75,
+        "issues_closed": 87,
         "forks": 72
       },
       "attributes_scale": "benchmark"
@@ -89,7 +89,7 @@
       "size": 13801,
       "weekly": {
         "new_stars": 1,
-        "pushes": 49,
+        "pushes": 45,
         "issues_closed": 0
       },
       "contributors_count": 34,
@@ -146,7 +146,7 @@
       "archived": false,
       "size": 33069,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 0,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -192,29 +192,29 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 114,
-      "open_issues_count": 284,
+      "open_issues_count": 213,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 93766,
+      "size": 94832,
       "weekly": {
         "new_stars": 4,
-        "pushes": 218,
-        "issues_closed": 0
+        "pushes": 306,
+        "issues_closed": 39
       },
       "contributors_count": 44,
       "window_8w": {
         "new_stars": 58,
-        "pushes": 881,
-        "issues_closed": 48
+        "pushes": 1023,
+        "issues_closed": 87
       },
       "rank": 4,
       "total_repos": 5,
       "attributes": {
         "stars": 56,
         "new_stars": 48,
-        "pushes": 89,
+        "pushes": 91,
         "contributors": 61,
-        "issues_closed": 56,
+        "issues_closed": 65,
         "forks": 48
       },
       "attributes_scale": "benchmark"
@@ -250,7 +250,7 @@
       "archived": false,
       "size": 17882,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 0,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -275,7 +275,7 @@
     {
       "name": "ever-works/ever-works",
       "owner": "ever-works",
-      "stars_total": 184,
+      "stars_total": 185,
       "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships, and maintains entire businesses, 24/7 - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -288,19 +288,19 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 29,
-      "open_issues_count": 5,
+      "open_issues_count": 10,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 167156,
+      "size": 174527,
       "weekly": {
         "new_stars": 4,
-        "pushes": 651,
+        "pushes": 678,
         "issues_closed": 1
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 151,
-        "pushes": 3564,
+        "new_stars": 152,
+        "pushes": 3494,
         "issues_closed": 18
       },
       "rank": 2,
@@ -318,7 +318,7 @@
     {
       "name": "ever-works/awesome-mcp-servers",
       "owner": "ever-works",
-      "stars_total": 127,
+      "stars_total": 128,
       "description": "A curated list of the best MCP Servers, featuring top solutions, libraries, tools, and more. - https://mcpserver.ever.works",
       "language": null,
       "topics": [
@@ -346,7 +346,7 @@
       },
       "contributors_count": 2,
       "window_8w": {
-        "new_stars": 27,
+        "new_stars": 28,
         "pushes": 0,
         "issues_closed": 1
       },
@@ -354,7 +354,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 42,
-        "new_stars": 39,
+        "new_stars": 40,
         "pushes": 0,
         "contributors": 18,
         "issues_closed": 10,
@@ -371,7 +371,7 @@
       "topics": [],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://startup-books.ever.works",
-      "forks_count": 7,
+      "forks_count": 8,
       "open_issues_count": 1,
       "created_at": "2025-11-07T18:15:57Z",
       "archived": false,
@@ -395,7 +395,7 @@
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
-        "forks": 21
+        "forks": 22
       },
       "attributes_scale": "benchmark"
     },
@@ -431,7 +431,7 @@
       "size": 18859,
       "weekly": {
         "new_stars": 0,
-        "pushes": 15,
+        "pushes": 11,
         "issues_closed": 0
       },
       "contributors_count": 8,
@@ -567,7 +567,7 @@
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 2,
-        "pushes": 182,
+        "pushes": 148,
         "issues_closed": 0
       },
       "rank": 7,
@@ -575,7 +575,7 @@
       "attributes": {
         "stars": 26,
         "new_stars": 13,
-        "pushes": 69,
+        "pushes": 66,
         "contributors": 40,
         "issues_closed": 0,
         "forks": 14
@@ -803,7 +803,7 @@
       "size": 3621,
       "weekly": {
         "new_stars": 0,
-        "pushes": 7,
+        "pushes": 5,
         "issues_closed": 0
       },
       "contributors_count": 3,
