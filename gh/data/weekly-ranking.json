@@ -1,10 +1,15 @@
 {
-  "updated_at": "2026-10-31",
+  "updated_at": "2026-11-01",
   "repos": [
     {
       "name": "ever-co/ever-gauzy",
-      "new_stars": 93,
-      "stars_total": 8663
+      "new_stars": 70,
+      "stars_total": 8665
+    },
+    {
+      "name": "ever-works/awesome-startup-books",
+      "new_stars": 6,
+      "stars_total": 70
     },
     {
       "name": "ever-works/awesome-mcp-servers",
@@ -18,23 +23,13 @@
     },
     {
       "name": "ever-works/ever-works",
-      "new_stars": 4,
+      "new_stars": 3,
       "stars_total": 185
     },
     {
-      "name": "ever-works/awesome-startup-books",
-      "new_stars": 4,
-      "stars_total": 68
-    },
-    {
       "name": "ever-co/ever-traduora",
-      "new_stars": 1,
+      "new_stars": 0,
       "stars_total": 2139
-    },
-    {
-      "name": "ever-works/awesome-rust-ai-libraries",
-      "new_stars": 1,
-      "stars_total": 22
     },
     {
       "name": "ever-co/ever-demand",
@@ -55,6 +50,11 @@
       "name": "ever-works/awesome-vector-databases",
       "new_stars": 0,
       "stars_total": 29
+    },
+    {
+      "name": "ever-works/awesome-rust-ai-libraries",
+      "new_stars": 0,
+      "stars_total": 22
     },
     {
       "name": "ever-works/directory-web-template",
