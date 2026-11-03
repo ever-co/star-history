@@ -1,15 +1,20 @@
 {
-  "updated_at": "2026-11-02",
+  "updated_at": "2026-11-03",
   "repos": [
     {
       "name": "ever-co/ever-gauzy",
-      "new_stars": 59,
-      "stars_total": 8671
+      "new_stars": 53,
+      "stars_total": 8680
     },
     {
       "name": "ever-works/awesome-startup-books",
+      "new_stars": 9,
+      "stars_total": 74
+    },
+    {
+      "name": "ever-works/ever-works",
       "new_stars": 7,
-      "stars_total": 71
+      "stars_total": 189
     },
     {
       "name": "ever-works/awesome-mcp-servers",
@@ -17,14 +22,9 @@
       "stars_total": 128
     },
     {
-      "name": "ever-works/ever-works",
-      "new_stars": 4,
-      "stars_total": 186
-    },
-    {
       "name": "ever-co/ever-teams",
-      "new_stars": 3,
-      "stars_total": 600
+      "new_stars": 4,
+      "stars_total": 602
     },
     {
       "name": "ever-co/ever-demand",

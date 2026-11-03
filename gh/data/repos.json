@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8671,
+      "stars_total": 8680,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,21 +31,21 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1313,
-      "open_issues_count": 141,
+      "forks_count": 1315,
+      "open_issues_count": 140,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 317562,
+      "size": 319238,
       "weekly": {
-        "new_stars": 59,
-        "pushes": 707,
-        "issues_closed": 262
+        "new_stars": 53,
+        "pushes": 640,
+        "issues_closed": 264
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4335,
-        "pushes": 4631,
-        "issues_closed": 443
+        "new_stars": 4338,
+        "pushes": 4625,
+        "issues_closed": 445
       },
       "rank": 1,
       "total_repos": 5,
@@ -140,7 +140,7 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://everdemand.co",
-      "forks_count": 474,
+      "forks_count": 473,
       "open_issues_count": 72,
       "created_at": "2018-08-25T16:53:47Z",
       "archived": false,
@@ -171,7 +171,7 @@
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 600,
+      "stars_total": 602,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -197,15 +197,15 @@
       "archived": false,
       "size": 96830,
       "weekly": {
-        "new_stars": 3,
-        "pushes": 125,
-        "issues_closed": 39
+        "new_stars": 4,
+        "pushes": 103,
+        "issues_closed": 40
       },
       "contributors_count": 44,
       "window_8w": {
-        "new_stars": 57,
+        "new_stars": 59,
         "pushes": 1078,
-        "issues_closed": 87
+        "issues_closed": 88
       },
       "rank": 4,
       "total_repos": 5,
@@ -256,7 +256,7 @@
       },
       "contributors_count": 5,
       "window_8w": {
-        "new_stars": 19,
+        "new_stars": 18,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -275,7 +275,7 @@
     {
       "name": "ever-works/ever-works",
       "owner": "ever-works",
-      "stars_total": 186,
+      "stars_total": 189,
       "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships, and maintains entire businesses, 24/7 - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -288,25 +288,25 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 29,
-      "open_issues_count": 13,
+      "open_issues_count": 14,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 166960,
+      "size": 167750,
       "weekly": {
-        "new_stars": 4,
-        "pushes": 716,
+        "new_stars": 7,
+        "pushes": 627,
         "issues_closed": 1
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 152,
-        "pushes": 3420,
+        "new_stars": 155,
+        "pushes": 3416,
         "issues_closed": 18
       },
       "rank": 2,
       "total_repos": 15,
       "attributes": {
-        "stars": 45,
+        "stars": 46,
         "new_stars": 59,
         "pushes": 100,
         "contributors": 40,
@@ -365,7 +365,7 @@
     {
       "name": "ever-works/awesome-startup-books",
       "owner": "ever-works",
-      "stars_total": 71,
+      "stars_total": 74,
       "description": "A curated list of books for Startups",
       "language": null,
       "topics": [],
@@ -377,21 +377,21 @@
       "archived": false,
       "size": 930,
       "weekly": {
-        "new_stars": 7,
+        "new_stars": 9,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 34,
+        "new_stars": 37,
         "pushes": 0,
         "issues_closed": 0
       },
       "rank": 4,
       "total_repos": 15,
       "attributes": {
-        "stars": 37,
-        "new_stars": 42,
+        "stars": 38,
+        "new_stars": 43,
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
@@ -431,7 +431,7 @@
       "size": 18859,
       "weekly": {
         "new_stars": 1,
-        "pushes": 2,
+        "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 8,
@@ -555,10 +555,10 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 3,
-      "open_issues_count": 7,
+      "open_issues_count": 8,
       "created_at": "2025-01-06T16:51:42Z",
       "archived": false,
-      "size": 44346,
+      "size": 44665,
       "weekly": {
         "new_stars": 0,
         "pushes": 0,
@@ -797,13 +797,13 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 1,
-      "open_issues_count": 0,
+      "open_issues_count": 1,
       "created_at": "2026-04-10T20:37:44Z",
       "archived": false,
-      "size": 3621,
+      "size": 3625,
       "weekly": {
         "new_stars": 0,
-        "pushes": 2,
+        "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 3,
