@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8680,
+      "stars_total": 8687,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -35,17 +35,17 @@
       "open_issues_count": 140,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 319238,
+      "size": 309856,
       "weekly": {
-        "new_stars": 53,
-        "pushes": 640,
+        "new_stars": 47,
+        "pushes": 624,
         "issues_closed": 264
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4338,
-        "pushes": 4625,
-        "issues_closed": 445
+        "new_stars": 4341,
+        "pushes": 4673,
+        "issues_closed": 444
       },
       "rank": 1,
       "total_repos": 5,
@@ -146,7 +146,7 @@
       "archived": false,
       "size": 33069,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -171,7 +171,7 @@
     {
       "name": "ever-co/ever-teams",
       "owner": "ever-co",
-      "stars_total": 602,
+      "stars_total": 601,
       "description": "Ever® Teams™ - The Workplace for Humans. Open Work & Productivity Platform - https://ever.team",
       "language": "TypeScript",
       "topics": [
@@ -192,20 +192,20 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 114,
-      "open_issues_count": 214,
+      "open_issues_count": 215,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
       "size": 96830,
       "weekly": {
-        "new_stars": 4,
-        "pushes": 103,
+        "new_stars": 3,
+        "pushes": 94,
         "issues_closed": 40
       },
       "contributors_count": 44,
       "window_8w": {
         "new_stars": 59,
-        "pushes": 1078,
-        "issues_closed": 88
+        "pushes": 1077,
+        "issues_closed": 86
       },
       "rank": 4,
       "total_repos": 5,
@@ -222,7 +222,7 @@
     {
       "name": "ever-works/awesome-time-tracking",
       "owner": "ever-works",
-      "stars_total": 239,
+      "stars_total": 240,
       "description": "Time Tracking - Software, Methodologies and Practices - https://timetrack.ever.works",
       "language": null,
       "topics": [
@@ -250,13 +250,13 @@
       "archived": false,
       "size": 17882,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 5,
       "window_8w": {
-        "new_stars": 18,
+        "new_stars": 19,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -288,20 +288,20 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.works",
       "forks_count": 29,
-      "open_issues_count": 14,
+      "open_issues_count": 3,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 167750,
+      "size": 169174,
       "weekly": {
         "new_stars": 7,
-        "pushes": 627,
+        "pushes": 329,
         "issues_closed": 1
       },
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 155,
-        "pushes": 3416,
-        "issues_closed": 18
+        "pushes": 3483,
+        "issues_closed": 16
       },
       "rank": 2,
       "total_repos": 15,
@@ -310,7 +310,7 @@
         "new_stars": 59,
         "pushes": 100,
         "contributors": 40,
-        "issues_closed": 43,
+        "issues_closed": 41,
         "forks": 34
       },
       "attributes_scale": "benchmark"
@@ -334,13 +334,13 @@
       ],
       "license": "CC-BY-SA-4.0",
       "homepage": "https://mcpserver.ever.works",
-      "forks_count": 140,
-      "open_issues_count": 164,
+      "forks_count": 139,
+      "open_issues_count": 163,
       "created_at": "2025-05-14T01:00:14Z",
       "archived": false,
       "size": 6527,
       "weekly": {
-        "new_stars": 5,
+        "new_stars": 3,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -365,7 +365,7 @@
     {
       "name": "ever-works/awesome-startup-books",
       "owner": "ever-works",
-      "stars_total": 74,
+      "stars_total": 78,
       "description": "A curated list of books for Startups",
       "language": null,
       "topics": [],
@@ -377,13 +377,13 @@
       "archived": false,
       "size": 930,
       "weekly": {
-        "new_stars": 9,
+        "new_stars": 11,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 37,
+        "new_stars": 40,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -391,7 +391,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 38,
-        "new_stars": 43,
+        "new_stars": 44,
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
@@ -500,7 +500,7 @@
     {
       "name": "ever-works/awesome-rust-ai-libraries",
       "owner": "ever-works",
-      "stars_total": 23,
+      "stars_total": 24,
       "description": "Curated directory of Rust-based libraries and crates for AI model training, inference, agentic systems, and related tools. Include popular crates like candle, burn, dfdx, tract, and more. Focus on open-source, high-quality projects with GitHub stars, docs, and examples.",
       "language": null,
       "topics": [],
@@ -512,13 +512,13 @@
       "archived": false,
       "size": 739,
       "weekly": {
-        "new_stars": 1,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 2,
       "window_8w": {
-        "new_stars": 9,
+        "new_stars": 10,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -526,7 +526,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 28,
-        "new_stars": 27,
+        "new_stars": 28,
         "pushes": 0,
         "contributors": 18,
         "issues_closed": 0,
