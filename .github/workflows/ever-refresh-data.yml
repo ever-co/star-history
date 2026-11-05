@@ -61,8 +61,10 @@ jobs:
           echo "changed=true" >> "$GITHUB_OUTPUT"
       # The ARC runner image has no `gh` CLI (`gh: command not found`, exit 127, on the first
       # real run 2026-10-16), so dispatch through the REST API with the Node set up above.
+      # In-cluster (ever-co/k8s-gitops apps/ci-builds, where `env.ACT` is set) the push above is seen by the poller and starts
+      # k8s-build by itself, and k8s-build is off on Actions there, so a dispatch would only fail. On Actions nothing changes.
       - name: Rebuild the images
-        if: steps.commit.outputs.changed == 'true'
+        if: steps.commit.outputs.changed == 'true' && !env.ACT
         run: |
           node --input-type=module -e '
             const res = await fetch(`https://api.github.com/repos/${process.env.REPO}/actions/workflows/k8s-build.yml/dispatches`, {
