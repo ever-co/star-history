@@ -4,7 +4,7 @@
     {
       "name": "ever-co/ever-gauzy",
       "owner": "ever-co",
-      "stars_total": 8687,
+      "stars_total": 8694,
       "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
       "language": "TypeScript",
       "topics": [
@@ -31,20 +31,20 @@
       ],
       "license": "AGPL-3.0",
       "homepage": "https://gauzy.co",
-      "forks_count": 1315,
-      "open_issues_count": 140,
+      "forks_count": 1316,
+      "open_issues_count": 150,
       "created_at": "2019-06-02T09:47:13Z",
       "archived": false,
-      "size": 309856,
+      "size": 309859,
       "weekly": {
-        "new_stars": 47,
-        "pushes": 624,
+        "new_stars": 42,
+        "pushes": 573,
         "issues_closed": 264
       },
       "contributors_count": 93,
       "window_8w": {
-        "new_stars": 4341,
-        "pushes": 4673,
+        "new_stars": 4349,
+        "pushes": 4675,
         "issues_closed": 444
       },
       "rank": 1,
@@ -152,7 +152,7 @@
       },
       "contributors_count": 29,
       "window_8w": {
-        "new_stars": 23,
+        "new_stars": 22,
         "pushes": 2,
         "issues_closed": 0
       },
@@ -192,20 +192,20 @@
       "license": "AGPL-3.0",
       "homepage": "https://ever.team",
       "forks_count": 114,
-      "open_issues_count": 215,
+      "open_issues_count": 230,
       "created_at": "2022-10-11T15:31:48Z",
       "archived": false,
-      "size": 96830,
+      "size": 98118,
       "weekly": {
-        "new_stars": 3,
-        "pushes": 94,
+        "new_stars": 2,
+        "pushes": 85,
         "issues_closed": 40
       },
       "contributors_count": 44,
       "window_8w": {
         "new_stars": 59,
-        "pushes": 1077,
-        "issues_closed": 86
+        "pushes": 1075,
+        "issues_closed": 85
       },
       "rank": 4,
       "total_repos": 5,
@@ -214,7 +214,7 @@
         "new_stars": 48,
         "pushes": 92,
         "contributors": 61,
-        "issues_closed": 65,
+        "issues_closed": 64,
         "forks": 48
       },
       "attributes_scale": "benchmark"
@@ -275,7 +275,7 @@
     {
       "name": "ever-works/ever-works",
       "owner": "ever-works",
-      "stars_total": 189,
+      "stars_total": 190,
       "description": "Ever® Works™ - The Workshop for AI. An open agentic runtime that autonomously researches, ships, and maintains entire businesses, 24/7 - https://ever.works",
       "language": "TypeScript",
       "topics": [
@@ -291,17 +291,17 @@
       "open_issues_count": 3,
       "created_at": "2025-01-06T16:50:16Z",
       "archived": false,
-      "size": 169174,
+      "size": 169176,
       "weekly": {
         "new_stars": 7,
-        "pushes": 329,
-        "issues_closed": 1
+        "pushes": 281,
+        "issues_closed": 0
       },
       "contributors_count": 11,
       "window_8w": {
-        "new_stars": 155,
-        "pushes": 3483,
-        "issues_closed": 16
+        "new_stars": 156,
+        "pushes": 3489,
+        "issues_closed": 15
       },
       "rank": 2,
       "total_repos": 15,
@@ -310,7 +310,7 @@
         "new_stars": 59,
         "pushes": 100,
         "contributors": 40,
-        "issues_closed": 41,
+        "issues_closed": 40,
         "forks": 34
       },
       "attributes_scale": "benchmark"
@@ -318,7 +318,7 @@
     {
       "name": "ever-works/awesome-mcp-servers",
       "owner": "ever-works",
-      "stars_total": 128,
+      "stars_total": 129,
       "description": "A curated list of the best MCP Servers, featuring top solutions, libraries, tools, and more. - https://mcpserver.ever.works",
       "language": null,
       "topics": [
@@ -340,7 +340,7 @@
       "archived": false,
       "size": 6527,
       "weekly": {
-        "new_stars": 3,
+        "new_stars": 2,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -377,13 +377,13 @@
       "archived": false,
       "size": 930,
       "weekly": {
-        "new_stars": 11,
+        "new_stars": 10,
         "pushes": 0,
         "issues_closed": 0
       },
       "contributors_count": 1,
       "window_8w": {
-        "new_stars": 40,
+        "new_stars": 38,
         "pushes": 0,
         "issues_closed": 0
       },
@@ -391,7 +391,7 @@
       "total_repos": 15,
       "attributes": {
         "stars": 38,
-        "new_stars": 44,
+        "new_stars": 43,
         "pushes": 0,
         "contributors": 11,
         "issues_closed": 0,
@@ -506,7 +506,7 @@
       "topics": [],
       "license": "CC-BY-SA-4.0",
       "homepage": null,
-      "forks_count": 5,
+      "forks_count": 6,
       "open_issues_count": 3,
       "created_at": "2026-04-01T12:33:19Z",
       "archived": false,
@@ -530,7 +530,7 @@
         "pushes": 0,
         "contributors": 18,
         "issues_closed": 0,
-        "forks": 18
+        "forks": 20
       },
       "attributes_scale": "benchmark"
     },
@@ -567,7 +567,7 @@
       "contributors_count": 11,
       "window_8w": {
         "new_stars": 2,
-        "pushes": 93,
+        "pushes": 92,
         "issues_closed": 0
       },
       "rank": 7,
